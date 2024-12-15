@@ -113,26 +113,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $classSection = $entry['class_section'];
         $period = $entry['period'];
 
-        // Delete any existing duplicate schedule for the same teacher, weekday, class, and period
-        $stmtDelete = $conn->prepare("DELETE FROM class_schedule WHERE Teacher_ID = :teacherID AND Weekday = :weekday AND Class = :classSection AND Class_Time = :period");
-        $stmtDelete->execute([
-            ':teacherID' => $teacherID,
-            ':weekday' => $weekday,
-            ':classSection' => $classSection,
-            ':period' => $period
-        ]);
-        
-        // Insert the new schedule entry
-        $stmtInsert = $conn->prepare("INSERT INTO class_schedule (Weekday, Class, Teacher_ID, Class_Time) VALUES (:weekday, :classSection, :teacherID, :period)");
-        $stmtInsert->execute([
-            ':weekday' => $weekday,
-            ':classSection' => $classSection,
-            ':teacherID' => $teacherID,
-            ':period' => $period
-        ]);
+        // If class section is not 'DELETE', proceed with delete and insert
+        if ($classSection !== 'DELETE') {
+            // Delete any existing duplicate schedule for the same teacher, weekday, class, and period
+            $stmtDelete = $conn->prepare("DELETE FROM class_schedule WHERE Teacher_ID = :teacherID AND Weekday = :weekday AND Class = :classSection AND Class_Time = :period");
+            $stmtDelete->execute([
+                ':teacherID' => $teacherID,
+                ':weekday' => $weekday,
+                ':classSection' => $classSection,
+                ':period' => $period
+            ]);
+            
+            // Insert the new schedule entry
+            $stmtInsert = $conn->prepare("INSERT INTO class_schedule (Weekday, Class, Teacher_ID, Class_Time) VALUES (:weekday, :classSection, :teacherID, :period)");
+            $stmtInsert->execute([
+                ':weekday' => $weekday,
+                ':classSection' => $classSection,
+                ':teacherID' => $teacherID,
+                ':period' => $period
+            ]);
+        } else {
+            // If DELETE is selected, just remove the schedule entry without inserting a new one
+            $stmtDelete = $conn->prepare("DELETE FROM class_schedule WHERE Teacher_ID = :teacherID AND Weekday = :weekday AND Class = :classSection AND Class_Time = :period");
+            $stmtDelete->execute([
+                ':teacherID' => $teacherID,
+                ':weekday' => $weekday,
+                ':classSection' => $classSection,
+                ':period' => $period
+            ]);
+        }
     }
 
-    echo "Schedule Saved successfully!";
+    echo "Schedule operation completed successfully!";
     exit;
 }
 
@@ -306,7 +318,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <option value="" disabled selected></option>
                                     <!-- Predefined list of classes -->
                                     <?php 
-                                            $classes = ['','5A', '5B', '6A', '6B', '7A', '7B', '8A', '8B', '9A', '9C', '10A', '10B', '11 ARTS', '11 SCIENCE', '12 ARTS', '12 SCIENCE'];
+                                            $classes = ['DELETE','5A', '5B', '6A', '6B', '7A', '7B', '8A', '8B', '9A', '9C', '10A', '10B', '11 ARTS', '11 SCIENCE', '12 ARTS', '12 SCIENCE'];
                                             foreach ($classes as $class) {
                                                 echo "<option value=\"$class\">$class</option>";
                                             }
