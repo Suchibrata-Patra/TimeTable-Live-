@@ -12,6 +12,17 @@ try {
     die();
 }
 
+
+
+// Prepare the DELETE query
+$stmt = $conn->prepare("DELETE FROM class_schedule WHERE Class = :class");
+$class = 'DELETE';
+$stmt->bindParam(':class', $class);
+$stmt->execute();
+$affectedRows = $stmt->rowCount();
+echo "$affectedRows rows were deleted."; // For feedback on the operation
+
+
 // Fetch all teachers
 $teachersQuery = $conn->query("SELECT Teacher_ID, Teacher_Name FROM teacher_profile");
 $teachers = $teachersQuery->fetchAll(PDO::FETCH_ASSOC);
