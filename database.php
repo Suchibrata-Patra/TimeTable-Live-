@@ -41,17 +41,16 @@ if (!preg_match('/^[a-zA-Z0-9_]+$/', $dbname)) {
     error_log("Invalid DB_NAME value.", 0);
     die("Invalid database name.");
 }
-mysqli_report(MYSQLI_REPORT_STRICT);
+
 try {
-    $conn = new mysqli($host, $user, $password, $dbname);
+    $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8";
+    $conn = new PDO($dsn, $user, $password);
     
-    // Check the connection
-    if ($conn->connect_error) {
-        throw new Exception("Connection failed: " . $conn->connect_error);
-    } else {
-        echo "Successfully connected!";
-    }
-} catch (Exception $e) {
+    // Set PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    echo "Successfully connected!";
+} catch (PDOException $e) {
     // Log the error securely without exposing sensitive details
     error_log($e->getMessage(), 0);
     die("Unable to connect to the database.");

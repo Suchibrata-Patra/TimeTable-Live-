@@ -1,42 +1,35 @@
-<?php include 'database.php';
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+<?php
+$host = "localhost";
+$dbname = "Timora";
+$username = "root";
+$password = "root";
+
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+    die();
+}
+
 // Fetch all teachers
 $teachersQuery = $conn->query("SELECT Teacher_ID, Teacher_Name FROM teacher_profile");
-$teachers = [];
-while ($row = $teachersQuery->fetch_assoc()) {
-    $teachers[] = $row;
-}
+$teachers = $teachersQuery->fetchAll(PDO::FETCH_ASSOC);
 
 // Fetch existing schedules for Monday (or any other default weekday)
 $weekday = 'Monday'; // Default to Monday, can change dynamically based on user input
-$sql = "SELECT * FROM class_schedule WHERE Weekday = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param('s', $weekday); // 's' denotes a string type parameter
-$stmt->execute();
-$result = $stmt->get_result();
-$schedules = [];
-while ($row = $result->fetch_assoc()) {
-    $schedules[] = $row;
-}
-
+$scheduleQuery = $conn->prepare("SELECT * FROM class_schedule WHERE Weekday = :weekday");
+$scheduleQuery->execute([':weekday' => $weekday]);
+$schedules = $scheduleQuery->fetchAll(PDO::FETCH_ASSOC);
 
 // Handle GET request for fetching schedules by weekday
 if (isset($_GET['weekday'])) {
     $weekday = $_GET['weekday'];
 
-    // Prepare the SQL query to fetch schedules for the selected weekday
-    $stmt = $conn->prepare("SELECT * FROM class_schedule WHERE Weekday = ?");
-    $stmt->bind_param('s', $weekday); // 's' indicates the type is a string
-    $stmt->execute();
-    $result = $stmt->get_result(); // Get the result set
-
-    // Fetch all the rows into an array
-    $schedulesForWeekday = [];
-    while ($row = $result->fetch_assoc()) {
-        $schedulesForWeekday[] = $row; // Add each row to the array
-    }
+    // Fetch schedules for the selected weekday
+    $stmt = $conn->prepare("SELECT * FROM class_schedule WHERE Weekday = :weekday");
+    $stmt->execute([':weekday' => $weekday]);
+    $schedulesForWeekday = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     // Prepare response as a JSON array
     echo json_encode($schedulesForWeekday);
@@ -60,7 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ':classSection' => $classSection,  // Correct parameter binding for classSection
             ':period' => $period  // Correct parameter binding for period
         ]);
-        
     
         // Debug: Check how many rows are returned
         if ($stmtCheck->rowCount() > 0) {
