@@ -34,9 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        // After the update, redirect to the same page
-        header("Location: " . $_SERVER['PHP_SELF']);
-        exit; // Make sure no further code is executed after the redirect
+        echo json_encode(["status" => "success", "message" => "Database updated successfully"]);
     } else {
         echo json_encode(["status" => "error", "message" => "No data received"]);
     }
