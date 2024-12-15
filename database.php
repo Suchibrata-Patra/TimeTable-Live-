@@ -23,11 +23,11 @@ function loadEnv($file) {
 loadEnv(__DIR__ . '/.env');
 
 $host = getenv('DB_HOST');
-$user = getenv('DB_USER');
+$username = getenv('DB_USER');
 $password = getenv('DB_PASSWORD');
 $dbname = getenv('DB_NAME');
 
-if (empty($host) || empty($user) || empty($password) || empty($dbname)) {
+if (empty($host) || empty($username) || empty($password) || empty($dbname)) {
     error_log("Missing or incorrect environment variables.", 0);
     die("An error occurred while configuring the database connection.");
 }
@@ -41,17 +41,15 @@ if (!preg_match('/^[a-zA-Z0-9_]+$/', $dbname)) {
     error_log("Invalid DB_NAME value.", 0);
     die("Invalid database name.");
 }
-mysqli_report(MYSQLI_REPORT_STRICT);
+
 try {
-    $conn = new mysqli($host, $user, $password, $dbname);
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     
-    // Check the connection
-    if ($conn->connect_error) {
-        throw new Exception("Connection failed: " . $conn->connect_error);
-    } else {
-        echo "Successfully connected!";
-    }
-} catch (Exception $e) {
+    // Set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    echo "Successfully connected!";
+} catch (PDOException $e) {
     // Log the error securely without exposing sensitive details
     error_log($e->getMessage(), 0);
     die("Unable to connect to the database.");
