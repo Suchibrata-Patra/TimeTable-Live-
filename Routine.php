@@ -1,11 +1,12 @@
-<?php include 'database.php'?>
+<?php include 'database.php' ?>
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
 // Fetch all teachers
 $teachersQuery = $conn->query("SELECT Teacher_ID, Teacher_Name FROM teacher_profile");
-$teachers = mysqli_fetch_all($teachersQuery, MYSQLI_ASSOC);
+$teachers = $teachersQuery->fetchAll(PDO::FETCH_ASSOC);  // Use fetchAll() with PDO
 
 // Fetch existing schedules for Monday (or any other default weekday)
 $weekday = 'Monday'; // Default to Monday, can change dynamically based on user input
@@ -36,24 +37,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $teacherID = $entry['teacher_id'];
         $classSection = $entry['class_section'];
         $period = $entry['period'];
-    
+
         // Check if an entry exists for the given weekday, class section, and period
         $stmtCheck = $conn->prepare("SELECT * FROM class_schedule WHERE Weekday = :weekday AND Class = :classSection AND Class_Time = :period");
         $stmtCheck->execute([
-            ':weekday' => $weekday,  // Ensure this variable holds the correct value for the weekday
-            ':classSection' => $classSection,  // Correct parameter binding for classSection
-            ':period' => $period  // Correct parameter binding for period
+            ':weekday' => $weekday,
+            ':classSection' => $classSection,
+            ':period' => $period
         ]);
-    
+
         // Debug: Check how many rows are returned
         if ($stmtCheck->rowCount() > 0) {
             // If the entry exists, check if it's the same teacher for the same period
             $existingSchedule = $stmtCheck->fetch(PDO::FETCH_ASSOC);
-            
+
             // If the teacher is the same, update the entry; otherwise, insert a new entry
             if ($existingSchedule['Teacher_ID'] == $teacherID) {
                 // Update the schedule only if the teacher is the same
-                // echo "Updating existing schedule for $classSection, $period with teacher ID $teacherID\n"; // Debugging line
                 $stmt = $conn->prepare("UPDATE class_schedule SET Teacher_ID = :teacherID WHERE Weekday = :weekday AND Class = :classSection AND Class_Time = :period");
                 $stmt->execute([
                     ':teacherID' => $teacherID,
@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ]);
         }
     }
-    
+
     echo "Schedule Saved successfully!";
     exit;
 }
