@@ -63,6 +63,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($existingSchedule['Teacher_ID'] == $teacherID) {
                 // Update the schedule only if the teacher is the same
                 // echo "Updating existing schedule for $classSection, $period with teacher ID $teacherID\n"; // Debugging line
+                $stmt = $conn->prepare("DELETE FROM class_schedule WHERE Weekday = :weekday AND Class = :classSection AND Class_Time = :period");
+                $stmt->execute([
+                    ':teacherID' => $teacherID,
+                    ':weekday' => $weekday,
+                    ':classSection' => $classSection,
+                    ':period' => $period
+                ]);
                 $stmt = $conn->prepare("UPDATE class_schedule SET Teacher_ID = :teacherID WHERE Weekday = :weekday AND Class = :classSection AND Class_Time = :period");
                 $stmt->execute([
                     ':teacherID' => $teacherID,
