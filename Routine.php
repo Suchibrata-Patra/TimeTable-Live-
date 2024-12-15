@@ -15,9 +15,7 @@ try {
 
 
 // Prepare the DELETE query
-$stmt = $conn->prepare("DELETE FROM class_schedule WHERE Class = :class");
-$class = 'DELETE';
-$stmt->bindParam(':class', $class);
+$stmt = $conn->prepare("DELETE FROM class_schedule WHERE Class = 'DELETE'");
 $stmt->execute();
 
 
