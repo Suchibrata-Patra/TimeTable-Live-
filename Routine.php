@@ -295,89 +295,76 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
     <script>
-        $(document).ready(function () {
-            function updateTable(weekday) {
-                // Clear the current table data
-                $('.class-section-dropdown').val('');
+       $(document).ready(function () {
+    // Function to update the table based on selected weekday
+    function updateTable(weekday) {
+        $.get("your_php_file.php", { weekday: weekday }, function (data) {
+            var schedules = JSON.parse(data);
+            
+            // Clear current table values
+            $('.class-section-dropdown').val('');
 
-                // Update the table header with the selected weekday
-                $('#tableHeader tr').find('th').first().text('Teacher - ' + weekday);
+            // Populate the schedule data
+            schedules.forEach(function (schedule) {
+                // Find the correct teacher and period
+                var teacherID = schedule.Teacher_ID;
+                var period = schedule.Class_Time;
+                var classSection = schedule.Class;
 
-                // Fetch schedule data for the selected weekday
-                $.ajax({
-                    type: 'GET',
-                    url: '', // Use the same PHP file
-                    data: { weekday: weekday },
-                    success: function (response) {
-                        const schedules = JSON.parse(response);
-
-                        // Populate the table with the fetched data
-                        schedules.forEach(schedule => {
-                            const teacherId = schedule.Teacher_ID;
-                            const period = schedule.Class_Time;
-                            const classSection = schedule.Class;
-
-                            // Find the corresponding dropdown and update its value
-                            $(`.class-section-dropdown[data-teacher-id="${teacherId}"][data-period="${period}"]`).val(classSection);
-                        });
-                    }
-                });
-            }
-
-            // Set default weekday to Monday on page load
-            const defaultWeekday = 'Monday';
-            $('#weekday').val(defaultWeekday);
-
-            // Trigger the updateTable function for Monday on page load
-            updateTable(defaultWeekday);
-
-            // Listen for changes in the weekday dropdown
-            $('#weekday').on('change', function () {
-                const selectedWeekday = $(this).val();
-                if (selectedWeekday) {
-                    updateTable(selectedWeekday);
-                }
-            });
-
-            // Handle form submission as before
-            $('#scheduleForm').on('submit', function (e) {
-                e.preventDefault();
-
-                const weekday = $('#weekday').val();
-                if (!weekday) {
-                    alert('Please select a weekday.');
-                    return;
-                }
-
-                const entries = [];
-                $('.class-section-dropdown').each(function () {
-                    const teacherId = $(this).data('teacher-id');
-                    const period = $(this).data('period');
-                    const classSection = $(this).val();
-
-                    if (classSection) {
-                        entries.push({
-                            teacher_id: teacherId,
-                            class_section: classSection,
-                            period: period
-                        });
-                    }
-                });
-
-                $.ajax({
-                    type: 'POST',
-                    url: '',
-                    data: {
-                        weekday: weekday,
-                        entries: JSON.stringify(entries)
-                    },
-                    success: function (response) {
-                        alert(response);
-                        location.reload();
-                    }
-                });
+                // Update the dropdown for the teacher's class and period
+                $('select[data-teacher-id="' + teacherID + '"][data-period="' + period + '"]').val(classSection);
             });
         });
+    }
+
+    // Trigger table update when a weekday is selected
+    $('#weekday').change(function () {
+        var selectedWeekday = $(this).val();
+        if (selectedWeekday) {
+            updateTable(selectedWeekday);
+        }
+    });
+
+    // Handle form submission to save the schedule
+    $('#scheduleForm').submit(function (e) {
+        e.preventDefault();
+
+        var weekday = $('#weekday').val();
+        var entries = [];
+
+        // Collect all the selected teacher-class-period combinations
+        $('.class-section-dropdown').each(function () {
+            var teacherID = $(this).data('teacher-id');
+            var period = $(this).data('period');
+            var classSection = $(this).val();
+
+            if (classSection) {
+                entries.push({
+                    teacher_id: teacherID,
+                    class_section: classSection,
+                    period: period
+                });
+            }
+        });
+
+        // Send the collected entries to the server to save the schedule
+        $.ajax({
+            url: 'your_php_file.php',
+            method: 'POST',
+            data: {
+                weekday: weekday,
+                entries: JSON.stringify(entries)
+            },
+            success: function (response) {
+                alert(response); // Show success message
+            },
+            error: function (error) {
+                alert('Error saving schedule: ' + error.responseText);
+            }
+        });
+    });
+});
+
 
     </script>
 </body>
