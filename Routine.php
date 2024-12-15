@@ -11,6 +11,7 @@ try {
     echo "Connection failed: " . $e->getMessage();
     die();
 }
+
 // Fetch all teachers
 $teachersQuery = $conn->query("SELECT Teacher_ID, Teacher_Name FROM teacher_profile");
 $teachers = $teachersQuery->fetchAll(PDO::FETCH_ASSOC);
@@ -109,40 +110,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     foreach ($entries as $entry) {
         $teacherID = $entry['teacher_id'];
-        if ($classSection !== 'DELETE') {
-            // Delete any existing duplicate schedule for the same teacher, weekday, class, and period
-            $stmtDelete = $conn->prepare("DELETE FROM class_schedule WHERE Teacher_ID = :teacherID AND Weekday = :weekday AND Class = :classSection AND Class_Time = :period");
-            $stmtDelete->execute([
-                ':teacherID' => $teacherID,
-                ':weekday' => $weekday,
-                ':classSection' => $classSection,
-                ':period' => $period
-            ]);
-            
-            // Insert the new schedule entry
-            $stmtInsert = $conn->prepare("INSERT INTO class_schedule (Weekday, Class, Teacher_ID, Class_Time) VALUES (:weekday, :classSection, :teacherID, :period)");
-            $stmtInsert->execute([
-                ':weekday' => $weekday,
-                ':classSection' => $classSection,
-                ':teacherID' => $teacherID,
-                ':period' => $period
-            ]);
-            $deleteoption = $conn->query("DELETE FROM class_schedule WHERE Class='DELETE'");
-$affectedRows = $deleteoption->rowCount(); // Returns the number of rows affected by the DELETE operation
-echo "$affectedRows rows were deleted."; // Optional: For feedback on the operation
-        } else {
-            // If DELETE is selected, just remove the schedule entry without inserting a new one
-            $stmtDelete = $conn->prepare("DELETE FROM class_schedule WHERE Teacher_ID = :teacherID AND Weekday = :weekday AND Class = :classSection AND Class_Time = :period");
-            $stmtDelete->execute([
-                ':teacherID' => $teacherID,
-                ':weekday' => $weekday,
-                ':classSection' => $classSection,
-                ':period' => $period
-            ]);
-        }
+        $classSection = $entry['class_section'];
+        $period = $entry['period'];
+
+        // Delete any existing duplicate schedule for the same teacher, weekday, class, and period
+        $stmtDelete = $conn->prepare("DELETE FROM class_schedule WHERE Teacher_ID = :teacherID AND Weekday = :weekday AND Class = :classSection AND Class_Time = :period");
+        $stmtDelete->execute([
+            ':teacherID' => $teacherID,
+            ':weekday' => $weekday,
+            ':classSection' => $classSection,
+            ':period' => $period
+        ]);
+        
+        // Insert the new schedule entry
+        $stmtInsert = $conn->prepare("INSERT INTO class_schedule (Weekday, Class, Teacher_ID, Class_Time) VALUES (:weekday, :classSection, :teacherID, :period)");
+        $stmtInsert->execute([
+            ':weekday' => $weekday,
+            ':classSection' => $classSection,
+            ':teacherID' => $teacherID,
+            ':period' => $period
+        ]);
     }
 
-    echo "Schedule operation completed successfully!";
+    echo "Schedule Saved successfully!";
     exit;
 }
 
