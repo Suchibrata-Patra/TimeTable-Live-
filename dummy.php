@@ -298,7 +298,7 @@
     <nav class="navbar">
         <div class="navbar-container">
             <!-- Logo and Brand Name -->
-            <a href="index" class="logo">
+            <a href="/" class="logo">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/The_application.in_navbara_icon.png/220px-The_application.in_navbara_icon.png"
                     alt="Logo" class="logo-img">
             </a>
