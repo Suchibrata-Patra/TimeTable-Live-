@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-document.getElementById("getAbsentList").addEventListener("click", function () {
+        document.getElementById("getAbsentList").addEventListener("click", function () {
             const checkboxes = document.querySelectorAll(".period-checkbox");
             const absentData = {};
 
@@ -212,19 +212,6 @@ document.getElementById("getAbsentList").addEventListener("click", function () {
                     .then(response => response.json())
                     .then(data => {
                         alert(data.message);
-
-                        // Update the teacher cards with AJAX response
-                        Object.keys(absentData).forEach(teacherName => {
-                            const teacherId = document.querySelector(`[data-teacher="${teacherName}"]`).closest(".teacher-box").id.split('-')[1];
-                            const isAbsent = Object.values(absentData[teacherName]).includes(0);
-
-                            const teacherCard = document.getElementById(`card-${teacherId}`);
-                            if (isAbsent) {
-                                teacherCard.classList.add('border-modern');
-                            } else {
-                                teacherCard.classList.remove('border-modern');
-                            }
-                        });
                     })
                     .catch(error => console.error("Error:", error));
             }
