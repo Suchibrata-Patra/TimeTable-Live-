@@ -1,4 +1,4 @@
-<?php include('database.php'); ?>
+<?php include('database.php') ?>
 <?php
 // $host = "localhost";
 // $dbname = "u955994755_timetable";
