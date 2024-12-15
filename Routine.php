@@ -274,7 +274,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <option value="" disabled selected></option>
                                     <!-- Predefined list of classes -->
                                     <?php 
-                                            $classes = ['5A', '5B', '6A', '6B', '7A', '7B', '8A', '8B', '9A', '9C', '10A', '10B', '11 ARTS', '11 SCIENCE', '12 ARTS', '12 SCIENCE'];
+                                            $classes = ['','5A', '5B', '6A', '6B', '7A', '7B', '8A', '8B', '9A', '9C', '10A', '10B', '11 ARTS', '11 SCIENCE', '12 ARTS', '12 SCIENCE'];
                                             foreach ($classes as $class) {
                                                 echo "<option value=\"$class\">$class</option>";
                                             }
