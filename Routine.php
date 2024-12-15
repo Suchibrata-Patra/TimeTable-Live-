@@ -12,10 +12,6 @@ try {
     die();
 }
 
-// Clear rows with 'DELETE' class
-$stmtDelete = $conn->prepare("DELETE FROM class_schedule WHERE Class = 'DELETE'");
-$stmtDelete->execute();
-
 // Fetch all teachers
 $teachersQuery = $conn->query("SELECT Teacher_ID, Teacher_Name FROM teacher_profile");
 $teachers = $teachersQuery->fetchAll(PDO::FETCH_ASSOC);
