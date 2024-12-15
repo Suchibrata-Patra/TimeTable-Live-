@@ -60,8 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ':classSection' => $classSection,  // Correct parameter binding for classSection
             ':period' => $period  // Correct parameter binding for period
         ]);
-
-
         
     
         // Debug: Check how many rows are returned
@@ -379,36 +377,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             });
         });
 
-    </script>
-    <script>
-        $('#scheduleForm').submit(function(e) {
-            e.preventDefault();
-            let entries = [];
-
-            // Collect data from each select field
-            $('select[class-section-dropdown]').each(function() {
-                let teacherId = $(this).data('teacher-id');
-                let period = $(this).data('period');
-                let classSection = $(this).val();
-
-                if (classSection) {
-                    entries.push({ teacher_id: teacherId, class_section: classSection, period: period });
-                }
-            });
-
-            // Send data to server
-            $.ajax({
-                url: '',
-                type: 'POST',
-                data: {
-                    weekday: $('#weekday').val(),
-                    entries: JSON.stringify(entries)
-                },
-                success: function(response) {
-                    alert(response);
-                }
-            });
-        });
     </script>
 </body>
 
