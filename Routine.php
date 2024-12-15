@@ -110,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     foreach ($entries as $entry) {
         $teacherID = $entry['teacher_id'];
-        $classSection = $entry['class_section'];
+        // $classSection = $classSection['class_section'];
         $period = $entry['period'];
 
         // If class section is not 'DELETE', proceed with delete and insert
