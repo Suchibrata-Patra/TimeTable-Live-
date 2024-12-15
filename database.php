@@ -27,6 +27,14 @@ $user = getenv('DB_USER');
 $password = getenv('DB_PASSWORD');
 $dbname = getenv('DB_NAME');
 
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+    die();
+}
+
 if (empty($host) || empty($user) || empty($password) || empty($dbname)) {
     error_log("Missing or incorrect environment variables.", 0);
     die("An error occurred while configuring the database connection.");
