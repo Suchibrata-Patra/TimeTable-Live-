@@ -43,11 +43,11 @@ if (!preg_match('/^[a-zA-Z0-9_]+$/', $dbname)) {
 }
 mysqli_report(MYSQLI_REPORT_STRICT);
 try {
-    $db = new mysqli($host, $user, $password, $dbname);
+    $conn = new mysqli($host, $user, $password, $dbname);
     
     // Check the connection
-    if ($db->connect_error) {
-        throw new Exception("Connection failed: " . $db->connect_error);
+    if ($conn->connect_error) {
+        throw new Exception("Connection failed: " . $conn->connect_error);
     } else {
         echo "Successfully connected!";
     }
