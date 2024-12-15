@@ -35,32 +35,4 @@ try {
     die();
 }
 
-if (empty($host) || empty($user) || empty($password) || empty($dbname)) {
-    error_log("Missing or incorrect environment variables.", 0);
-    die("An error occurred while configuring the database connection.");
-}
-
-if (!filter_var($host, FILTER_VALIDATE_URL) && !preg_match('/^[a-zA-Z0-9.-]+$/', $host)) {
-    error_log("Invalid DB_HOST value.", 0);
-    die("Invalid database host.");
-}
-
-if (!preg_match('/^[a-zA-Z0-9_]+$/', $dbname)) {
-    error_log("Invalid DB_NAME value.", 0);
-    die("Invalid database name.");
-}
-
-try {
-    $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8";
-    $conn = new PDO($dsn, $user, $password);
-    
-    // Set PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    echo "Successfully connected!";
-} catch (PDOException $e) {
-    // Log the error securely without exposing sensitive details
-    error_log($e->getMessage(), 0);
-    die("Unable to connect to the database.");
-}
 ?>

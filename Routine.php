@@ -11,6 +11,7 @@
 //     echo "Connection failed: " . $e->getMessage();
 //     die();
 // }
+require('database.php');
 
 // Fetch all teachers
 $teachersQuery = $conn->query("SELECT Teacher_ID, Teacher_Name FROM teacher_profile");
