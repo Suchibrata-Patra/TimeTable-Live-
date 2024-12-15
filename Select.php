@@ -155,7 +155,7 @@ $conn->close();
                     </div>
                     
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
                     </div>
                 </div>
             </div>
@@ -166,7 +166,7 @@ $conn->close();
 
     <div class="text-center mt-4">
         <button id="getAbsentList" class="btn"
-            style="background-color: rgb(0, 0, 0);padding:15px 30px;border-radius: 50px;color: white;font-size: 20px;font-weight: 300;">Save</button>
+            style="background-color: rgb(0, 0, 0);padding:15px 30px;border-radius: 50px;color: white;font-size: 20px;font-weight: 300;">Done</button>
     </div>
     <script>
 
