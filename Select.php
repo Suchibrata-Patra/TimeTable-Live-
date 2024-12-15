@@ -1,19 +1,9 @@
-<?php require('dummy.php') ?>
+<?php 
+require('dummy.php') ;
+require('database.php');
 
+?>
 <?php
-$host = "localhost";
-$dbname = "Timora";
-$username = "root";
-$password = "root";
-
-// Create connection
-$conn = new mysqli($host, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
 // Fetch teacher data from the database
 $sql = "SELECT Teacher_ID, Teacher_Name,
                1st_period, 2nd_period, 3rd_period, 4th_period, 
