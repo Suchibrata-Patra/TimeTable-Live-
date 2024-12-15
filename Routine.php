@@ -12,6 +12,9 @@ try {
     die();
 }
 
+
+
+
 // Fetch all teachers
 $teachersQuery = $conn->query("SELECT Teacher_ID, Teacher_Name FROM teacher_profile");
 $teachers = $teachersQuery->fetchAll(PDO::FETCH_ASSOC);
@@ -35,20 +38,81 @@ if (isset($_GET['weekday'])) {
     echo json_encode($schedulesForWeekday);
     exit;
 }
-// Perform the DELETE operation
 
+// Handle form submission (same as before)
+// if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+//     $weekday = $_POST['weekday'];
+//     $entries = json_decode($_POST['entries'], true);
 
-
+//     foreach ($entries as $entry) {
+//         $teacherID = $entry['teacher_id'];
+//         $classSection = $entry['class_section'];
+//         $period = $entry['period'];
+    
+//         // Check if an entry exists for the given weekday, class section, and period
+//         $stmtCheck = $conn->prepare("SELECT * FROM class_schedule WHERE Weekday = :weekday AND Class = :classSection AND Class_Time = :period");
+//         $stmtCheck->execute([
+//             ':weekday' => $weekday,  // Ensure this variable holds the correct value for the weekday
+//             ':classSection' => $classSection,  // Correct parameter binding for classSection
+//             ':period' => $period  // Correct parameter binding for period
+//         ]);
+    
+//         // Debug: Check how many rows are returned
+//         if ($stmtCheck->rowCount() > 0) {
+//             // If the entry exists, check if it's the same teacher for the same period
+//             $existingSchedule = $stmtCheck->fetch(PDO::FETCH_ASSOC);
+            
+//             // If the teacher is the same, update the entry; otherwise, insert a new entry
+//             if ($existingSchedule['Teacher_ID'] == $teacherID) {
+//                 // Update the schedule only if the teacher is the same
+//                 // echo "Updating existing schedule for $classSection, $period with teacher ID $teacherID\n"; // Debugging line
+//                 $stmt = $conn->prepare("DELETE FROM class_schedule WHERE Weekday = :weekday AND Class = :classSection AND Class_Time = :period");
+//                 $stmt->execute([
+//                     ':teacherID' => $teacherID,
+//                     ':weekday' => $weekday,
+//                     ':classSection' => $classSection,
+//                     ':period' => $period
+//                 ]);
+//                 $stmt = $conn->prepare("INSERT INTO class_schedule (Weekday, Class, Teacher_ID, Class_Time) VALUES (:weekday, :classSection, :teacherID, :period)");
+//                 $stmt->execute([
+//                     ':teacherID' => $teacherID,
+//                     ':weekday' => $weekday,
+//                     ':classSection' => $classSection,
+//                     ':period' => $period
+//                 ]);
+//             } else {
+//                 // Insert a new schedule if the teacher is different
+//                 echo "Inserting new schedule for $classSection, $period with a different teacher\n"; // Debugging line
+//                 $stmt = $conn->prepare("INSERT INTO class_schedule (Weekday, Class, Teacher_ID, Class_Time) VALUES (:weekday, :classSection, :teacherID, :period)");
+//                 $stmt->execute([
+//                     ':weekday' => $weekday,
+//                     ':teacherID' => $teacherID,
+//                     ':classSection' => $classSection,
+//                     ':period' => $period
+//                 ]);
+//             }
+//         } else {
+//             // If no entry exists, insert a new schedule
+//             echo "Inserting new schedule for $classSection, $period\n"; // Debugging line
+//             $stmt = $conn->prepare("INSERT INTO class_schedule (Weekday, Class, Teacher_ID, Class_Time) VALUES (:weekday, :classSection, :teacherID, :period)");
+//             $stmt->execute([
+//                 ':weekday' => $weekday,
+//                 ':teacherID' => $teacherID,
+//                 ':classSection' => $classSection,
+//                 ':period' => $period
+//             ]);
+//         }
+//     }
+    
+//     echo "Schedule Saved successfully!";
+//     exit;
+// }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $weekday = $_POST['weekday'];
     $entries = json_decode($_POST['entries'], true);
 
     foreach ($entries as $entry) {
         $teacherID = $entry['teacher_id'];
-        $classSection = $entry['class_section'];
-        $period = $entry['period'];
-
-        // If class section is not 'DELETE', proceed with delete and insert
         if ($classSection !== 'DELETE') {
             // Delete any existing duplicate schedule for the same teacher, weekday, class, and period
             $stmtDelete = $conn->prepare("DELETE FROM class_schedule WHERE Teacher_ID = :teacherID AND Weekday = :weekday AND Class = :classSection AND Class_Time = :period");
@@ -68,12 +132,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ':period' => $period
             ]);
             $deleteoption = $conn->query("DELETE FROM class_schedule WHERE Class='DELETE'");
-
-// Check if rows were deleted (optional, for confirmation)
 $affectedRows = $deleteoption->rowCount(); // Returns the number of rows affected by the DELETE operation
-
 echo "$affectedRows rows were deleted."; // Optional: For feedback on the operation
-
         } else {
             // If DELETE is selected, just remove the schedule entry without inserting a new one
             $stmtDelete = $conn->prepare("DELETE FROM class_schedule WHERE Teacher_ID = :teacherID AND Weekday = :weekday AND Class = :classSection AND Class_Time = :period");
