@@ -1,52 +1,25 @@
-<?php include('database.php') ?>
-<?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+<?php include 'database.php';
 // Fetch all teachers
-$teachersQuery = "SELECT Teacher_ID, Teacher_Name FROM teacher_profile";
-$teachersResult = mysqli_query($conn, $teachersQuery); // This works fine with procedural
-
+$teachersQuery = $conn->query("SELECT Teacher_ID, Teacher_Name FROM teacher_profile");
+$teachers = $teachersQuery->fetchAll(PDO::FETCH_ASSOC);
 
 // Fetch existing schedules for Monday (or any other default weekday)
 $weekday = 'Monday'; // Default to Monday, can change dynamically based on user input
-$scheduleQuery = "SELECT * FROM class_schedule WHERE Weekday = '$weekday'"; // Direct query, no prepared statement needed
-
-// Execute the query
-$schedules = mysqli_query($conn, $scheduleQuery);
-
-// Fetch the results as an associative array
-if ($schedules) {
-    $scheduleData = mysqli_fetch_all($schedules, MYSQLI_ASSOC);
-} else {
-    // Handle query error if needed
-    $scheduleData = [];
-}
-
-
+$scheduleQuery = $conn->prepare("SELECT * FROM class_schedule WHERE Weekday = :weekday");
+$scheduleQuery->execute([':weekday' => $weekday]);
+$schedules = $scheduleQuery->fetchAll(PDO::FETCH_ASSOC);
 
 // Handle GET request for fetching schedules by weekday
 if (isset($_GET['weekday'])) {
     $weekday = $_GET['weekday'];
 
-    // Escape the input to prevent SQL injection
-    $weekday = mysqli_real_escape_string($conn, $weekday);
-
     // Fetch schedules for the selected weekday
-    $scheduleQuery = "SELECT * FROM class_schedule WHERE Weekday = '$weekday'";
-    $result = mysqli_query($conn, $scheduleQuery);
+    $stmt = $conn->prepare("SELECT * FROM class_schedule WHERE Weekday = :weekday");
+    $stmt->execute([':weekday' => $weekday]);
+    $schedulesForWeekday = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Check if the query was successful
-    if ($result) {
-        // Fetch all results as an associative array
-        $schedulesForWeekday = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-        // Prepare response as a JSON array
-        echo json_encode($schedulesForWeekday);
-    } else {
-        // Handle query error
-        echo json_encode(["error" => "Query failed"]);
-    }
+    // Prepare response as a JSON array
+    echo json_encode($schedulesForWeekday);
     exit;
 }
 
@@ -59,42 +32,58 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $teacherID = $entry['teacher_id'];
         $classSection = $entry['class_section'];
         $period = $entry['period'];
-
-        // Escape input to prevent SQL injection
-        $weekday = mysqli_real_escape_string($conn, $weekday);
-        $classSection = mysqli_real_escape_string($conn, $classSection);
-        $period = mysqli_real_escape_string($conn, $period);
-        $teacherID = mysqli_real_escape_string($conn, $teacherID);
-
+    
         // Check if an entry exists for the given weekday, class section, and period
-        $scheduleQuery = "SELECT * FROM class_schedule WHERE Weekday = '$weekday' AND Class = '$classSection' AND Class_Time = '$period'";
-        $resultCheck = mysqli_query($conn, $scheduleQuery);
-
-        if (mysqli_num_rows($resultCheck) > 0) {
+        $stmtCheck = $conn->prepare("SELECT * FROM class_schedule WHERE Weekday = :weekday AND Class = :classSection AND Class_Time = :period");
+        $stmtCheck->execute([
+            ':weekday' => $weekday,  // Ensure this variable holds the correct value for the weekday
+            ':classSection' => $classSection,  // Correct parameter binding for classSection
+            ':period' => $period  // Correct parameter binding for period
+        ]);
+    
+        // Debug: Check how many rows are returned
+        if ($stmtCheck->rowCount() > 0) {
             // If the entry exists, check if it's the same teacher for the same period
-            $existingSchedule = mysqli_fetch_assoc($resultCheck);
+            $existingSchedule = $stmtCheck->fetch(PDO::FETCH_ASSOC);
             
             // If the teacher is the same, update the entry; otherwise, insert a new entry
             if ($existingSchedule['Teacher_ID'] == $teacherID) {
                 // Update the schedule only if the teacher is the same
-                $updateQuery = "UPDATE class_schedule SET Teacher_ID = '$teacherID' WHERE Weekday = '$weekday' AND Class = '$classSection' AND Class_Time = '$period'";
-                mysqli_query($conn, $updateQuery);
+                // echo "Updating existing schedule for $classSection, $period with teacher ID $teacherID\n"; // Debugging line
+                $stmt = $conn->prepare("UPDATE class_schedule SET Teacher_ID = :teacherID WHERE Weekday = :weekday AND Class = :classSection AND Class_Time = :period");
+                $stmt->execute([
+                    ':teacherID' => $teacherID,
+                    ':weekday' => $weekday,
+                    ':classSection' => $classSection,
+                    ':period' => $period
+                ]);
             } else {
                 // Insert a new schedule if the teacher is different
-                $insertQuery = "INSERT INTO class_schedule (Weekday, Class, Teacher_ID, Class_Time) VALUES ('$weekday', '$classSection', '$teacherID', '$period')";
-                mysqli_query($conn, $insertQuery);
+                echo "Inserting new schedule for $classSection, $period with a different teacher\n"; // Debugging line
+                $stmt = $conn->prepare("INSERT INTO class_schedule (Weekday, Class, Teacher_ID, Class_Time) VALUES (:weekday, :classSection, :teacherID, :period)");
+                $stmt->execute([
+                    ':weekday' => $weekday,
+                    ':teacherID' => $teacherID,
+                    ':classSection' => $classSection,
+                    ':period' => $period
+                ]);
             }
         } else {
             // If no entry exists, insert a new schedule
-            $insertQuery = "INSERT INTO class_schedule (Weekday, Class, Teacher_ID, Class_Time) VALUES ('$weekday', '$classSection', '$teacherID', '$period')";
-            mysqli_query($conn, $insertQuery);
+            echo "Inserting new schedule for $classSection, $period\n"; // Debugging line
+            $stmt = $conn->prepare("INSERT INTO class_schedule (Weekday, Class, Teacher_ID, Class_Time) VALUES (:weekday, :classSection, :teacherID, :period)");
+            $stmt->execute([
+                ':weekday' => $weekday,
+                ':teacherID' => $teacherID,
+                ':classSection' => $classSection,
+                ':period' => $period
+            ]);
         }
     }
     
     echo "Schedule Saved successfully!";
     exit;
 }
-
 ?>
 
 <!DOCTYPE html>
