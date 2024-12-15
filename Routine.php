@@ -4,17 +4,25 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 // Fetch all teachers
-
-$teachersQuery = $conn->query("SELECT Teacher_ID, Teacher_Name FROM teacher_profile");
-$teachersResult = mysqli_query($conn, $teachersQuery);
+$teachersQuery = "SELECT Teacher_ID, Teacher_Name FROM teacher_profile";
+$teachersResult = mysqli_query($conn, $teachersQuery); // This works fine with procedural
 
 
 // Fetch existing schedules for Monday (or any other default weekday)
 $weekday = 'Monday'; // Default to Monday, can change dynamically based on user input
-$scheduleQuery = $conn->prepare("SELECT * FROM class_schedule WHERE Weekday = :weekday");
-$scheduleQuery->execute([':weekday' => $weekday]);
-// $schedules = $scheduleQuery->fetchAll(PDO::FETCH_ASSOC);
-$schedules = mysqli_query($conn,$scheduleQuery);
+$scheduleQuery = "SELECT * FROM class_schedule WHERE Weekday = '$weekday'"; // Direct query, no prepared statement needed
+
+// Execute the query
+$schedules = mysqli_query($conn, $scheduleQuery);
+
+// Fetch the results as an associative array
+if ($schedules) {
+    $scheduleData = mysqli_fetch_all($schedules, MYSQLI_ASSOC);
+} else {
+    // Handle query error if needed
+    $scheduleData = [];
+}
+
 
 
 // Handle GET request for fetching schedules by weekday
