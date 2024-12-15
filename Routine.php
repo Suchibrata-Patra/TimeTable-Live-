@@ -36,12 +36,6 @@ if (isset($_GET['weekday'])) {
     exit;
 }
 // Perform the DELETE operation
-$deleteoption = $conn->query("DELETE FROM class_schedule WHERE Class='DELETE'");
-
-// Check if rows were deleted (optional, for confirmation)
-$affectedRows = $deleteoption->rowCount(); // Returns the number of rows affected by the DELETE operation
-
-echo "$affectedRows rows were deleted."; // Optional: For feedback on the operation
 
 
 
@@ -73,6 +67,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ':teacherID' => $teacherID,
                 ':period' => $period
             ]);
+            $deleteoption = $conn->query("DELETE FROM class_schedule WHERE Class='DELETE'");
+
+// Check if rows were deleted (optional, for confirmation)
+$affectedRows = $deleteoption->rowCount(); // Returns the number of rows affected by the DELETE operation
+
+echo "$affectedRows rows were deleted."; // Optional: For feedback on the operation
+
         } else {
             // If DELETE is selected, just remove the schedule entry without inserting a new one
             $stmtDelete = $conn->prepare("DELETE FROM class_schedule WHERE Teacher_ID = :teacherID AND Weekday = :weekday AND Class = :classSection AND Class_Time = :period");
