@@ -11,9 +11,16 @@ while ($row = $teachersQuery->fetch_assoc()) {
 
 // Fetch existing schedules for Monday (or any other default weekday)
 $weekday = 'Monday'; // Default to Monday, can change dynamically based on user input
-$scheduleQuery = $conn->prepare("SELECT * FROM class_schedule WHERE Weekday = :weekday");
-$scheduleQuery->execute([':weekday' => $weekday]);
-$schedules = $scheduleQuery->fetchAll(PDO::FETCH_ASSOC);
+$sql = "SELECT * FROM class_schedule WHERE Weekday = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param('s', $weekday); // 's' denotes a string type parameter
+$stmt->execute();
+$result = $stmt->get_result();
+$schedules = [];
+while ($row = $result->fetch_assoc()) {
+    $schedules[] = $row;
+}
+
 
 // Handle GET request for fetching schedules by weekday
 if (isset($_GET['weekday'])) {
