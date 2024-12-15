@@ -1,17 +1,9 @@
-<?php
-$host = "localhost";
-$dbname = "u955994755_timetable";
-$username = "u955994755_timetable_2003";
-$password = "SuchibrataPatra2003";
+<?php 
+require('dummy.php') ;
+require('database.php');
 
-try {
-    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-    die();
-}
-require 'header.php';
+?>
+<?php
 // Fetch teacher data from the database
 $sql = "SELECT Teacher_ID, Teacher_Name,
                1st_period, 2nd_period, 3rd_period, 4th_period, 
