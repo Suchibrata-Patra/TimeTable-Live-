@@ -11,7 +11,7 @@ try {
     echo "Connection failed: " . $e->getMessage();
     die();
 }
-require 'dummy.php';
+require 'header.php';
 // Fetch teacher data from the database
 $sql = "SELECT Teacher_ID, Teacher_Name,
                1st_period, 2nd_period, 3rd_period, 4th_period, 
