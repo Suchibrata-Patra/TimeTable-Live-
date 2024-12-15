@@ -132,7 +132,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto"> <!-- Center navbar items -->
                     <li class="nav-item">
-                        <a class="nav-link" href="routine">Primary Routine</a>
+                        <a class="nav-link" href="Routine.php">Primary Routine</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="select.php">Generate</a>
