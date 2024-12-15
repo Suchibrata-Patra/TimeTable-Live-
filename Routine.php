@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $period = $entry['period'];
 
         // Delete any existing duplicate schedule for the same teacher, weekday, class, and period
-        $stmtDelete = $conn->prepare("DELETE FROM class_schedule WHERE Teacher_ID = :teacherID AND Weekday = :weekday AND Class = :classSection AND Class_Time = :period");
+        $stmtDelete = $conn->prepare("DELETE FROM class_schedule WHERE Teacher_ID = :teacherID AND Weekday = :weekday AND Class_Time = :period");
         $stmtDelete->execute([
             ':teacherID' => $teacherID,
             ':weekday' => $weekday,
