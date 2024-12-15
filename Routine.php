@@ -1,4 +1,4 @@
-<?php include 'dtabase.php' ;?>
+<?php include 'dtabase.php'?>
 <?php
 // Fetch all teachers
 $teachersQuery = $conn->query("SELECT Teacher_ID, Teacher_Name FROM teacher_profile");
