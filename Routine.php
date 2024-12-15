@@ -19,8 +19,6 @@ $stmt = $conn->prepare("DELETE FROM class_schedule WHERE Class = :class");
 $class = 'DELETE';
 $stmt->bindParam(':class', $class);
 $stmt->execute();
-$affectedRows = $stmt->rowCount();
-echo "$affectedRows rows were deleted."; // For feedback on the operation
 
 
 // Fetch all teachers
