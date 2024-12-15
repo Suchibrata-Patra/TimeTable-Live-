@@ -222,48 +222,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Code for Modifying the cards when at least one entry is 0
     </script>
-    <script>
-    // Assuming you have some form or event to trigger this
-    function updateTeacherSchedule(data) {
-        fetch('your_php_file.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data) // Send the teacher data as JSON
-        })
-        .then(response => response.json()) // Parse the JSON response
-        .then(responseData => {
-            if (responseData.status === 'success') {
-                alert(responseData.message); // Optionally show a success message
-                location.reload(); // Refresh the page
-            } else {
-                alert(responseData.message); // Show error message if any
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('There was an error updating the schedule.');
-        });
-    }
-
-    // Example of calling the function with sample data
-    const teacherData = {
-        "John Doe": {
-            "1st": "Math",
-            "2nd": "English",
-            "3rd": "Science",
-            "4th": "History",
-            "5th": "Geography",
-            "6th": "Art",
-            "7th": "PE",
-            "8th": "Music"
-        }
-    };
-
-    updateTeacherSchedule(teacherData);
-</script>
-
 </body>
 
 </html>
