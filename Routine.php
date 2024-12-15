@@ -11,12 +11,6 @@ try {
     echo "Connection failed: " . $e->getMessage();
     die();
 }
-
-$deleteoption = $conn->query("DELETE FROM class_schedule WHERE Class='DELETE'");
-$affectedRows = $deleteoption->rowCount(); // Returns the number of rows affected by the DELETE operation
-echo "$affectedRows rows were deleted."; // Optional: For feedback on the operation
-
-
 // Fetch all teachers
 $teachersQuery = $conn->query("SELECT Teacher_ID, Teacher_Name FROM teacher_profile");
 $teachers = $teachersQuery->fetchAll(PDO::FETCH_ASSOC);
