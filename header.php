@@ -1,182 +1,377 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <style>
+    /* * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        } */
     body {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Poppins';
+        /* background-color: #f4f7fc; */
         color: #333;
     }
 
-    .logo-img {
-        width: 60%;
-        height: auto;
-    }
-
+    /* Navbar styles */
     .navbar {
-        padding-top: 20px;
+        background-color: #ffffff;
+        padding: 8px 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        /* Ensure it sticks to the top */
+        z-index: 1000;
+        /* Ensures the navbar stays on top of other content */
+        width: 100%;
+        /* Ensure it spans the full width */
+        /* Optional: box shadow to create a floating effect */
     }
 
-    /* 
-        .search-input {
-            width: 100%;
-            padding: 6px 12px;
-            font-size: 14px;
-            border-radius: 50px;
-            border: 2.5px solid #fff;
-            background-color: rgb(242, 242, 247);
-        }
 
-        .search-input:focus {
-            border: 2.5px solid #f6dcf5;
-            background-color: rgb(255, 255, 255);
-        }
+    .navbar-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
 
-        .search-icon {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 18px;
-            font-weight: 500;
-            color: #ffffff;
-            background-color: rgb(235, 75, 136);
-            padding: 8px;
-            border-radius: 50%;
-        } */
+    .logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
 
-    .dropdown-menu a:hover,
-    .navbar-nav .nav-link:hover {
+    .logo-img {
+        width: 70%;
+        height: auto;
+        margin-right: 12px;
+        padding-left: 10%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+    }
+
+    .logo-text {
+        font-size: 15px;
+        font-weight: 300;
+        color: #333;
+        line-height: 15px;
+    }
+
+    /* Navbar links */
+    .navbar-links {
+        list-style: none;
+        display: flex;
+        gap: auto;
+        justify-content: center;
+        position: relative;
+        font-weight: 400;
+        font-size: 14px;
+        margin-bottom: 0px;
+    }
+
+    .navbar-links li {
+        font-size: 16px;
+        position: relative;
+    }
+
+    .navbar-links a {
+        text-decoration: none;
+        color: #000000;
+        padding: 10px 18px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .navbar-links a:hover {
+        background-color: #f0f0f0;
+        color: #000000;
+    }
+
+    /* Popup menu styles */
+    .popup-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #ffffff;
+        color: #333;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 180px;
+        z-index: 100;
+    }
+
+    .popup-menu a {
+        padding: 12px 18px;
+        display: block;
+        text-decoration: none;
+        color: #333;
+        transition: background-color 0.3s ease;
+    }
+
+    .popup-menu a:hover {
         background-color: #f1f1f1;
     }
 
-    .nav-link {
-        color: black;
+    .navbar-links li:hover .popup-menu {
+        display: block;
     }
 
-    .nav-link:hover {
-        background-color: #faf9f9;
-        border-radius: 5px;
+    /* Profile and Dropdown */
+    .navbar-user {
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    .user-profile {
+        padding-right: 20px;
     }
 
     .profile-img {
-        width: 40px;
-        height: 40px;
+        width: 45px;
+        height: 45px;
         border-radius: 50%;
         object-fit: cover;
-        border: 3px solid #c33535;
+        border: 1px solid #ddd;
     }
 
-    /* Move profile icon to the left */
-    .dropdown.ms-lg-3 {
-        margin-left: 10px;
-        /* Decrease this value to move icon more to the left */
+    .dropdown {
+        position: relative;
     }
 
-    .dropdown-menu {
-        left: -120px;
-        right: auto;
-        max-width: 100vw;
-        overflow-x: hidden;
+    .dropdown-btn {
+        background: none;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 5px 7px;
+        border-radius: 50%;
+        transition: background-color 0.3s ease;
     }
 
-    /* Center navbar items for desktop */
-    @media (min-width: 992px) {
-        .navbar-nav {
-            justify-content: center;
-            width: 100%;
-        }
-
-        /* Center the navbar items and profile icon */
-        .navbar-nav .nav-item {
-            margin-left: 20px;
-            margin-right: 20px;
-        }
-
-        .navbar-nav .nav-item.dropdown {
-            margin-right: 20px;
-            /* Make dropdowns more compact */
-        }
-
-        .navbar-brand {
-            margin-right: auto;
-        }
-
-        .logo-img {
-            margin-left: 40%;
-
-        }
+    .dropdown-btn:hover {
+        background-color: #f0f0f0;
     }
 
-    /* Optional: For mobile responsiveness */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: #ffffff;
+        color: #333;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 180px;
+        z-index: 100;
+    }
+
+    .dropdown-content a {
+        padding: 12px 18px;
+        display: block;
+        text-decoration: none;
+        color: #333;
+        transition: background-color 0.3s ease;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    /* Search Bar styles */
+    .search-bar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 400px;
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 8px 15px;
+        font-size: 14px;
+        border-radius: 50px;
+        border: 2.5px solid rgb(255, 255, 255);
+        outline: none;
+        transition: border-color 0.3s;
+        line-height: 37px;
+        background-color: rgb(242, 242, 247);
+    }
+
+    .search-input:focus {
+        border: 2.5px solid rgb(246, 220, 245);
+        background-color: rgb(255, 255, 255);
+
+    }
+
+    .search-icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 20px;
+        font-weight: 500;
+        color: #ffffff;
+        /* background-color: rgb(235, 75, 136); */
+        background-color: #ff0427;
+        padding: 10px;
+        border-radius: 50px;
+    }
+
+    /* Hover effect for profile image */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .wallet-icon {
+        width: 25px;
+        /* Set the width of the icon */
+        height: auto;
+        /* Maintain aspect ratio */
+        margin-left: 8px;
+        /* Space between the text and icon */
+        vertical-align: middle;
+        /* Align the icon with the text */
+    }
+
+    /* Mobile view adjustments */
     @media (max-width: 768px) {
+        .navbar-container {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .navbar-links {
+            display: block;
+            margin-top: 16px;
+        }
+
+        .navbar-links li {
+            margin-bottom: 12px;
+        }
+
+        .navbar-user {
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: 16px;
+        }
+
+        .dropdown-content {
+            display: none;
+            /* Hide by default */
+            position: absolute;
+            top: 100%;
+            /* Align below the profile image */
+            right: 0;
+            background-color: #ffffff;
+            color: #333;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 180px;
+            z-index: 100;
+        }
+
+
         .search-bar {
-            width: 100%;
+            width: 80%;
+            margin-top: 10px;
         }
     }
 </style>
-</head>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-        <div class="container-fluid">
+<header>
+    <nav class="navbar">
+        <div class="navbar-container">
             <!-- Logo and Brand Name -->
-            <a class="navbar-brand d-flex align-items-center" href="index">
+            <a href="index" class="logo">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/The_application.in_navbara_icon.png/220px-The_application.in_navbara_icon.png"
                     alt="Logo" class="logo-img">
             </a>
 
-            <!-- Toggler for mobile view -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder=" What are you looking for ?"
+                    style="font-weight:300;color: #000000;">
+                <span class="material-icons search-icon">search</span>
+            </div>
+
+
+
 
             <!-- Navbar Links -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto"> <!-- Center navbar items -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="Routine.php">Primary Routine</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="select.php">Generate</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="settingsDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Settings &#8595;
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="settingsDropdown">
-                            <li><a class="dropdown-item" href="settings-general.php">General</a></li>
-                            <li><a class="dropdown-item" href="settings-security.php">Security</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="contactDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Contact &#8595;
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="contactDropdown">
-                            <li><a class="dropdown-item" href="contact-support.php">Support</a></li>
-                            <li><a class="dropdown-item" href="contact-feedback.php">Feedback</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.php">Contact</a>
-                    </li>
-                    <li>
-                        <div class="dropdown ms-lg-3">
-                            <button class="btn dropdown-toggle" type="button" id="profileDropdown"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="https://media.licdn.com/dms/image/v2/D5603AQFzPaXXEzjdCQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1722660851705?e=2147483647&v=beta&t=C8bcnhwSyRShM_OBBYJXd0OKsXkqnid1y97kp6OkBGI"
-                                    alt="Profile" class="profile-img">
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-                                <li><a class="dropdown-item" href="#">View Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
+            <ul class="navbar-links">
+                <li>
+                    <a href="Routine.php">Routine</a>
+                    <!-- Popup Menu for Dashboard
+                    <div class="popup-menu">
+                        <a href="dashboard-overview.php">Overview</a>
+                        <a href="dashboard-reports.php">Reports</a>
+                    </div> -->
+                </li>
+                <li>
+                    <a href="Select.php">Generate</a>
+                    <!-- Popup Menu for Profile -->
+                    <!-- <div class="popup-menu">
+                        <a href="profile-details.php">View Profile</a>
+                        <a href="profile-edit.php">Edit Profile</a>
+                    </div> -->
+                </li>
+                <li>
+                    <a href="#">Subscription</a>
+                    <!-- Popup Menu for Settings -->
+                    <div class="popup-menu">
+                        <a href="settings-general.php">General</a>
+                        <a href="settings-security.php">Security</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="contact.php">Support</a>
+                    <!-- Popup Menu for Contact -->
+                    <div class="popup-menu">
+                        <a href="contact-support.php">Support</a>
+                        <a href="contact-feedback.php">Feedback</a>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#"><img src="./assets/Wallet_icon.png" alt="Wallet Icon" class="wallet-icon"></a>
+                    <!-- Popup Menu for Contact -->
+                    <div class="popup-menu">
+                        <a href="#">Rs. 30.43</a>
+                        <a href="contact-feedback.php">Recharge <img src="./assets/plus_button.svg" alt="Wallet Icon"
+                                class="wallet-icon" style="background-color: black;border-radius: 50px;"></a>
+                    </div>
+                </li>
+            </ul>
+            <div class="navbar-user">
+                <div class="dropdown">
+                    <div class="dropdown-btn">
+                        <img src="https://media.licdn.com/dms/image/v2/D5603AQFzPaXXEzjdCQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1722660851705?e=2147483647&v=beta&t=C8bcnhwSyRShM_OBBYJXd0OKsXkqnid1y97kp6OkBGI"
+                            alt="Profile" class="profile-img">
+                    </div>
+                    <div class="dropdown-content">
+                        <a href="#">View Profile</a>
+                        <a href="#">Settings</a>
+                        <a href="#">Logout</a>
+                    </div>
+                </div>
             </div>
+
         </div>
     </nav>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</header>

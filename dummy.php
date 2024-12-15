@@ -324,7 +324,7 @@
                     </div> -->
                 </li>
                 <li>
-                    <a href="select.php">Generate</a>
+                    <a href="Select.php">Generate</a>
                     <!-- Popup Menu for Profile -->
                     <!-- <div class="popup-menu">
                         <a href="profile-details.php">View Profile</a>
