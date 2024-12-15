@@ -53,18 +53,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $classSection = $entry['class_section'];
         $period = $entry['period'];
     
+        // // Check if an entry exists for the given weekday, class section, and period
+        // $stmtCheck = $conn->prepare("SELECT * FROM class_schedule WHERE Weekday = :weekday AND Class = :classSection AND Class_Time = :period");
+        // $stmtCheck->execute([
+        //     ':weekday' => $weekday,  // Ensure this variable holds the correct value for the weekday
+        //     ':classSection' => $classSection,  // Correct parameter binding for classSection
+        //     ':period' => $period  // Correct parameter binding for period
+        // ]);
+
+
         // Check if an entry exists for the given weekday, class section, and period
-        $stmtCheck = $conn->prepare("SELECT * FROM class_schedule WHERE Weekday = :weekday AND Class = :classSection AND Class_Time = :period");
-        $stmtCheck->execute([
-            ':weekday' => $weekday,  // Ensure this variable holds the correct value for the weekday
-            ':classSection' => $classSection,  // Correct parameter binding for classSection
-            ':period' => $period  // Correct parameter binding for period
-        ]);
+$stmtCheck = $conn->prepare("SELECT * FROM class_schedule WHERE Weekday = ? AND Class = ? AND Class_Time = ?");
+$stmtCheck->bind_param('sss', $weekday, $classSection, $period);  // 'sss' indicates all parameters are strings
+$stmtCheck->execute();
+$result = $stmtCheck->get_result(); // Get the result set
     
         // Debug: Check how many rows are returned
         if ($stmtCheck->rowCount() > 0) {
             // If the entry exists, check if it's the same teacher for the same period
-            $existingSchedule = $stmtCheck->fetch(PDO::FETCH_ASSOC);
+            $existingSchedule = $result->fetch_assoc();  // Fetch the associative array for the first row
             
             // If the teacher is the same, update the entry; otherwise, insert a new entry
             if ($existingSchedule['Teacher_ID'] == $teacherID) {
