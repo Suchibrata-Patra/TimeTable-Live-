@@ -12,7 +12,9 @@ try {
     die();
 }
 
-
+$deleteoption = $conn->query("DELETE FROM class_schedule WHERE Class='DELETE'");
+$affectedRows = $deleteoption->rowCount(); // Returns the number of rows affected by the DELETE operation
+echo "$affectedRows rows were deleted."; // Optional: For feedback on the operation
 
 
 // Fetch all teachers
