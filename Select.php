@@ -166,7 +166,7 @@ $conn->close();
 
     <div class="text-center mt-4">
         <button id="getAbsentList" class="btn"
-            style="background-color: rgb(0, 67, 67);padding:15px 30px;border-radius: 50px;color: white;font-size: 20px;font-weight: 300;">Changed</button>
+            style="background-color: rgb(0, 67, 67);padding:15px 30px;border-radius: 50px;color: white;font-size: 20px;font-weight: 300;">Chansged</button>
     </div>
     <script>
 
