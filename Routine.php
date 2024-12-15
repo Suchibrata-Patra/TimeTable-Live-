@@ -26,10 +26,17 @@ while ($row = $result->fetch_assoc()) {
 if (isset($_GET['weekday'])) {
     $weekday = $_GET['weekday'];
 
-    // Fetch schedules for the selected weekday
-    $stmt = $conn->prepare("SELECT * FROM class_schedule WHERE Weekday = :weekday");
-    $stmt->execute([':weekday' => $weekday]);
-    $schedulesForWeekday = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Prepare the SQL query to fetch schedules for the selected weekday
+    $stmt = $conn->prepare("SELECT * FROM class_schedule WHERE Weekday = ?");
+    $stmt->bind_param('s', $weekday); // 's' indicates the type is a string
+    $stmt->execute();
+    $result = $stmt->get_result(); // Get the result set
+
+    // Fetch all the rows into an array
+    $schedulesForWeekday = [];
+    while ($row = $result->fetch_assoc()) {
+        $schedulesForWeekday[] = $row; // Add each row to the array
+    }
 
     // Prepare response as a JSON array
     echo json_encode($schedulesForWeekday);
