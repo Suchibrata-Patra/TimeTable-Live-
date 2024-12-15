@@ -1,88 +1,77 @@
+<?php include('database.php') ?>
 <?php
-require 'database.php';
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 // Fetch all teachers
+
 $teachersQuery = "SELECT Teacher_ID, Teacher_Name FROM teacher_profile";
 $teachersResult = mysqli_query($conn, $teachersQuery);
 
-// Fetch all teachers data
-$teachers = [];
-if (mysqli_num_rows($teachersResult) > 0) {
-    while($row = mysqli_fetch_assoc($teachersResult)) {
-        $teachers[] = $row;
-    }
-}
 
-// Fetch schedules for the selected weekday (default: Monday)
-$weekday = 'Monday'; // Default to Monday, can be changed dynamically
+// Fetch existing schedules for Monday (or any other default weekday)
+$weekday = 'Monday'; // Default to Monday, can change dynamically based on user input
 $scheduleQuery = "SELECT * FROM class_schedule WHERE Weekday = '$weekday'";
-$scheduleResult = mysqli_query($conn, $scheduleQuery);
+$schedules = mysqli_query($conn, $scheduleQuery);
 
-// Fetch existing schedules
-$schedules = [];
-if (mysqli_num_rows($scheduleResult) > 0) {
-    while($row = mysqli_fetch_assoc($scheduleResult)) {
-        $schedules[] = $row;
-    }
-}
 
 // Handle GET request for fetching schedules by weekday
 if (isset($_GET['weekday'])) {
-    $weekday = mysqli_real_escape_string($conn, $_GET['weekday']); // Protect against SQL injection
+    $weekday = $_GET['weekday'];
 
+    // Fetch schedules for the selected weekday
     $stmt = "SELECT * FROM class_schedule WHERE Weekday = '$weekday'";
-    $result = mysqli_query($conn, $stmt);
+    $schedulesForWeekday = mysqli_query($conn, $stmt);
 
-    $schedulesForWeekday = [];
-    if (mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            $schedulesForWeekday[] = $row;
-        }
-    }
-
-    echo json_encode($schedulesForWeekday);
+    // Prepare response as a JSON array
+    $response = mysqli_fetch_all($schedulesForWeekday, MYSQLI_ASSOC);
+    echo json_encode($response);
     exit;
 }
 
-// Handle form submission for saving schedule (POST request)
+// Handle form submission (same as before)
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $weekday = mysqli_real_escape_string($conn, $_POST['weekday']);
+    $weekday = $_POST['weekday'];
     $entries = json_decode($_POST['entries'], true);
 
     foreach ($entries as $entry) {
-        $teacherID = mysqli_real_escape_string($conn, $entry['teacher_id']);
-        $classSection = mysqli_real_escape_string($conn, $entry['class_section']);
-        $period = mysqli_real_escape_string($conn, $entry['period']);
-
+        $teacherID = $entry['teacher_id'];
+        $classSection = $entry['class_section'];
+        $period = $entry['period'];
+    
         // Check if an entry exists for the given weekday, class section, and period
         $stmtCheck = "SELECT * FROM class_schedule WHERE Weekday = '$weekday' AND Class = '$classSection' AND Class_Time = '$period'";
-        $stmtCheckResult = mysqli_query($conn, $stmtCheck);
-
-        if (mysqli_num_rows($stmtCheckResult) > 0) {
+        $resultCheck = mysqli_query($conn, $stmtCheck);
+    
+        // Debug: Check how many rows are returned
+        if (mysqli_num_rows($resultCheck) > 0) {
             // If the entry exists, check if it's the same teacher for the same period
-            $existingSchedule = mysqli_fetch_assoc($stmtCheckResult);
-
+            $existingSchedule = mysqli_fetch_assoc($resultCheck);
+            
+            // If the teacher is the same, update the entry; otherwise, insert a new entry
             if ($existingSchedule['Teacher_ID'] == $teacherID) {
-                // Update the schedule if the teacher is the same
+                // Update the schedule only if the teacher is the same
+                // echo "Updating existing schedule for $classSection, $period with teacher ID $teacherID\n"; // Debugging line
                 $stmt = "UPDATE class_schedule SET Teacher_ID = '$teacherID' WHERE Weekday = '$weekday' AND Class = '$classSection' AND Class_Time = '$period'";
                 mysqli_query($conn, $stmt);
             } else {
                 // Insert a new schedule if the teacher is different
+                echo "Inserting new schedule for $classSection, $period with a different teacher\n"; // Debugging line
                 $stmt = "INSERT INTO class_schedule (Weekday, Class, Teacher_ID, Class_Time) VALUES ('$weekday', '$classSection', '$teacherID', '$period')";
                 mysqli_query($conn, $stmt);
             }
         } else {
             // If no entry exists, insert a new schedule
+            echo "Inserting new schedule for $classSection, $period\n"; // Debugging line
             $stmt = "INSERT INTO class_schedule (Weekday, Class, Teacher_ID, Class_Time) VALUES ('$weekday', '$classSection', '$teacherID', '$period')";
             mysqli_query($conn, $stmt);
         }
     }
-
-    echo "Schedule saved successfully!";
+    
+    echo "Schedule Saved successfully!";
     exit;
 }
 ?>
-
 
 
 <!DOCTYPE html>
