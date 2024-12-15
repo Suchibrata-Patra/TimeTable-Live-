@@ -1,5 +1,5 @@
 <?php 
-require('dummy.php') ;
+require('header.php') ;
 require('database.php');
 
 ?>

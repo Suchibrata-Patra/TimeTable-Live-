@@ -211,7 +211,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <div style="position:sticky;">
-        <?php include('dummy.php') ?>
+        <?php include('header.php') ?>
 
     </div>
 
