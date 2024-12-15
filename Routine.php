@@ -35,8 +35,14 @@ if (isset($_GET['weekday'])) {
     echo json_encode($schedulesForWeekday);
     exit;
 }
+// Perform the DELETE operation
+$deleteoption = $conn->query("DELETE FROM class_schedule WHERE Class='DELETE'");
 
-$conn-> query("DELETE FROM class_Schedule where Class='DELETE';")
+// Check if rows were deleted (optional, for confirmation)
+$affectedRows = $deleteoption->rowCount(); // Returns the number of rows affected by the DELETE operation
+
+echo "$affectedRows rows were deleted."; // Optional: For feedback on the operation
+
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
