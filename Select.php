@@ -35,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         echo json_encode(["status" => "success", "message" => "Database updated successfully"]);
-        header("Location: https://www.geeksforgeeks.org");
     } else {
         echo json_encode(["status" => "error", "message" => "No data received"]);
     }
