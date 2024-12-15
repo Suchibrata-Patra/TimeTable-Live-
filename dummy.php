@@ -316,7 +316,7 @@
             <!-- Navbar Links -->
             <ul class="navbar-links">
                 <li>
-                    <a href="routine">Routine</a>
+                    <a href="Routine.php">Routine</a>
                     <!-- Popup Menu for Dashboard
                     <div class="popup-menu">
                         <a href="dashboard-overview.php">Overview</a>
