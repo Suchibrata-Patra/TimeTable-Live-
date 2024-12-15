@@ -5,7 +5,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 // Fetch all teachers
 $teachersQuery = $conn->query("SELECT Teacher_ID, Teacher_Name FROM teacher_profile");
-$teachers = $teachersQuery->fetchAll(PDO::FETCH_ASSOC);
+$teachers = mysqli_fetch_all($teachersQuery, MYSQLI_ASSOC);
 
 // Fetch existing schedules for Monday (or any other default weekday)
 $weekday = 'Monday'; // Default to Monday, can change dynamically based on user input
