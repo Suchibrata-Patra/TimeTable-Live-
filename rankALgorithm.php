@@ -17,7 +17,7 @@ END;
 ";
 
 // Parse and execute the PL/SQL block
-$stid = oci_parse($connection, $plsql);
+$stid = oci_parse($conn, $plsql);
 if (!oci_execute($stid)) {
     $error = oci_error($stid);
     echo "Error in executing PL/SQL: " . $error['message'];
@@ -27,6 +27,6 @@ if (!oci_execute($stid)) {
 
 // Close the connection
 oci_free_statement($stid);
-oci_close($connection);
+oci_close($conn);
 
 ?>
