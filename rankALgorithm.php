@@ -2,6 +2,14 @@
 require 'database.php'; // Assuming database connection is handled in this file
 
 $sql = "
+
+CREATE TABLE provisional_routine (
+    Teacher_ID INT,
+    Subject VARCHAR(255),
+    Period INT,
+    Class VARCHAR(50)
+);
+
 WITH TeacherLoad AS (
     -- Step 1: Count the total periods each teacher has been allocated
     SELECT 
