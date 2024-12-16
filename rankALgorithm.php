@@ -72,17 +72,21 @@ ORDER BY
 ";
 
 $result = $conn->query($sql); // Execute the query
-echo  $result->num_rows;
-if ($result->num_rows > 0) {
+
+if ($result === false) {
+    // Output any SQL error
+    echo "Error in SQL query: " . $conn->error;
+} elseif ($result->num_rows > 0) {
     // Output the results
-    while($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch_assoc()) {
         echo "Absent Teacher: " . $row["Absent_Teacher"] . " | ";
         echo "Absent Period: " . $row["Absent_Period"] . " | ";
         echo "Substitute Teacher: " . $row["Substitute_Teacher"] . " | ";
         echo "Subject: " . $row["Subject"] . "<br>";
     }
 } else {
-    echo "No results found.";
+    echo "No results found. Please check if there are absent teachers and available substitutes.";
 }
 
+$conn->close(); // Close the connection
 ?>
