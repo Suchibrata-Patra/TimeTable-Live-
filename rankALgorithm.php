@@ -4,7 +4,6 @@ require 'database.php'; // Assuming database connection is handled in this file
 // First, create the provisional_routine table if it doesn't exist
 $sql_create_table = "CREATE TABLE IF NOT EXISTS provisional_routine (
         Teacher_ID INT,
-        Subject VARCHAR(255),
         Period INT,
         Class VARCHAR(50)
     );
@@ -15,14 +14,13 @@ $conn->query($sql_create_table); // Execute the table creation query
 $sql = "WITH TeacherLoad AS (
     SELECT 
         t.Teacher_ID, 
-        t.Subject, 
         COUNT(pr.Teacher_ID) AS TotalPeriods
     FROM 
         teacher_profile t
     LEFT JOIN 
         provisional_routine pr ON t.Teacher_ID = pr.Teacher_ID
     GROUP BY 
-        t.Teacher_ID, t.Subject
+        t.Teacher_ID
 ),
 AbsentTeachers AS (
     SELECT 
@@ -52,7 +50,6 @@ AvailableSubstituteTeachers AS (
     -- Step 3: Fetch available substitute teachers for the same subject with fewer than 6 periods
     SELECT 
         t.Teacher_ID, 
-        t.Subject, 
         tl.TotalPeriods
     FROM 
         teacher_profile t
@@ -65,16 +62,13 @@ AvailableSubstituteTeachers AS (
 SELECT 
     at.teacher_id AS Absent_Teacher,
     at.period AS Absent_Period,
-    ast.Teacher_ID AS Substitute_Teacher,
-    ast.Subject
+    ast.Teacher_ID AS Substitute_Teacher
 FROM 
     AbsentTeachers at
 JOIN 
     AvailableSubstituteTeachers ast ON at.period IN (
         '1st_period', '2nd_period', '3rd_period', '4th_period', '5th_period', '6th_period', '7th_period', '8th_period'
     )
-WHERE 
-    ast.Subject = (SELECT Subject FROM teacher_profile WHERE Teacher_ID = at.teacher_id) -- Same subject
 ORDER BY 
     ast.TotalPeriods ASC; -- Allocate to teacher with fewer periods first
 ";
@@ -90,7 +84,6 @@ if ($result === false) {
         echo "Absent Teacher: " . $row["Absent_Teacher"] . " | ";
         echo "Absent Period: " . $row["Absent_Period"] . " | ";
         echo "Substitute Teacher: " . $row["Substitute_Teacher"] . " | ";
-        echo "Subject: " . $row["Subject"] . "<br>";
     }
 } else {
     echo "No results found. Please check if there are absent teachers and available substitutes.";
