@@ -5,7 +5,9 @@ require('database.php');
 ?>
 <?php
 // Fetch teacher data from the database
-$sql = "SELECT *
+$sql = "SELECT Teacher_ID, Teacher_Name,
+               1st_period_present_or_absent, 2nd_period_present_or_absent, 3rd_period_present_or_absent, 4th_period_present_or_absent, 
+               5th_period_present_or_absent, 6th_period_present_or_absent, 7th_period_present_or_absent, 8th_period_present_or_absent
         FROM teacher_profile";
 $result = $conn->query($sql);
 
@@ -17,14 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         foreach ($teachers as $teacherName => $periods) {
             $teacherName = $conn->real_escape_string($teacherName);
             $updateQuery = "UPDATE teacher_profile SET 
-                            1st_period = {$periods['1st']},
-                            2nd_period = {$periods['2nd']},
-                            3rd_period = {$periods['3rd']},
-                            4th_period = {$periods['4th']},
-                            5th_period = {$periods['5th']},
-                            6th_period = {$periods['6th']},
-                            7th_period = {$periods['7th']},
-                            8th_period = {$periods['8th']}
+                            1st_period_present_or_absent = {$periods['1st']},
+                            2nd_period_present_or_absent = {$periods['2nd']},
+                            3rd_period_present_or_absent = {$periods['3rd']},
+                            4th_period_present_or_absent = {$periods['4th']},
+                            5th_period_present_or_absent = {$periods['5th']},
+                            6th_period_present_or_absent = {$periods['6th']},
+                            7th_period_present_or_absent = {$periods['7th']},
+                            8th_period_present_or_absent = {$periods['8th']}
                             WHERE Teacher_Name = '$teacherName'";
 
             if ($conn->query($updateQuery) === FALSE) {
@@ -111,7 +113,7 @@ $conn->close();
             // Check if any period is marked as 0 (absent)
             $isAbsent = false;
             foreach (["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th"] as $period) {
-                if ($row["$period" . "_period"] == 0) {
+                if ($row["$period" . "_period_present_or_absent"] == 0) {
                     $isAbsent = true;
                     break; // Exit loop if one period is absent
                 }
@@ -141,7 +143,7 @@ $conn->close();
                                 <input class="form-check-input period-checkbox" type="checkbox"
                                     id="period-<?= $period ?>-<?= $row['Teacher_ID'] ?>"
                                     data-teacher="<?= $row['Teacher_Name'] ?>" data-period="<?= $period ?>"
-                                    <?= $row["$period" . "_period"] == 0 ? "checked" : "" ?>>
+                                    <?= $row["$period" . "_period_present_or_absent"] == 0 ? "checked" : "" ?>>
                                 <label class="form-check-label">
                                     <?= $period ?> Period
                                 </label>
