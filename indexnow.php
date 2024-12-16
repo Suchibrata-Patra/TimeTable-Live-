@@ -1,7 +1,7 @@
 <?php
 function notifyIndexNow($urlList) {
     // Correct IndexNow API endpoint
-    $apiEndpoint = "https://api.indexnow.org";
+    $apiEndpoint = "https://api.indexnow.org/indexnow";  // Corrected API URL
 
     // Your API key and key location
     $apiKey = "ce258d32bcd1427c97f3e409a3314d5c";
