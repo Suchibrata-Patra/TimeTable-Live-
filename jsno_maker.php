@@ -1,11 +1,11 @@
 <?php
 require 'database.php';
 
-// Step 1: SQL Query to join class_schedule_new with teacher_profile_new and fetch Teacher_Name
+// Step 1: SQL Query to join class_schedule with teacher_profile and fetch Teacher_Name
 $sql = "
     SELECT cs.*, tp.teacher_Name as teacher
-    FROM class_schedule_new cs
-    JOIN teacher_profile_new tp 
+    FROM class_schedule cs
+    JOIN teacher_profile tp 
     ON cs.Teacher_ID = tp.Teacher_ID
 ";
 
