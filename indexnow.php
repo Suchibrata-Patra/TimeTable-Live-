@@ -1,7 +1,7 @@
 <?php
-function notifyIndexNow($url) {
-    // IndexNow API endpoint
-    $apiEndpoint = "https://www.bing.com/indexnow";
+function notifyIndexNow($urlList) {
+    // Correct IndexNow API endpoint
+    $apiEndpoint = "https://api.indexnow.org";
 
     // Your API key and key location
     $apiKey = "ce258d32bcd1427c97f3e409a3314d5c";
@@ -9,10 +9,10 @@ function notifyIndexNow($url) {
 
     // Prepare the POST data
     $postData = json_encode([
-        "host" => "timetable.theapplication.in",
+        "host" => "timetable.theapplication.in",  // Use your website domain here
         "key" => $apiKey,
         "keyLocation" => $keyLocation,
-        "urlList" => [$url]
+        "urlList" => $urlList  // This will be the array of URLs to notify
     ]);
 
     // Initialize cURL
@@ -20,7 +20,10 @@ function notifyIndexNow($url) {
 
     // Set cURL options
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: application/json"]);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        "Content-Type: application/json; charset=utf-8",
+        "Host: api.indexnow.org"
+    ]);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
 
@@ -28,18 +31,21 @@ function notifyIndexNow($url) {
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-    // Check response
+    // Check if request was successful
     if ($httpCode == 200 || $httpCode == 202) {
-        echo "✅ Successfully notified IndexNow for: $url";
+        echo "✅ Successfully notified IndexNow for URLs: " . implode(", ", $urlList);
     } else {
-        echo "❌ Failed to notify IndexNow. Response: $response";
+        echo "❌ Failed to notify IndexNow. HTTP Code: $httpCode Response: $response";
     }
 
     // Close cURL session
     curl_close($ch);
 }
 
-// Example Usage: Notify a single URL
-$url = "https://timetable.theapplication.in/new-page";
-notifyIndexNow($url);
+// Example Usage: Notify multiple URLs
+$urlList = [
+    "https://timetable.theapplication.in/"
+];
+
+notifyIndexNow($urlList);
 ?>
