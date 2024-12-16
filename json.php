@@ -6,7 +6,7 @@ $sql = "SELECT cs.*, tp.teacher_Name as teacher
     FROM class_schedule cs
     JOIN teacher_profile tp 
     ON cs.Teacher_ID = tp.Teacher_ID
-    WHERE cs.class is not NULL
+    WHERE cs.class is not NULL AND cs.Subject is not NULL
 ";
 
 $result = $conn->query($sql);
