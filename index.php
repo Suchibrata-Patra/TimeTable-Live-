@@ -67,7 +67,133 @@
 
 <body>
     <?php include('header.php') ?>
+
+    <!-- Hero Section -->
+    <section class="hero-section d-flex align-items-center justify-content-center text-center text-white" style="
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.99)), url('https://timetable.theapplication.in/screenshot.png');
+        background-size: cover;
+        background-position: center;
+        height: 80vh;
+        color: white;
+    ">
+        <div class="container px-4">
+            <h1 class="display-3 fw-bold mb-3">Effortless Rescheduling</h1>
+            <p class="lead mb-4">
+                Automate your school's timetable generation and dynamic teacher allocation. Save time, reduce errors, and ensure balance.
+            </p>
+            <a href="https://timetable.theapplication.in/pricing" class="btn btn-warning btn-lg shadow-sm fw-semibold">
+                Get Started Today
+            </a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <div class="container my-5">
+        <h3 class="text-center fw-bold mb-4">Why Choose TheApplication?</h3>
+        <div class="row text-center">
+            <div class="col-md-3 mb-4">
+                <div class="p-4 shadow rounded bg-white hover-feature">
+                    <i class="fas fa-clock fa-3x mb-3 text-primary"></i>
+                    <h5>Time-Saving</h5>
+                    <p>Automate provisional routine generation and save hours of manual effort.</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="p-4 shadow rounded bg-white hover-feature">
+                    <i class="fas fa-check-circle fa-3x mb-3 text-success"></i>
+                    <h5>Error-Free</h5>
+                    <p>Ensure schedules with no overlaps or teacher overloads.</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="p-4 shadow rounded bg-white hover-feature">
+                    <i class="fas fa-users fa-3x mb-3 text-danger"></i>
+                    <h5>Dynamic Allocation</h5>
+                    <p>Optimize teacher assignments based on workload and availability.</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="p-4 shadow rounded bg-white hover-feature">
+                    <i class="fas fa-chart-line fa-3x mb-3 text-warning"></i>
+                    <h5>Improved Efficiency</h5>
+                    <p>Focus on education while we handle the scheduling complexity.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- What Does It Do Section -->
+    <div class="container my-5">
+        <h3 class="fw-bold mb-4">What Does TheApplication Do?</h3>
+        <ul class="list-group shadow-sm">
+            <li class="list-group-item py-3 d-flex align-items-center">
+                <i class="material-icons text-primary me-3">schedule</i>
+                <strong>Generates Provisional Routines:</strong> Create daily schedules with ease.
+            </li>
+            <li class="list-group-item py-3 d-flex align-items-center">
+                <i class="material-icons text-danger me-3">group</i>
+                <strong>Dynamic Teacher Allocation:</strong> Assign teachers fairly without overloads.
+            </li>
+            <li class="list-group-item py-3 d-flex align-items-center">
+                <i class="material-icons text-success me-3">build</i>
+                <strong>Customizable for School Needs:</strong> Tailor it to your institution’s requirements.
+            </li>
+            <li class="list-group-item py-3 d-flex align-items-center">
+                <i class="material-icons text-warning me-3">done_outline</i>
+                <strong>Avoid Teacher Overloads:</strong> Ensure balanced workloads for teachers.
+            </li>
+        </ul>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="container my-5 text-center">
+        <h3 class="fw-bold mb-3">Contact Us</h3>
+        <p class="mb-2">📧 <strong>Email:</strong> <a href="mailto:support@theapplication.in" class="text-decoration-none">support@theapplication.in</a></p>
+        <p>🌐 <strong>Website:</strong> <a href="https://timetable.theapplication.in" class="text-decoration-none" target="_blank">timetable.theapplication.in</a></p>
+    </div>
+    <!-- CTA Section -->
+    <div class="container-fluid py-5 bg-primary text-white">
+        <div class="text-center">
+            <h2 class="fw-bold mb-3">Start Simplifying Your School's Scheduling</h2>
+            <p class="lead mb-4">✅ Save Time | ✅ Reduce Errors | ✅ Enhance Efficiency</p>
+            <a href="https://timetable.theapplication.in/Routine.php" class="btn btn-warning btn-lg px-5 fw-bold">Get Started</a>
+        </div>
+    </div>
+
+
     <?php include('index_page_manager.php') ?>
-    
+
+    <style>
+        /* Hover effect for cards */
+        .hover-feature {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-feature:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.);
+        }
+
+        /* List item hover effect */
+        .list-group-item:hover {
+            background-color: #f8f9fa;
+            transform: scale(1.0001);
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Button styling */
+        .btn-lg {
+            border-radius: 50px;
+            padding: 12px 35px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
 </body>
+
+
 </html>
