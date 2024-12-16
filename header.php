@@ -332,6 +332,14 @@
                     </div> -->
                 </li>
                 <li>
+                    <a href="https://admission.theapplication.in" target="_blank">Admission</a>
+                    <!-- Popup Menu for Profile -->
+                    <!-- <div class="popup-menu">
+                        <a href="profile-details.php">View Profile</a>
+                        <a href="profile-edit.php">Edit Profile</a>
+                    </div> -->
+                </li>
+                <li>
                     <a href="#">Subscription</a>
                     <!-- Popup Menu for Settings -->
                     <div class="popup-menu">

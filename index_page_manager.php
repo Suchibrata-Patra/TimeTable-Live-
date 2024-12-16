@@ -1,5 +1,5 @@
 
-<center style="margin-top:1%;">
+<center style="margin-top:0%;">
 <img src="./assets/purchase_with_purpose.png" alt="" srcset="">
 </center>
 
