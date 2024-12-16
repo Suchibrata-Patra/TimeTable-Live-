@@ -5,9 +5,9 @@ $sql = "
 
 CREATE TABLE provisional_routine (
     Teacher_ID INT,
-    Subject VARCHAR(255),
+    Subject VARCHAR2(255),
     Period INT,
-    Class VARCHAR(50)
+    Class VARCHAR2(50)
 );
 
 WITH TeacherLoad AS (
