@@ -49,7 +49,7 @@ try {
     if ($conn->connect_error) {
         throw new Exception("Connection failed: " . $conn->connect_error);
     } else {
-        // echo "Successfully connected!";
+        echo "Successfully connected!";
     }
 } catch (Exception $e) {
     // Log the error securely without exposing sensitive details
