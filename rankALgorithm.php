@@ -1,11 +1,11 @@
-<?php require 'database.php' ?>
+<?php require 'database.php'; ?>
 
 <?php
 
 $plsql = "
 BEGIN
    -- Create a temporary table by cloning the structure of class_schedule
-   EXECUTE IMMEDIATE 'CREATE GLOBAL TEMPORARY TABLE class_schedule_temp AS SELECT * FROM class_schedule';
+   EXECUTE IMMEDIATE 'CREATE GLOBAL TEMPORARY TABLE class_schedule_temp AS SELECT * FROM class_schedule WHERE 1=0'; -- Ensures structure without data
 
    -- Optionally, you can fetch or manipulate data if needed
    -- For example, retrieving some data from the original table
