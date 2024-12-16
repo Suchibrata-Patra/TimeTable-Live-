@@ -1,55 +1,88 @@
-<?php require 'database.php'; ?>
+<?php 
+require 'database.php'; // Assuming database connection is handled in this file
 
-<?php
-
-$plsql = "
-BEGIN
-   -- Create a temporary table by cloning the structure of class_schedule
-   EXECUTE IMMEDIATE 'CREATE GLOBAL TEMPORARY TABLE class_schedule_temp AS SELECT * FROM class_schedule WHERE 1=0'; -- Ensures structure without data
-
-   -- Optionally, you can fetch or manipulate data if needed
-   -- For example, retrieving some data from the original table and inserting it into the temporary table
-   FOR rec IN (SELECT * FROM class_schedule) LOOP
-      -- Insert the data from class_schedule into the temporary table
-      EXECUTE IMMEDIATE 'INSERT INTO class_schedule_temp SELECT * FROM class_schedule';
-   END LOOP;
-END;
+$sql = "
+WITH TeacherLoad AS (
+    -- Step 1: Count the total periods each teacher has been allocated
+    SELECT 
+        t.Teacher_ID, 
+        t.Subject, 
+        COUNT(pr.Teacher_ID) AS TotalPeriods
+    FROM 
+        teacher_profile t
+    LEFT JOIN 
+        provisional_routine pr ON t.Teacher_ID = pr.Teacher_ID
+    GROUP BY 
+        t.Teacher_ID, t.Subject
+),
+AbsentTeachers AS (
+    -- Step 2: Identify teachers who are absent (periods with '0' present/absent status)
+    SELECT 
+        teacher_id, 
+        period
+    FROM 
+        (
+            SELECT teacher_id, '1st_period' AS period, 1st_period_present_or_absent AS present_status FROM teacher_attendance
+            UNION ALL
+            SELECT teacher_id, '2nd_period' AS period, 2nd_period_present_or_absent AS present_status FROM teacher_attendance
+            UNION ALL
+            SELECT teacher_id, '3rd_period' AS period, 3rd_period_present_or_absent AS present_status FROM teacher_attendance
+            UNION ALL
+            SELECT teacher_id, '4th_period' AS period, 4th_period_present_or_absent AS present_status FROM teacher_attendance
+            UNION ALL
+            SELECT teacher_id, '5th_period' AS period, 5th_period_present_or_absent AS present_status FROM teacher_attendance
+            UNION ALL
+            SELECT teacher_id, '6th_period' AS period, 6th_period_present_or_absent AS present_status FROM teacher_attendance
+            UNION ALL
+            SELECT teacher_id, '7th_period' AS period, 7th_period_present_or_absent AS present_status FROM teacher_attendance
+            UNION ALL
+            SELECT teacher_id, '8th_period' AS period, 8th_period_present_or_absent AS present_status FROM teacher_attendance
+        ) AS periods
+    WHERE present_status = 0 -- Only consider absent teachers
+),
+AvailableSubstituteTeachers AS (
+    -- Step 3: Fetch available substitute teachers for the same subject with fewer than 6 periods
+    SELECT 
+        t.Teacher_ID, 
+        t.Subject, 
+        tl.TotalPeriods
+    FROM 
+        teacher_profile t
+    JOIN 
+        TeacherLoad tl ON t.Teacher_ID = tl.Teacher_ID
+    WHERE 
+        tl.TotalPeriods < 6
+)
+-- Step 4: Allocate a substitute teacher to the absent teacher's period
+SELECT 
+    at.teacher_id AS Absent_Teacher,
+    at.period AS Absent_Period,
+    ast.Teacher_ID AS Substitute_Teacher,
+    ast.Subject
+FROM 
+    AbsentTeachers at
+JOIN 
+    AvailableSubstituteTeachers ast ON at.period IN (
+        '1st_period', '2nd_period', '3rd_period', '4th_period', '5th_period', '6th_period', '7th_period', '8th_period'
+    )
+WHERE 
+    ast.Subject = (SELECT Subject FROM teacher_profile WHERE Teacher_ID = at.teacher_id) -- Same subject
+ORDER BY 
+    ast.TotalPeriods ASC; -- Allocate to teacher with fewer periods first
 ";
 
-// Parse and execute the PL/SQL block
-$stid = oci_parse($conn, $plsql);
-if (!oci_execute($stid)) {
-    $error = oci_error($stid);
-    echo "Error in executing PL/SQL: " . $error['message'];
+$result = $conn->query($sql); // Execute the query
+
+if ($result->num_rows > 0) {
+    // Output the results
+    while($row = $result->fetch_assoc()) {
+        echo "Absent Teacher: " . $row["Absent_Teacher"] . " | ";
+        echo "Absent Period: " . $row["Absent_Period"] . " | ";
+        echo "Substitute Teacher: " . $row["Substitute_Teacher"] . " | ";
+        echo "Subject: " . $row["Subject"] . "<br>";
+    }
 } else {
-    echo "PL/SQL executed successfully!<br>";
-
-    // Now fetch and display the data from the temporary table
-    $query = "SELECT * FROM class_schedule_temp";
-    $stid_select = oci_parse($conn, $query);
-    oci_execute($stid_select);
-
-    // Fetch data and display it in a table
-    echo "<table border='1'><tr>";
-    
-    // Fetch column names to use as table headers
-    $num_cols = oci_num_fields($stid_select);
-    for ($i = 1; $i <= $num_cols; $i++) {
-        $col_name = oci_field_name($stid_select, $i);
-        echo "<th>" . htmlspecialchars($col_name) . "</th>";
-    }
-    echo "</tr>";
-
-    // Fetch each row and display it in the table
-    while ($row = oci_fetch_assoc($stid_select)) {
-        echo "<tr>";
-        foreach ($row as $column_value) {
-            echo "<td>" . htmlspecialchars($column_value) . "</td>";
-        }
-        echo "</tr>";
-    }
-
-    echo "</table>";
+    echo "No results found.";
 }
 
 ?>
