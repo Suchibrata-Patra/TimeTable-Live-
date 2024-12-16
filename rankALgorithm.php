@@ -1,17 +1,13 @@
 <?php 
 require 'database.php'; // Assuming database connection is handled in this file
 
-$sql = "
-
-CREATE TABLE provisional_routine (
+$sql = "CREATE TABLE provisional_routine (
     Teacher_ID INT,
     Subject VARCHAR2(255),
     Period INT,
     Class VARCHAR2(50)
 );
-
 WITH TeacherLoad AS (
-    -- Step 1: Count the total periods each teacher has been allocated
     SELECT 
         t.Teacher_ID, 
         t.Subject, 
@@ -24,7 +20,6 @@ WITH TeacherLoad AS (
         t.Teacher_ID, t.Subject
 ),
 AbsentTeachers AS (
-    -- Step 2: Identify teachers who are absent (periods with '0' present/absent status)
     SELECT 
         teacher_id, 
         period
