@@ -5,9 +5,7 @@ require('database.php');
 ?>
 <?php
 // Fetch teacher data from the database
-$sql = "SELECT Teacher_ID, Teacher_Name,
-               1st_period, 2nd_period, 3rd_period, 4th_period, 
-               5th_period, 6th_period, 7th_period, 8th_period
+$sql = "SELECT *
         FROM teacher_profile";
 $result = $conn->query($sql);
 
