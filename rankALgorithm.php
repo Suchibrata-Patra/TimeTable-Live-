@@ -25,8 +25,4 @@ if (!oci_execute($stid)) {
     echo "PL/SQL executed successfully!";
 }
 
-// Close the connection
-oci_free_statement($stid);
-oci_close($conn);
-
 ?>
