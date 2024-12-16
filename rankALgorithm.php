@@ -32,19 +32,19 @@ AbsentTeachers AS (
         (
             SELECT teacher_id, '1st_period' AS period, '1st_period_present_or_absent' AS present_status FROM teacher_profile
             UNION ALL
-            SELECT teacher_id, '2nd_period' AS period, 2nd_period_present_or_absent AS present_status FROM teacher_profile
+            SELECT teacher_id, '2nd_period' AS period, '2nd_period_present_or_absent' AS present_status FROM teacher_profile
             UNION ALL
-            SELECT teacher_id, '3rd_period' AS period, 3rd_period_present_or_absent AS present_status FROM teacher_profile
+            SELECT teacher_id, '3rd_period' AS period, '3rd_period_present_or_absent' AS present_status FROM teacher_profile
             UNION ALL
-            SELECT teacher_id, '4th_period' AS period, 4th_period_present_or_absent AS present_status FROM teacher_profile
+            SELECT teacher_id, '4th_period' AS period, '4th_period_present_or_absent' AS present_status FROM teacher_profile
             UNION ALL
-            SELECT teacher_id, '5th_period' AS period, 5th_period_present_or_absent AS present_status FROM teacher_profile
+            SELECT teacher_id, '5th_period' AS period, '5th_period_present_or_absent' AS present_status FROM teacher_profile
             UNION ALL
-            SELECT teacher_id, '6th_period' AS period, 6th_period_present_or_absent AS present_status FROM teacher_profile
+            SELECT teacher_id, '6th_period' AS period, '6th_period_present_or_absent' AS present_status FROM teacher_profile
             UNION ALL
-            SELECT teacher_id, '7th_period' AS period, 7th_period_present_or_absent AS present_status FROM teacher_profile
+            SELECT teacher_id, '7th_period' AS period, '7th_period_present_or_absent' AS present_status FROM teacher_profile
             UNION ALL
-            SELECT teacher_id, '8th_period' AS period, 8th_period_present_or_absent AS present_status FROM teacher_profile
+            SELECT teacher_id, '8th_period' AS period, '8th_period_present_or_absent' AS present_status FROM teacher_profile
         ) AS periods
     WHERE present_status = 0 -- Only consider absent teachers
 ),
