@@ -2,8 +2,7 @@
 require 'database.php'; // Assuming database connection is handled in this file
 
 // First, create the provisional_routine table if it doesn't exist
-$sql_create_table = "
-    CREATE TABLE IF NOT EXISTS provisional_routine (
+$sql_create_table = "CREATE TABLE IF NOT EXISTS provisional_routine (
         Teacher_ID INT,
         Subject VARCHAR(255),
         Period INT,
@@ -13,8 +12,7 @@ $sql_create_table = "
 $conn->query($sql_create_table); // Execute the table creation query
 
 // Now, use a separate query for fetching the available substitute teachers
-$sql = "
-WITH TeacherLoad AS (
+$sql = "WITH TeacherLoad AS (
     SELECT 
         t.Teacher_ID, 
         t.Subject, 
