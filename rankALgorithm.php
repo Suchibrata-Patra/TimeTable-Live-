@@ -72,7 +72,7 @@ ORDER BY
 ";
 
 $result = $conn->query($sql); // Execute the query
-
+echo  $result->num_rows;
 if ($result->num_rows > 0) {
     // Output the results
     while($row = $result->fetch_assoc()) {
