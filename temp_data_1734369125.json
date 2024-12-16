@@ -1,0 +1,402 @@
+{
+    "schedule": {
+        "Monday": [
+            {
+                "ID": "1568",
+                "Weekday": "Monday",
+                "Class": "Class 5",
+                "Subject": "Paribesh",
+                "Teacher_ID": "2",
+                "teacher": "R.J.M",
+                "Section": "A",
+                "timeSlot": "2nd"
+            },
+            {
+                "ID": "1569",
+                "Weekday": "Monday",
+                "Class": "Class 5",
+                "Subject": "Mathematics",
+                "Teacher_ID": "1",
+                "teacher": "S.M",
+                "Section": "A",
+                "timeSlot": "1st"
+            },
+            {
+                "ID": "1570",
+                "Weekday": "Monday",
+                "Class": "Class 5",
+                "Subject": "English",
+                "Teacher_ID": "3",
+                "teacher": "P.B",
+                "Section": "A",
+                "timeSlot": "3rd"
+            },
+            {
+                "ID": "1571",
+                "Weekday": "Monday",
+                "Class": "Class 5",
+                "Subject": "Bengali",
+                "Teacher_ID": "4",
+                "teacher": "A.K.S",
+                "Section": "A",
+                "timeSlot": "4th"
+            },
+            {
+                "ID": "1572",
+                "Weekday": "Monday",
+                "Class": "Class 5",
+                "Subject": "Mathematics",
+                "Teacher_ID": "5",
+                "teacher": "A.P",
+                "Section": "A",
+                "timeSlot": "5th"
+            },
+            {
+                "ID": "1573",
+                "Weekday": "Monday",
+                "Class": "Class 5",
+                "Subject": "Physical Education",
+                "Teacher_ID": "2",
+                "teacher": "R.J.M",
+                "Section": "A",
+                "timeSlot": "6th"
+            },
+            {
+                "ID": "1574",
+                "Weekday": "Monday",
+                "Class": "Class 5",
+                "Subject": "Bengali",
+                "Teacher_ID": "6",
+                "teacher": "S.M.B",
+                "Section": "B",
+                "timeSlot": "1st"
+            },
+            {
+                "ID": "1575",
+                "Weekday": "Monday",
+                "Class": "Class 5",
+                "Subject": "Computer",
+                "Teacher_ID": "7",
+                "teacher": "G.C.N",
+                "Section": "B",
+                "timeSlot": "2nd"
+            },
+            {
+                "ID": "1576",
+                "Weekday": "Monday",
+                "Class": "Class 5",
+                "Subject": "Mathematics",
+                "Teacher_ID": "8",
+                "teacher": "D.S",
+                "Section": "B",
+                "timeSlot": "3rd"
+            },
+            {
+                "ID": "1577",
+                "Weekday": "Monday",
+                "Class": "Class 5",
+                "Subject": "Bengali",
+                "Teacher_ID": "9",
+                "teacher": "D.B",
+                "Section": "B",
+                "timeSlot": "4th"
+            },
+            {
+                "ID": "1578",
+                "Weekday": "Monday",
+                "Class": "Class 5",
+                "Subject": "English",
+                "Teacher_ID": "3",
+                "teacher": "P.B",
+                "Section": "B",
+                "timeSlot": "5th"
+            },
+            {
+                "ID": "1579",
+                "Weekday": "Monday",
+                "Class": "Class 5",
+                "Subject": "G.K",
+                "Teacher_ID": "10",
+                "teacher": "M.S",
+                "Section": "B",
+                "timeSlot": "6th"
+            },
+            {
+                "ID": "1580",
+                "Weekday": "Monday",
+                "Class": "Class 5",
+                "Subject": "Paribesh",
+                "Teacher_ID": "2",
+                "teacher": "R.J.M",
+                "Section": "C",
+                "timeSlot": "1st"
+            },
+            {
+                "ID": "1581",
+                "Weekday": "Monday",
+                "Class": "",
+                "Subject": "Geography",
+                "Teacher_ID": "11",
+                "teacher": "R.S",
+                "Section": "",
+                "timeSlot": "2nd"
+            },
+            {
+                "ID": "1582",
+                "Weekday": "Monday",
+                "Class": "",
+                "Subject": "Mathematics",
+                "Teacher_ID": "5",
+                "teacher": "A.P",
+                "Section": "",
+                "timeSlot": "3rd"
+            },
+            {
+                "ID": "1583",
+                "Weekday": "Monday",
+                "Class": "",
+                "Subject": "Bengali",
+                "Teacher_ID": "6",
+                "teacher": "S.M.B",
+                "Section": "",
+                "timeSlot": "4th"
+            },
+            {
+                "ID": "1584",
+                "Weekday": "Monday",
+                "Class": "",
+                "Subject": "Geography",
+                "Teacher_ID": "11",
+                "teacher": "R.S",
+                "Section": "",
+                "timeSlot": "5th"
+            },
+            {
+                "ID": "1585",
+                "Weekday": "Monday",
+                "Class": "",
+                "Subject": "Dharma",
+                "Teacher_ID": "12",
+                "teacher": "S.M.P",
+                "Section": "",
+                "timeSlot": "6th"
+            },
+            {
+                "ID": "1586",
+                "Weekday": "Monday",
+                "Class": "Class 6",
+                "Subject": "English",
+                "Teacher_ID": "13",
+                "teacher": "S.D",
+                "Section": "A",
+                "timeSlot": "1st"
+            },
+            {
+                "ID": "1587",
+                "Weekday": "Monday",
+                "Class": "Class 6",
+                "Subject": "Sc.",
+                "Teacher_ID": "14",
+                "teacher": "U.M",
+                "Section": "A",
+                "timeSlot": "2nd"
+            },
+            {
+                "ID": "1588",
+                "Weekday": "Monday",
+                "Class": "Class 6",
+                "Subject": "Work Education",
+                "Teacher_ID": "15",
+                "teacher": "P.P",
+                "Section": "A",
+                "timeSlot": "3rd"
+            },
+            {
+                "ID": "1589",
+                "Weekday": "Monday",
+                "Class": "Class 6",
+                "Subject": "English",
+                "Teacher_ID": "13",
+                "teacher": "S.D",
+                "Section": "A",
+                "timeSlot": "4th"
+            },
+            {
+                "ID": "1590",
+                "Weekday": "Monday",
+                "Class": "Class 6",
+                "Subject": "Geography",
+                "Teacher_ID": "16",
+                "teacher": "G.B",
+                "Section": "A",
+                "timeSlot": "5th"
+            },
+            {
+                "ID": "1591",
+                "Weekday": "Monday",
+                "Class": "Class 6",
+                "Subject": "Sc.",
+                "Teacher_ID": "17",
+                "teacher": "B.M",
+                "Section": "A",
+                "timeSlot": "6th"
+            },
+            {
+                "ID": "1592",
+                "Weekday": "Monday",
+                "Class": "Class 6",
+                "Subject": "Physical Education",
+                "Teacher_ID": "1",
+                "teacher": "S.M",
+                "Section": "A",
+                "timeSlot": "7th"
+            },
+            {
+                "ID": "1593",
+                "Weekday": "Monday",
+                "Class": "Class 6",
+                "Subject": "Bengali",
+                "Teacher_ID": "9",
+                "teacher": "D.B",
+                "Section": "B",
+                "timeSlot": "1st"
+            },
+            {
+                "ID": "1594",
+                "Weekday": "Monday",
+                "Class": "Class 6",
+                "Subject": "English",
+                "Teacher_ID": "3",
+                "teacher": "P.B",
+                "Section": "B",
+                "timeSlot": "2nd"
+            },
+            {
+                "ID": "1595",
+                "Weekday": "Monday",
+                "Class": "Class 6",
+                "Subject": "Mathematics",
+                "Teacher_ID": "1",
+                "teacher": "S.M",
+                "Section": "B",
+                "timeSlot": "3rd"
+            },
+            {
+                "ID": "1596",
+                "Weekday": "Monday",
+                "Class": "Class 6",
+                "Subject": "Geography",
+                "Teacher_ID": "18",
+                "teacher": "K.H",
+                "Section": "B",
+                "timeSlot": "4th"
+            },
+            {
+                "ID": "1597",
+                "Weekday": "Monday",
+                "Class": "Class 6",
+                "Subject": "History",
+                "Teacher_ID": "19",
+                "teacher": "S.H",
+                "Section": "B",
+                "timeSlot": "5th"
+            },
+            {
+                "ID": "1598",
+                "Weekday": "Monday",
+                "Class": "Class 6",
+                "Subject": "English",
+                "Teacher_ID": "20",
+                "teacher": "B.C.B",
+                "Section": "B",
+                "timeSlot": "6th"
+            },
+            {
+                "ID": "1599",
+                "Weekday": "Monday",
+                "Class": "Class 6",
+                "Subject": "Dharma",
+                "Teacher_ID": "18",
+                "teacher": "K.H",
+                "Section": "B",
+                "timeSlot": "7th"
+            },
+            {
+                "ID": "1600",
+                "Weekday": "Monday",
+                "Class": "Class 6",
+                "Subject": "History",
+                "Teacher_ID": "21",
+                "teacher": "R.M",
+                "Section": "C",
+                "timeSlot": "1st"
+            },
+            {
+                "ID": "1601",
+                "Weekday": "Monday",
+                "Class": "Class 6",
+                "Subject": "Mathematics",
+                "Teacher_ID": "22",
+                "teacher": "B.B",
+                "Section": "C",
+                "timeSlot": "2nd"
+            },
+            {
+                "ID": "1602",
+                "Weekday": "Monday",
+                "Class": "Class 6",
+                "Subject": "Geography",
+                "Teacher_ID": "11",
+                "teacher": "R.S",
+                "Section": "C",
+                "timeSlot": "3rd"
+            },
+            {
+                "ID": "1603",
+                "Weekday": "Monday",
+                "Class": "Class 6",
+                "Subject": "Work Education",
+                "Teacher_ID": "15",
+                "teacher": "P.P",
+                "Section": "C",
+                "timeSlot": "4th"
+            },
+            {
+                "ID": "1604",
+                "Weekday": "Monday",
+                "Class": "Class 6",
+                "Subject": "Bengali",
+                "Teacher_ID": "6",
+                "teacher": "S.M.B",
+                "Section": "C",
+                "timeSlot": "5th"
+            },
+            {
+                "ID": "1605",
+                "Weekday": "Monday",
+                "Class": "Class 6",
+                "Subject": "Mathematics",
+                "Teacher_ID": "8",
+                "teacher": "D.S",
+                "Section": "C",
+                "timeSlot": "6th"
+            },
+            {
+                "ID": "1606",
+                "Weekday": "Monday",
+                "Class": "Class 6",
+                "Subject": "Sc.",
+                "Teacher_ID": "17",
+                "teacher": "B.M",
+                "Section": "C",
+                "timeSlot": "7th"
+            }
+        ],
+        "Tuesday": [],
+        "Wednesday": [],
+        "Thursday": [],
+        "Friday": [],
+        "Saturday": [],
+        "Sunday": []
+    }
+}

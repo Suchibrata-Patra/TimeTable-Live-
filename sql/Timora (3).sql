@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `class_schedule`
+-- Table structure for table `class_schedule_new`
 --
 
-CREATE TABLE `class_schedule` (
+CREATE TABLE `class_schedule_new` (
   `ID` int(11) NOT NULL,
   `Weekday` varchar(20) NOT NULL DEFAULT 'Monday',
   `Class` varchar(10) DEFAULT NULL,
@@ -37,10 +37,10 @@ CREATE TABLE `class_schedule` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `class_schedule`
+-- Dumping data for table `class_schedule_new`
 --
 
-INSERT INTO `class_schedule` (`ID`, `Weekday`, `Class`, `Subject`, `Teacher_ID`, `Class_Time`) VALUES
+INSERT INTO `class_schedule_new` (`ID`, `Weekday`, `Class`, `Subject`, `Teacher_ID`, `Class_Time`) VALUES
 (1568, 'Monday', '5A', 'Paribesh', 2, '2nd'),
 (1569, 'Monday', '5A', 'Mathematics', 1, '1st'),
 (1570, 'Monday', '5A', 'English', 3, '3rd'),
@@ -83,10 +83,10 @@ INSERT INTO `class_schedule` (`ID`, `Weekday`, `Class`, `Subject`, `Teacher_ID`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `teacher_profile`
+-- Table structure for table `teacher_profile_new`
 --
 
-CREATE TABLE `teacher_profile` (
+CREATE TABLE `teacher_profile_new` (
   `Teacher_ID` int(11) NOT NULL,
   `Teacher_Name` varchar(100) NOT NULL,
   `5_allowed` int(1) NOT NULL DEFAULT '1',
@@ -108,10 +108,10 @@ CREATE TABLE `teacher_profile` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `teacher_profile`
+-- Dumping data for table `teacher_profile_new`
 --
 
-INSERT INTO `teacher_profile` (`Teacher_ID`, `Teacher_Name`, `5_allowed`, `6_allowed`, `7_allowed`, `8_allowed`, `9_allowed`, `10_allowed`, `11_allowed`, `12_allowed`, `1st_period_present_or_absent`, `2nd_period_present_or_absent`, `3rd_period_present_or_absent`, `4th_period_present_or_absent`, `5th_period_present_or_absent`, `6th_period_present_or_absent`, `7th_period_present_or_absent`, `8th_period_present_or_absent`) VALUES
+INSERT INTO `teacher_profile_new` (`Teacher_ID`, `Teacher_Name`, `5_allowed`, `6_allowed`, `7_allowed`, `8_allowed`, `9_allowed`, `10_allowed`, `11_allowed`, `12_allowed`, `1st_period_present_or_absent`, `2nd_period_present_or_absent`, `3rd_period_present_or_absent`, `4th_period_present_or_absent`, `5th_period_present_or_absent`, `6th_period_present_or_absent`, `7th_period_present_or_absent`, `8th_period_present_or_absent`) VALUES
 (1, 'S.M', 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0),
 (2, 'R.J.M', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 (3, 'P.B', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
@@ -152,16 +152,16 @@ INSERT INTO `teacher_profile` (`Teacher_ID`, `Teacher_Name`, `5_allowed`, `6_all
 --
 
 --
--- Indexes for table `class_schedule`
+-- Indexes for table `class_schedule_new`
 --
-ALTER TABLE `class_schedule`
+ALTER TABLE `class_schedule_new`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `Teacher_ID` (`Teacher_ID`);
 
 --
--- Indexes for table `teacher_profile`
+-- Indexes for table `teacher_profile_new`
 --
-ALTER TABLE `teacher_profile`
+ALTER TABLE `teacher_profile_new`
   ADD PRIMARY KEY (`Teacher_ID`);
 
 --
@@ -169,9 +169,9 @@ ALTER TABLE `teacher_profile`
 --
 
 --
--- AUTO_INCREMENT for table `class_schedule`
+-- AUTO_INCREMENT for table `class_schedule_new`
 --
-ALTER TABLE `class_schedule`
+ALTER TABLE `class_schedule_new`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1796;
 
 --
@@ -179,10 +179,10 @@ ALTER TABLE `class_schedule`
 --
 
 --
--- Constraints for table `class_schedule`
+-- Constraints for table `class_schedule_new`
 --
-ALTER TABLE `class_schedule`
-  ADD CONSTRAINT `class_schedule_ibfk_1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher_profile` (`Teacher_ID`);
+ALTER TABLE `class_schedule_new`
+  ADD CONSTRAINT `class_schedule_new_ibfk_1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher_profile_new` (`Teacher_ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
