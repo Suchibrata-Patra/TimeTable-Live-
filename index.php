@@ -36,7 +36,7 @@
         </p>
           <div class="hero-buttons">
             <a href="https://timetable.theapplication.in/scheduler.php" class="btn btn-primary">Get Started</a>
-            <a href="#" class="btn"
+            <a href="https://forms.gle/VNj1XhtyzkNviX8j7" class="btn"
               ><i class="fas fa-laptop"></i> Register</a
             >
           </div>
