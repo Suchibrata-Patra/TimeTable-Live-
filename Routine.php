@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             /* background-color: #f0f0f2; */
         }
         #search_icon text{
-            background_color:none;
+            background-color:none;
         }
 
         /* Remove the default dropdown arrow */
