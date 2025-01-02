@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         #weekday {
             padding: 15px;
             border: 2px solid black;
-            font-weight: 300;
+            font-weight: 200;
             font-size: 15px;
             background-color: #fafafc;
         }
