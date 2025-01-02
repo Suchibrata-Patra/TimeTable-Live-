@@ -8,9 +8,9 @@
   <link rel="icon" href="favicon.png">
   <link rel="stylesheet" href="Asset/CSS/style.css">
   <link rel="stylesheet" href="Asset/CSS/popup.css">
-  <script src="Asset/JS/fetcher.js"></script>
-  <script src="Asset/JS/scheduler.js"></script>
-  <script src="Asset/JS/date_detector.js"></script>
+  <script src="/Asset/JS/fetcher.js"></script>
+  <script src="/Asset/JS/scheduler.js"></script>
+  <script src="/Asset/JS/date_detector.js"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -286,7 +286,7 @@
       </span>
     </div>
 
-    <link rel="stylesheet" href="Asset/CSS/animation.css">
+    <link rel="stylesheet" href="/Asset/CSS/animation.css">
   </div>
   <script>
     window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
