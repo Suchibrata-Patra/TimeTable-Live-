@@ -16,17 +16,21 @@
 
     /* Navbar styles */
     .navbar {
-    position: sticky;
-    top: 0; /* Sticks to the top of the viewport */
-    z-index: 1000; /* Ensures it appears above other content */
-    background-color: #ffffff; /* Background to prevent transparency issues */
-    padding: 8px 2px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Optional: box shadow for effect */
-    width: 100%; /* Ensures it spans the full width */
-}
+        background-color: #ffffff;
+        padding: 8px 2px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        /* Ensure it sticks to the top */
+        z-index: 1000;
+        /* Ensures the navbar stays on top of other content */
+        width: 100%;
+        /* Ensure it spans the full width */
+        /* Optional: box shadow to create a floating effect */
+    }
 
 
     .navbar-container {
