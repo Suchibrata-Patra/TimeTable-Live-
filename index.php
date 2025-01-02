@@ -29,7 +29,7 @@
       <div class="container">
         <div class="hero-content">
           <h1 class="hero-heading text-xxl" style="color:black;">
-          Effortless Rescheduling <br>Made Easy
+          <span style="color:red;">Free & Effortless</span>  Rescheduling <br>Made Easy
           </h1>
           <p class="hero-text">
           Effortlessly Create Provisional Schedules in Just a Few Clicks! Say goodbye to hours of tedious planning—allocate classes seamlessly and save your valuable time.
