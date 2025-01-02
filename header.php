@@ -127,6 +127,7 @@
         display: flex;
         align-items: center;
         position: relative;
+        margin-left:-10px;
     }
 
     .user-profile {
