@@ -312,9 +312,8 @@
         <nav class="new-menu">
             <ul>
                 <li><a href="https://www.gangasagar-tourism.com/">Home</a></li>
-                <li><a href="https://www.gangasagar-tourism.com/tour/">Tour</a></li>
-                <li><a href="https://www.gangasagar-tourism.com/about/">Holiday Homes</a></li>
                 <li><a href="https://www.gangasagar-tourism.com/about/">About</a></li>
+                <li><a href="https://www.gangasagar-tourism.com/about/">Pricing</a></li>
                 <li><a href="https://www.gangasagar-tourism.com/contact/">Contact</a></li>
             </ul>
         </nav>
@@ -343,6 +342,7 @@
         </div>
         <li><a href="https://www.gangasagar-tourism.com/">Home</a></li>
         <li><a href="https://www.gangasagar-tourism.com/about/">About</a></li>
+        <li><a href="https://www.gangasagar-tourism.com/contact/">Pricing</a></li>
         <li><a href="https://www.gangasagar-tourism.com/contact/">Contact</a></li>
         <li><a href="#">₹ INR</a></li>
         <li><a href="#">Sign in</a></li>
