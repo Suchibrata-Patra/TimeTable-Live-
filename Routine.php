@@ -212,7 +212,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <table class="table table-bordered">
                     <thead id="tableHeader">
                         <tr style="text-align:center;">
-                            <th>Teacher</th>
+                            <th style="font-weight:300;">Teacher</th>
                             <?php
                             // Periods for columns
                             $periods = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th'];
