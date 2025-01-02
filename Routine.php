@@ -180,7 +180,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-    <?php require('header.php'); ?>
     <div style="position:sticky;">
         <?php include('header.php') ?>
     </div>
