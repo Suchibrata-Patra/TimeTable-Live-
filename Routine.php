@@ -90,9 +90,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             font-weight: 400 !important;
             /* background-color: #f0f0f2; */
         }
-        #search_icon text{
-            background-color:none;
+        #form-input{
+            display:none;
         }
+
 
         /* Remove the default dropdown arrow */
         .class-section-dropdown {
