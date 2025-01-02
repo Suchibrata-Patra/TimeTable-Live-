@@ -148,8 +148,8 @@
     <!-- Contact Section -->
     <div class="container my-5 text-center">
         <h3 class="fw-bold mb-3">Contact Us</h3>
-        <p class="mb-2">📧 <strong>Email:</strong> <a href="mailto:support@theapplication.in" class="text-decoration-none">support@theapplication.in</a></p>
-        <p>🌐 <strong>Website:</strong> <a href="https://timetable.theapplication.in" class="text-decoration-none" target="_blank">theapplication.in</a></p>
+        <p class="mb-2"><a href="mailto:support@theapplication.in" class="text-decoration-none">support@theapplication.in</a></p>
+        <p><a href="https://timetable.theapplication.in" class="text-decoration-none" target="_blank">theapplication.in</a></p>
     </div>
     <!-- CTA Section
     <div class="container-fluid py-5 bg-primary text-white">
