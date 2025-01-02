@@ -225,9 +225,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <tbody>
                         <?php foreach ($teachers as $teacher): ?>
                         <tr style="text-align:center;vertical-align:middle;">
-                            <td>
-                                <?= htmlspecialchars($teacher['Teacher_Name']) ?>
-                            </td>
+                        <td>
+    <?= htmlspecialchars($teacher['Teacher_Name']) ?> 
+    <span style="color: gray;">(<?= $teacher['ClassCount'] ?>)</span>
+</td>
+
                             <?php foreach ($periods as $period): ?>
                                 <td>
     <!-- Dropdown for Class -->
@@ -277,35 +279,53 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <script>
        $(document).ready(function () {
-    function updateTable(weekday) {
-        // Clear the current table data
-        $('.class-section-dropdown').val('');
+        function updateTable(weekday) {
+    // Clear the current table data
+    $('.class-section-dropdown').val('');
 
-        // Update the table header with the selected weekday
-        $('#tableHeader tr').find('th').first().text('Teacher - ' + weekday);
+    // Update the table header with the selected weekday
+    $('#tableHeader tr').find('th').first().text('Teacher - ' + weekday);
 
-        // Fetch schedule data for the selected weekday
-        $.ajax({
-            type: 'GET',
-            url: '', // Use the same PHP file
-            data: { weekday: weekday },
-            success: function (response) {
-                const schedules = JSON.parse(response);
+    // Fetch schedule data for the selected weekday
+    $.ajax({
+        type: 'GET',
+        url: '', // Use the same PHP file
+        data: { weekday: weekday },
+        success: function (response) {
+            const schedules = JSON.parse(response);
 
-                // Populate the table with the fetched data
-                schedules.forEach(schedule => {
-                    const teacherId = schedule.Teacher_ID;
-                    const period = schedule.Class_Time;
-                    const classSection = schedule.Class;
-                    const subject = schedule.Subject;
+            // Populate the table with the fetched data
+            schedules.forEach(schedule => {
+                const teacherId = schedule.Teacher_ID;
+                const period = schedule.Class_Time;
+                const classSection = schedule.Class;
+                const subject = schedule.Subject;
 
-                    // Find the corresponding dropdown and update its value
-                    $(`.class-section-dropdown[data-teacher-id="${teacherId}"][data-period="${period}"][data-type="class"]`).val(classSection);
-                    $(`.class-section-dropdown[data-teacher-id="${teacherId}"][data-period="${period}"][data-type="subject"]`).val(subject);
-                });
-            }
-        });
-    }
+                // Find the corresponding dropdown and update its value
+                $(`.class-section-dropdown[data-teacher-id="${teacherId}"][data-period="${period}"][data-type="class"]`).val(classSection);
+                $(`.class-section-dropdown[data-teacher-id="${teacherId}"][data-period="${period}"][data-type="subject"]`).val(subject);
+            });
+
+            // Fetch and update teacher class counts
+            fetchTeacherClassCounts(weekday);
+        }
+    });
+}
+
+function fetchTeacherClassCounts(weekday) {
+    $.ajax({
+        type: 'GET',
+        url: '', // Use the same PHP file
+        data: { weekday: weekday, fetchClassCounts: true },
+        success: function (response) {
+            const teachers = JSON.parse(response);
+            teachers.forEach(teacher => {
+                $(`#teacher-${teacher.Teacher_ID}`).text(`(${teacher.ClassCount})`);
+            });
+        }
+    });
+}
+
 
     // Set default weekday to Monday on page load
     const defaultWeekday = 'Monday';
