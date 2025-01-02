@@ -88,7 +88,7 @@ if ($result->num_rows > 0) {
     file_put_contents($tempFileName, $jsonData);
 
     // Step 9: Provide a link or path for further usage
-    echo "Temporary JSON file created: " . $tempFileName;
+    echo "Saved Sucesfully";
 
 } else {
     echo "No records found";

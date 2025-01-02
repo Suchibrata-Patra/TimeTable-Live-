@@ -257,88 +257,93 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <script>
         $(document).ready(function () {
-            function updateTable(weekday) {
-                // Clear the current table data
-                $('.class-section-dropdown').val('');
+    function updateTable(weekday) {
+        // Clear the current table data
+        $('.class-section-dropdown').val('');
 
-                // Update the table header with the selected weekday
-                $('#tableHeader tr').find('th').first().text('Teacher - ' + weekday);
+        // Update the table header with the selected weekday
+        $('#tableHeader tr').find('th').first().text('Teacher - ' + weekday);
 
-                // Fetch schedule data for the selected weekday
-                $.ajax({
-                    type: 'GET',
-                    url: '', // Use the same PHP file
-                    data: { weekday: weekday },
-                    success: function (response) {
-                        const schedules = JSON.parse(response);
+        // Fetch schedule data for the selected weekday
+        $.ajax({
+            type: 'GET',
+            url: '', // Use the same PHP file
+            data: { weekday: weekday },
+            success: function (response) {
+                const schedules = JSON.parse(response);
 
-                        // Populate the table with the fetched data
-                        schedules.forEach(schedule => {
-                            const teacherId = schedule.Teacher_ID;
-                            const period = schedule.Class_Time;
-                            const classSection = schedule.Class;
+                // Populate the table with the fetched data
+                schedules.forEach(schedule => {
+                    const teacherId = schedule.Teacher_ID;
+                    const period = schedule.Class_Time;
+                    const classSection = schedule.Class;
 
-                            // Find the corresponding dropdown and update its value
-                            $(`.class-section-dropdown[data-teacher-id="${teacherId}"][data-period="${period}"]`).val(classSection);
-                        });
-                    }
+                    // Find the corresponding dropdown and update its value
+                    $(`.class-section-dropdown[data-teacher-id="${teacherId}"][data-period="${period}"]`).val(classSection);
                 });
             }
-
-            // Set default weekday to Monday on page load
-            const defaultWeekday = 'Monday';
-            $('#weekday').val(defaultWeekday);
-
-            // Trigger the updateTable function for Monday on page load
-            updateTable(defaultWeekday);
-
-            // Listen for changes in the weekday dropdown
-            $('#weekday').on('change', function () {
-                const selectedWeekday = $(this).val();
-                if (selectedWeekday) {
-                    updateTable(selectedWeekday);
-                }
-            });
-
-            // Handle form submission as before
-            $('#scheduleForm').on('submit', function (e) {
-                e.preventDefault();
-
-                const weekday = $('#weekday').val();
-                if (!weekday) {
-                    alert('Please select a weekday.');
-                    return;
-                }
-
-                const entries = [];
-                $('.class-section-dropdown').each(function () {
-                    const teacherId = $(this).data('teacher-id');
-                    const period = $(this).data('period');
-                    const classSection = $(this).val();
-
-                    if (classSection) {
-                        entries.push({
-                            teacher_id: teacherId,
-                            class_section: classSection,
-                            period: period
-                        });
-                    }
-                });
-
-                $.ajax({
-                    type: 'POST',
-                    url: '',
-                    data: {
-                        weekday: weekday,
-                        entries: JSON.stringify(entries)
-                    },
-                    success: function (response) {
-                        alert(response);
-                        location.reload();
-                    }
-                });
-            });
         });
+    }
+
+    // Set default weekday to Monday on page load
+    const defaultWeekday = 'Monday';
+    $('#weekday').val(defaultWeekday);
+
+    // Trigger the updateTable function for Monday on page load
+    updateTable(defaultWeekday);
+
+    // Listen for changes in the weekday dropdown
+    $('#weekday').on('change', function () {
+        const selectedWeekday = $(this).val();
+        if (selectedWeekday) {
+            updateTable(selectedWeekday);
+        }
+    });
+
+    // Handle form submission
+    $('#scheduleForm').on('submit', function (e) {
+        e.preventDefault();
+
+        const weekday = $('#weekday').val();
+        if (!weekday) {
+            alert('Please select a weekday.');
+            return;
+        }
+
+        const entries = [];
+        $('.class-section-dropdown').each(function () {
+            const teacherId = $(this).data('teacher-id');
+            const period = $(this).data('period');
+            const classSection = $(this).val();
+
+            if (classSection) {
+                entries.push({
+                    teacher_id: teacherId,
+                    class_section: classSection,
+                    period: period
+                });
+            }
+        });
+
+        // Send the data to json.php via AJAX
+        $.ajax({
+            type: 'POST',
+            url: 'json.php',  // Call the json.php script here
+            data: {
+                weekday: weekday,
+                entries: JSON.stringify(entries)
+            },
+            success: function (response) {
+                alert(response);
+                location.reload();  // Reload the page after saving the schedule
+            },
+            error: function (xhr, status, error) {
+                alert('An error occurred: ' + error);
+            }
+        });
+    });
+});
+
 
     </script>
 </body>
