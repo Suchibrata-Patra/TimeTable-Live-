@@ -237,7 +237,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <option value="" disabled selected>.</option>
     <?php 
         $classes = [
-            "Junior Classes" => ['5A', '5B', '6A', '6B', '7A', '7B', '8A', '8B'],
+            "Junior Classes" => ['5A', '5B', '5C','6A', '6B','6C', '7A', '7B','7C', '8A', '8B','8C'],
             "Senior Classes" => ['9A', '9C', '10A', '10B'],
             "Specialized Classes" => ['Combined - 11', '11 ARTS', '11 SCIENCE', 'Combined - 12', '12 ARTS', '12 SCIENCE']
         ];
