@@ -1,199 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Provisional Routine Software | TheApplication</title>
-    <meta name="description" content="TheApplication is a leading SaaS tool that helps schools automate provisional routine generation and dynamic teacher allocation. Create daily timetables efficiently and avoid teacher overloads.">
-    <meta name="keywords" content="provisional routine software, school scheduling software, TheApplication, daily timetable generator, dynamic teacher allocation, school SaaS software">
-    <link rel="canonical" href="https://timetable.theapplication.in/">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="icon" type="image/x-icon" href="favicon.png">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Application</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_balance_wallet" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto:wght@400;500;700&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "TheApplication",
-  "operatingSystem": "Web",
-  "applicationCategory": "BusinessApplication",
-  "description": "TheApplication is a SaaS tool that generates daily provisional routines for schools while dynamically allocating teachers to avoid overloads and optimize efficiency.",
-  "offers": {
-    "@type": "Offer",
-    "price": "49.99",
-    "priceCurrency": "USD",
-    "url": "https://timetable.theapplication.in/pricing"
-  },
-  "featureList": [
-    "Dynamic teacher allocation",
-    "Daily provisional routine generation",
-    "Avoid teacher overload",
-    "Customizable for school requirements",
-    "Fast and efficient timetable creation"
-  ],
-  "softwareVersion": "1.2.0",
-  "applicationSuite": "School Scheduling Software Suite",
-  "downloadUrl": "https://timetable.theapplication.in/download",
-  "screenshot": "https://timetable.theapplication.in/screenshot.png",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "126",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "TheApplication",
-    "url": "https://timetable.theapplication.in/",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://timetable.theapplication.in/logo.png",
-      "width": 250,
-      "height": 100
-    }
-  }
-}
-</script>
-</head>
-
-<body>
-    <?php include('header.php') ?>
-
-    <!-- Hero Section -->
-    <section class="hero-section d-flex align-items-center justify-content-center text-center text-white" style="
-        background: linear-gradient(to right, rgba(0, 65, 178, 0.99), rgba(0, 65, 178, 0.99)), url('https://timetable.theapplication.in/screenshot.png');
-        background-size: cover;
-        background-position: center;
-        height: 80vh;
-        color: white;
-    ">
-        <div class="container px-4">
-            <h1 class="display-3 fw-bold mb-3">Effortless Rescheduling</h1>
-            <p class="lead mb-4">
-                Automate your school's timetable generation and dynamic teacher allocation. Save time, reduce errors, and ensure balance.
-            </p>
-            <a href="https://timetable.theapplication.in" class="btn btn-light btn-lg shadow-sm fw-semibold">
-                Get Started Today
-            </a>
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <?php require('header.php'); ?>
+    
+    <!-- Hero -->
+    <section class="hero" style="margin-top:5%;">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-heading text-xxl" style="color:black;">
+          Effortless Rescheduling <br>Made Easy
+          </h1>
+          <p class="hero-text">
+            Organize, collaborate, and track progress seamlessly with our
+            one-stop-shop startup growth tool.
+          </p>
+          <div class="hero-buttons">
+            <a href="#" class="btn btn-primary">Get Started</a>
+            <a href="#" class="btn"
+              ><i class="fas fa-laptop"></i> Register</a
+            >
+          </div>
         </div>
+      </div>
+    </section>
+    <!-- Video Section -->
+    <!-- <section class="video bg-black">
+      <div class="container-sm">
+        <h2 class="video-heading text-xl text-center">
+          See how it works and get started in less than 2 minutes
+        </h2>
+        <div class="video-content">
+          <a href="#">
+            <img
+              src="images/video-preview.png"
+              alt="video"
+              class="video-preview"
+            />
+          </a>
+
+          <a href="#" class="btn btn-primary">Get Started</a>
+        </div>
+      </div>
+    </section> -->
+    <!-- Testimonials -->
+    <section class="testimonials bg-dark">
+      <div class="container">
+        <h3 class="testimonials-heading text-xl">
+          Don't just take our word for it, see the success stories from
+          businesses just like yours.
+        </h3>
+        <div class="testimonials-grid">
+          <div class="card">
+            <p>
+              “Our business has seen a significant increase in productivity
+              since we started using the Growth app.”
+            </p>
+
+            <p>Katherine Smith</p>
+            <p>Capodopera</p>
+          </div>
+
+          <div class="card">
+            <p>
+              “As a small business owner, it's important to have a tool that can
+              help me keep track of everything. The Growth app has been a
+              lifesaver for me, allowing me to manage my contacts, schedule
+              appointments, and track progress all in one place..”
+            </p>
+
+            <p>Johnathan Lee</p>
+            <p>Red Bolt</p>
+          </div>
+
+          <div class="card">
+            <p>
+              “The dashboards and reporting feature has provided valuable
+              insights into our performance and helped us make data-driven
+              decisions. It's a game changer for us.”
+            </p>
+
+            <p>David Wilson</p>
+            <p>Slide</p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Features Section -->
-    <div class="container my-5">
-        <h3 class="text-center fw-bold mb-4">Why Choose TheApplication?</h3>
-        <div class="row text-center">
-            <div class="col-md-3 mb-4">
-                <div class="p-4 shadow rounded bg-white hover-feature">
-                    <i class="fas fa-clock fa-3x mb-3 text-primary"></i>
-                    <h5>Time-Saving</h5>
-                    <p>Automate provisional routine generation and save hours of manual effort.</p>
-                </div>
+    <!-- Pricing -->
+    <section class="pricing">
+      <div class="container-sm">
+        <h3 class="pricing-heading text-xl text-center">Pricing</h3>
+        <p class="pricing-subheading text-md text-center">
+          Start free and scale while you grow. No hidden fees. Unlimited users
+          for free.
+        </p>
+        <div class="pricing-grid">
+          <!-- Pricing Card 1 -->
+          <div class="card bg-light">
+            <div class="pricing-card-header">
+              <h4 class="pricing-heading text-xl">Simple</h4>
+              <p class="pricing-card-subheading">
+                Keep track of your contacts, gain valuable insights, analyse
+                live data and performance metrics.
+              </p>
+              <p class="pricing-card-price">
+                <span class="text-xl">Free</span>
+                *No credit card needed
+              </p>
             </div>
-            <div class="col-md-3 mb-4">
-                <div class="p-4 shadow rounded bg-white hover-feature">
-                    <i class="fas fa-check-circle fa-3x mb-3 text-success"></i>
-                    <h5>Error-Free</h5>
-                    <p>Ensure schedules with no overlaps or teacher overloads.</p>
-                </div>
+            <div class="pricing-card-body">
+              <ul>
+                <li><i class="fas fa-check"></i> Real-Time Monitoring</li>
+                <li>
+                  <i class="fas fa-check"></i>Track key performance indicators
+                </li>
+                <li><i class="fas fa-check"></i>Schedule appointments</li>
+                <li>
+                  <i class="fas fa-check"></i>Organize, delegate and keep track
+                  of tasks
+                </li>
+              </ul>
+              <a href="#" class="btn btn-primary btn-block">Get Started</a>
             </div>
-            <div class="col-md-3 mb-4">
-                <div class="p-4 shadow rounded bg-white hover-feature">
-                    <i class="fas fa-users fa-3x mb-3 text-danger"></i>
-                    <h5>Dynamic Allocation</h5>
-                    <p>Optimize teacher assignments based on workload and availability.</p>
-                </div>
+          </div>
+
+          <!-- Pricing Card 2 -->
+          <div class="card bg-black">
+            <div class="pricing-card-header">
+              <h4 class="pricing-card-heading text-xl">Premium</h4>
+              <p class="pricing-card-subheading">
+                Keep track of your contacts, gain valuable insights, analyze
+                live data and performance metrics.
+              </p>
+              <p class="pricing-card-price">
+                <span class="text-xl">$49</span> /month
+              </p>
             </div>
-            <div class="col-md-3 mb-4">
-                <div class="p-4 shadow rounded bg-white hover-feature">
-                    <i class="fas fa-chart-line fa-3x mb-3 text-warning"></i>
-                    <h5>Improved Efficiency</h5>
-                    <p>Focus on education while we handle the scheduling complexity.</p>
-                </div>
+            <div class="pricing-card-body">
+              <p>Everything from the free plan minus:</p>
+              <ul>
+                <li><i class="fas fa-check"></i>Data-driven decisions</li>
+                <li><i class="fas fa-check"></i>Data visualization</li>
+                <li><i class="fas fa-check"></i>Schedule appointments</li>
+              </ul>
+              <a href="#" class="btn btn-primary btn-block">Get Started</a>
             </div>
+          </div>
         </div>
-    </div>
+        <p class="pricing-footer text-center">
+          All prices are in USD and charged per month with applicable taxes
+          added at checkout.
+        </p>
+      </div>
+    </section>
 
-    <!-- What Does It Do Section -->
-    <div class="container my-5">
-        <h3 class="fw-bold mb-4">What Does TheApplication Do?</h3>
-        <ul class="list-group shadow-sm">
-            <li class="list-group-item py-3 d-flex align-items-center">
-                <i class="material-icons text-primary me-3">schedule</i>
-                <strong>Generates Provisional Routines:</strong> Create daily schedules with ease.
-            </li>
-            <li class="list-group-item py-3 d-flex align-items-center">
-                <i class="material-icons text-danger me-3">group</i>
-                <strong>Dynamic Teacher Allocation:</strong> Assign teachers fairly without overloads.
-            </li>
-            <li class="list-group-item py-3 d-flex align-items-center">
-                <i class="material-icons text-success me-3">build</i>
-                <strong>Customizable for School Needs:</strong> Tailor it to your institution’s requirements.
-            </li>
-            <li class="list-group-item py-3 d-flex align-items-center">
-                <i class="material-icons text-warning me-3">done_outline</i>
-                <strong>Avoid Teacher Overloads:</strong> Ensure balanced workloads for teachers.
-            </li>
-        </ul>
-    </div>
+    <!-- FAQ -->
+    <!-- <section class="faq bg-light">
+      <div class="container-sm">
+        <h3 class="text-xl text-center">Frequently Asked Questions</h3>
+        <div class="faq-content">
+          <div class="faq-group">
+            <div class="faq-group-header">
+              <h4 class="text-md">
+                How does the contact management feature help me keep track of
+                clients and partners?
+              </h4>
+              <i class="fas fa-minus"></i>
+            </div>
+            <div class="faq-group-body open">
+              <p>
+                Keep track of your contacts, gain valuable insights, analyse
+                live data and performance metrics.
+              </p>
+            </div>
+          </div>
 
-    <!-- Contact Section -->
-    <div class="container my-5 text-center">
-        <h3 class="fw-bold mb-3">Contact Us</h3>
-        <p class="mb-2"><a href="mailto:support@theapplication.in" class="text-decoration-none">support@theapplication.in</a></p>
-        <p><a href="https://timetable.theapplication.in" class="text-decoration-none" target="_blank">theapplication.in</a></p>
-    </div>
-    <!-- CTA Section
-    <div class="container-fluid py-5 bg-primary text-white">
-        <div class="text-center">
-            <h2 class="fw-bold mb-3">Start Simplifying Your School's Scheduling</h2>
-            <p class="lead mb-4">✅ Save Time | ✅ Reduce Errors | ✅ Enhance Efficiency</p>
-            <a href="https://timetable.theapplication.in/Routine.php" class="btn btn-warning btn-lg px-5 fw-bold">Get Started</a>
+          <div class="faq-group">
+            <div class="faq-group-header">
+              <h4 class="text-md">
+                Can I customize the dashboards and reporting feature to display
+                the metrics that are most important to my business?
+              </h4>
+              <i class="fas fa-minus"></i>
+            </div>
+            <div class="faq-group-body">
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad
+                culpa enim blanditiis rem ipsum aliquam, unde iste fugit
+                praesentium eos?
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-group">
+            <div class="faq-group-header">
+              <h4 class="text-md">
+                How does the task management feature help me delegate tasks to
+                my team and track progress?
+              </h4>
+              <i class="fas fa-minus"></i>
+            </div>
+            <div class="faq-group-body">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Incidunt, a! Quaerat, voluptatum. Animi molestias ex quasi
+                explicabo minima perferendis commodi.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-group">
+            <div class="faq-group-header">
+              <h4 class="text-md">
+                Can I collaborate with my team in real-time using all tools?
+              </h4>
+              <i class="fas fa-minus"></i>
+            </div>
+            <div class="faq-group-body">
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Obcaecati doloremque assumenda aut dolorem recusandae quibusdam
+                aliquid. Repellat animi quam vitae.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-group">
+            <div class="faq-group-header">
+              <h4 class="text-md">Is the app available on all devices?</h4>
+              <i class="fas fa-minus"></i>
+            </div>
+            <div class="faq-group-body">
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Obcaecati doloremque assumenda aut dolorem recusandae quibusdam
+                aliquid. Repellat animi quam vitae.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-group">
+            <div class="faq-group-header">
+              <h4 class="text-md">
+                How does the app help me stay compliant when working with
+                freelancers and contractors?
+              </h4>
+              <i class="fas fa-minus"></i>
+            </div>
+            <div class="faq-group-body">
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Obcaecati doloremque assumenda aut dolorem recusandae quibusdam
+                aliquid. Repellat animi quam vitae.
+              </p>
+            </div>
+          </div>
         </div>
-    </div> -->
+      </div>
+    </section> -->
 
+    <!-- Footer -->
+    <footer class="footer bg-black">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <a href="#">
+              <img src="images/logo-white.png" alt="logo" />
+            </a>
+            <div class="card">
+              <h4>Subscribe to Newsletter</h4>
+              <p class="text-sm">
+                Subscribe now to receive tips on how to take your business to
+                the next level.
+              </p>
+              <form>
+                <input type="email" id="email" placeholder="Enter your email" />
+                <button type="submit" class="btn btn-primary btn-block">
+                  Subscribe
+                </button>
+              </form>
+            </div>
+            <i class="fab fa-linkedin"></i>
+            <i class="fab fa-twitter"></i>
+          </div>
+          <div>
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Our Process</a></li>
+              <li><a href="#">Join Our Team</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="#">News</a></li>
+              <li><a href="#">Research</a></li>
+              <li><a href="#">Recent Projects</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <ul>
+              <li>
+                <a href="#">the.application.in@gmail.com</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
 
-    <?php include('index_page_manager.php') ?>
-
-    <style>
-        /* Hover effect for cards */
-        .hover-feature {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .hover-feature:hover {
-            /* transform: scale(1.05); */
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.);
-        }
-
-        /* List item hover effect */
-        .list-group-item:hover {
-            background-color: #f8f9fa;
-            /* transform: scale(1.0001); */
-            transition: all 0.2s ease-in-out;
-        }
-
-        /* Button styling */
-        .btn-lg {
-            border-radius: 50px;
-            padding: 12px 35px;
-        }
-
-        /* Hero Section */
-        .hero-section {
-            position: relative;
-            background-size: cover;
-            background-position: center;
-        }
-    </style>
-</body>
-
-
+    <script src="js/main.js"></script>
+  </body>
 </html>

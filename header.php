@@ -329,21 +329,20 @@
                     </div> -->
                 </li>
                 <li>
-                    <a href="https://admission.theapplication.in" target="_blank">Admission</a>
+                    <!-- <a href="https://admission.theapplication.in" target="_blank">Admission</a> -->
                     <!-- Popup Menu for Profile -->
                     <!-- <div class="popup-menu">
                         <a href="profile-details.php">View Profile</a>
                         <a href="profile-edit.php">Edit Profile</a>
                     </div> -->
                 </li>
-                <li>
+                <!-- <li>
                     <a href="#">Subscription</a>
-                    <!-- Popup Menu for Settings -->
                     <div class="popup-menu">
                         <a href="settings-general.php">General</a>
                         <a href="settings-security.php">Security</a>
                     </div>
-                </li>
+                </li> -->
                 <li>
                     <a href="contact.php">Support</a>
                     <!-- Popup Menu for Contact -->
@@ -353,15 +352,14 @@
                     </div>
                 </li>
 
-                <li>
-                    <a href="#"><img src="./assets/Wallet_icon.png" alt="Wallet Icon" class="wallet-icon"></a>
-                    <!-- Popup Menu for Contact -->
+                <!-- <li>
+                    <a href="#"><img src="" alt="Wallet Icon" class="wallet-icon"></a>
                     <div class="popup-menu">
                         <a href="#">Rs. 30.43</a>
                         <a href="contact-feedback.php">Recharge <img src="./assets/plus_button.svg" alt="Wallet Icon"
                                 class="wallet-icon" style="background-color: black;border-radius: 50px;"></a>
                     </div>
-                </li>
+                </li> -->
             </ul>
             <div class="navbar-user">
                 <div class="dropdown">
