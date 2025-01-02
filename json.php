@@ -81,7 +81,7 @@ if ($result->num_rows > 0) {
     $finalData = ['schedule' => $scheduleByDay];
 
     // Step 8: Generate a temporary JSON file
-    $tempFileName = 'temp_data_' .'.json';  // Use timestamp for unique file name
+    $tempFileName = 'temp_data' .'.json';  // Use timestamp for unique file name
     $jsonData = json_encode($finalData, JSON_PRETTY_PRINT);
 
     // Save JSON data to a temporary file
