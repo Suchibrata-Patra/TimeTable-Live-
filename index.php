@@ -18,7 +18,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="Asset/css/hero_page.css" />
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
   </head>
   <body>
@@ -36,7 +36,7 @@
             one-stop-shop startup growth tool.
           </p>
           <div class="hero-buttons">
-            <a href="#" class="btn btn-primary">Get Started</a>
+            <a href="https://timetable.theapplication.in/scheduler.php" class="btn btn-primary">Get Started</a>
             <a href="#" class="btn"
               ><i class="fas fa-laptop"></i> Register</a
             >
@@ -119,7 +119,7 @@
           <!-- Pricing Card 1 -->
           <div class="card bg-light">
             <div class="pricing-card-header">
-              <h4 class="pricing-heading text-xl">Simple</h4>
+              <h4 class="pricing-heading text-xl">Basic</h4>
               <p class="pricing-card-subheading">
                 Keep track of your contacts, gain valuable insights, analyse
                 live data and performance metrics.
@@ -148,13 +148,13 @@
           <!-- Pricing Card 2 -->
           <div class="card bg-black">
             <div class="pricing-card-header">
-              <h4 class="pricing-card-heading text-xl">Premium</h4>
+              <h4 class="pricing-card-heading text-xl">Plus + </h4>
               <p class="pricing-card-subheading">
                 Keep track of your contacts, gain valuable insights, analyze
                 live data and performance metrics.
               </p>
               <p class="pricing-card-price">
-                <span class="text-xl">$49</span> /month
+                <span class="text-xl">₹ 1</span> / Routine Genereated
               </p>
             </div>
             <div class="pricing-card-body">
@@ -169,8 +169,7 @@
           </div>
         </div>
         <p class="pricing-footer text-center">
-          All prices are in USD and charged per month with applicable taxes
-          added at checkout.
+        All prices are listed in INR and are billed monthly. Applicable taxes will be added during checkout. Additionally, a platform fee of 1.7% of the subscription fees (processed by Razorpay) will apply.
         </p>
       </div>
     </section>
