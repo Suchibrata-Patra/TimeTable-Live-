@@ -32,9 +32,8 @@
           Effortless Rescheduling <br>Made Easy
           </h1>
           <p class="hero-text">
-            Organize, collaborate, and track progress seamlessly with our
-            one-stop-shop startup growth tool.
-          </p>
+          Effortlessly Create Provisional Schedules in Just a Few Clicks! Say goodbye to hours of tedious planning—allocate classes seamlessly and save your valuable time.
+        </p>
           <div class="hero-buttons">
             <a href="https://timetable.theapplication.in/scheduler.php" class="btn btn-primary">Get Started</a>
             <a href="#" class="btn"
