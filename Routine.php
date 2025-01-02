@@ -286,7 +286,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $('.class-section-dropdown').val('');
 
         // Update the table header with the selected weekday
-        $('#tableHeader tr').find('th').first().text('Teacher - ' + weekday);
+        // $('#tableHeader tr').find('th').first().text('Teacher - ' + weekday);
+        $('#tableHeader tr').find('th').first().text('' + weekday);
 
         // Fetch schedule data for the selected weekday
         $.ajax({
