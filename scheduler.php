@@ -31,6 +31,9 @@
   </style>
 
   <style>
+    body{
+      margin: 0px !important;
+    }
     @keyframes rotate {
       from {
         transform: rotate(360deg);
