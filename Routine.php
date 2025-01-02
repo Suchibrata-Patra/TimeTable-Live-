@@ -87,6 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <style>
         body{
             background-color:rgb(245, 245, 245);
+            font-weight:400 !important;
             /* background-color: #f0f0f2; */
         }
         /* Remove the default dropdown arrow */
