@@ -28,7 +28,7 @@ $schedulesQuery = $conn->prepare("SELECT * FROM class_schedule WHERE Weekday = ?
 $schedulesQuery->bind_param("s", $weekday);
 $schedulesQuery->execute();
 $schedulesResult = $schedulesQuery->get_result();
-$schedules = [];
+schedules = [];
 while ($row = $schedulesResult->fetch_assoc()) {
     $schedules[] = $row;
 }
@@ -57,16 +57,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     foreach ($entries as $entry) {
         $teacherID = $entry['teacher_id'];
         $classSection = $entry['class_section'];
+        $subject = $entry['subject'];
         $period = $entry['period'];
 
-        // Delete any existing duplicate schedule for the same teacher, weekday, class, and period
-        $stmtDelete = $conn->prepare("DELETE FROM class_schedule WHERE Teacher_ID = ? AND Weekday = ? AND Class = ? AND Class_Time = ?");
-        $stmtDelete->bind_param("isss", $teacherID, $weekday, $classSection, $period);
+        // Delete any existing duplicate schedule for the same teacher, weekday, class, period, and subject
+        $stmtDelete = $conn->prepare("DELETE FROM class_schedule WHERE Teacher_ID = ? AND Weekday = ? AND Class = ? AND Class_Time = ? AND Subject = ?");
+        $stmtDelete->bind_param("issss", $teacherID, $weekday, $classSection, $period, $subject);
         $stmtDelete->execute();
 
         // Insert the new schedule entry
-        $stmtInsert = $conn->prepare("INSERT INTO class_schedule (Weekday, Class, Teacher_ID, Class_Time) VALUES (?, ?, ?, ?)");
-        $stmtInsert->bind_param("ssis", $weekday, $classSection, $teacherID, $period);
+        $stmtInsert = $conn->prepare("INSERT INTO class_schedule (Weekday, Class, Teacher_ID, Class_Time, Subject) VALUES (?, ?, ?, ?, ?)");
+        $stmtInsert->bind_param("ssiss", $weekday, $classSection, $teacherID, $period, $subject);
         $stmtInsert->execute();
     }
 
@@ -89,57 +90,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <style>
-        body{
+        body {
             background-color: #f0f0f2;
         }
-        /* Remove the default dropdown arrow */
+
         .class-section-dropdown {
             appearance: none;
-            /* Removes the default arrow for modern browsers */
-            -webkit-appearance: none;
-            /* Removes the default arrow for Safari */
-            -moz-appearance: none;
-            /* Removes the default arrow for Firefox */
             background-color: #fafafc;
-            /* Light background */
             border: 1px solid #ffffff;
-            /* Border color */
             border-radius: 0px;
-            /* Rounded corners */
             padding: 1px;
-            /* Padding inside the dropdown */
             font-size: 16px;
-            /* Font size */
             color: #495057;
-            /* Text color */
             width: 100%;
-            /* Full width */
             max-width: 300px;
-            /* Maximum width */
             cursor: pointer;
-            /* Pointer cursor on hover */
             outline: none;
-            /* Removes outline on focus */
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* Add hover and focus effects */
         .class-section-dropdown:hover {
             border-color: #80bdff;
-            /* Change border color on hover */
         }
 
         .class-section-dropdown:focus {
             border-color: #80bdff;
-            /* Change border color on focus */
             box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-            /* Add a subtle shadow */
         }
 
         .btn-primary {
@@ -162,35 +144,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             font-size: 15px;
             background-color: #fafafc;
         }
-
-        /* Hide the dropdown arrow */
-        .class-section-dropdown {
-            -webkit-appearance: none;
-            /* For Safari and Chrome */
-            -moz-appearance: none;
-            /* For Firefox */
-            appearance: none;
-            /* For modern browsers */
-            background: transparent;
-            /* Remove the default background */
-            border: none;
-            /* Optional: Add border for styling */
-            text-align: center;
-            color: black
-        }
-
-        .class-section-dropdown::-ms-expand {
-            display: none;
-            /* Hide the arrow in IE/Edge */
-        }
     </style>
-
 </head>
 
 <body>
     <div style="position:sticky;">
         <?php include('header.php') ?>
-
     </div>
 
     <div class="container mt-5">
@@ -215,7 +174,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </div>
 
-
             <!-- Table Display -->
             <div id="scheduleTable" class="mt-4">
                 <table class="table table-bordered">
@@ -223,7 +181,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <tr style="text-align:center;">
                             <th>Teacher</th>
                             <?php
-                            // Periods for columns
                             $periods = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th'];
                             foreach ($periods as $period) {
                                 echo "<th>$period</th>";
@@ -243,11 +200,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <select class="form-select class-section-dropdown"
                                     data-teacher-id="<?= $teacher['Teacher_ID'] ?>" data-period="<?= $period ?>">
                                     <option value="" disabled selected></option>
-                                    <!-- Predefined list of classes -->
                                     <?php 
                                             $classes = ['DELETE','5A', '5B', '6A', '6B', '7A', '7B', '8A', '8B', '9A', '9C', '10A', '10B', '11 ARTS', '11 SCIENCE', '12 ARTS', '12 SCIENCE'];
                                             foreach ($classes as $class) {
                                                 echo "<option value=\"$class\">$class</option>";
+                                            }
+                                            ?>
+                                </select>
+                                <!-- Subject Dropdown for each period -->
+                                <select class="form-select subject-dropdown"
+                                    data-teacher-id="<?= $teacher['Teacher_ID'] ?>" data-period="<?= $period ?>">
+                                    <option value="" disabled selected></option>
+                                    <?php 
+                                            $subjects = ['Math', 'Science', 'English', 'History', 'Geography', 'Biology', 'Chemistry', 'Physics', 'Computer Science'];
+                                            foreach ($subjects as $subject) {
+                                                echo "<option value=\"$subject\">$subject</option>";
                                             }
                                             ?>
                                 </select>
@@ -266,7 +233,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $(document).ready(function () {
             function updateTable(weekday) {
                 // Clear the current table data
-                $('.class-section-dropdown').val('');
+                $('.class-section-dropdown, .subject-dropdown').val('');
 
                 // Update the table header with the selected weekday
                 $('#tableHeader tr').find('th').first().text('Teacher - ' + weekday);
@@ -284,9 +251,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             const teacherId = schedule.Teacher_ID;
                             const period = schedule.Class_Time;
                             const classSection = schedule.Class;
+                            const subject = schedule.Subject;
 
                             // Find the corresponding dropdown and update its value
                             $(`.class-section-dropdown[data-teacher-id="${teacherId}"][data-period="${period}"]`).val(classSection);
+                            $(`.subject-dropdown[data-teacher-id="${teacherId}"][data-period="${period}"]`).val(subject);
                         });
                     }
                 });
@@ -307,7 +276,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
             });
 
-            // Handle form submission as before
+            // Handle form submission
             $('#scheduleForm').on('submit', function (e) {
                 e.preventDefault();
 
@@ -322,11 +291,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     const teacherId = $(this).data('teacher-id');
                     const period = $(this).data('period');
                     const classSection = $(this).val();
+                    const subject = $(`.subject-dropdown[data-teacher-id="${teacherId}"][data-period="${period}"]`).val();
 
-                    if (classSection) {
+                    if (classSection && subject) {
                         entries.push({
                             teacher_id: teacherId,
                             class_section: classSection,
+                            subject: subject,
                             period: period
                         });
                     }
