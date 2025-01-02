@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="Asset/CSS/popup.css">
   <script src="Asset/JS/fetcher.js"></script>
   <script src="Asset/JS/scheduler.js"></script>
+  <script src="Asset/JS/date_detector.js"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -30,9 +31,6 @@
   </style>
 
   <style>
-    body{
-      margin: 0px !important;
-    }
     @keyframes rotate {
       from {
         transform: rotate(360deg);
@@ -70,7 +68,42 @@
 <body>
 
   <!-- Navbar -->
-  <?php include('header.php') ?>
+  <div
+    style="display: flex; align-items: center; justify-content: space-between; width: 100vw; height: 60px;color: #000000; padding: 0 30px; box-sizing: border-box;">
+    <!-- Container for Haggle and Help Button -->
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <!-- Icon Text -->
+      <!-- Logo Text -->
+      <div class="logo">
+        <img src="timora.png" alt="Timora logo" class="logo-img">
+        <span class="logo-text">Timora.</span>
+      </div>
+      <!-- Help Button -->
+      <button style=" background-color: transparent; border: none; color: #000000; font-size: 14px; cursor: pointer;
+        display: inline-flex; align-items: center; padding: 4px 8px;" id="navoptions"
+        onclick="window.location.href='Help.html';">
+        Help
+      </button>
+
+
+      <!-- Edit Schedule -->
+      <button
+        style="background-color: transparent; border: none; color: #000000; font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; padding: 4px;"
+        id="navoptions" onclick="window.location.href='edit.html';">
+        Edit Schedule
+      </button>
+    </div>
+
+    <!-- Report Error Button -->
+    <button
+      style="background-color: #000000; color: #ffffff; border: none; border-radius: 20px; padding: 10px 15px; font-size: 12px; cursor: pointer; font-weight: 500; margin-right: 10%; display: flex; align-items: center;"
+      onclick="window.location.href='error_report.html';">
+      Report Error
+      <span class="material-symbols-outlined" style="font-size: 16px; margin-left: 8px; font-weight: 600;">
+        error
+      </span>
+    </button>
+  </div>
 
   <!-- Main Content -->
   <div
@@ -237,7 +270,7 @@
 
 
   <div id="schedule-container" style="padding: 2%;">
-    <h3>Weekly Schedule</h3>
+    <!-- <h3>Weekly Schedule</h3> -->
 
   </div>
 
@@ -255,7 +288,10 @@
 
     <link rel="stylesheet" href="Asset/CSS/animation.css">
   </div>
-  
+  <script>
+    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 
 </html>

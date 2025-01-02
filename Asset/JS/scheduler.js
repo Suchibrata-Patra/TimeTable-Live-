@@ -9,7 +9,7 @@ let excludedClasses = []; // This should be set by your savePreferences function
 
 // Fetch the schedule data
 function fetchScheduleData() {
-  fetch("/temp_data.json")
+  fetch("temp_data.json")
     .then((response) => response.json())
     .then((data) => {
       scheduleData = data.schedule;

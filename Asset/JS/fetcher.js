@@ -2,7 +2,7 @@
       async function fetchSchedule() {
         try {
           // Fetch the schedule JSON file
-          const response = await fetch('/temp_data.json');
+          const response = await fetch('temp_data.json');
           if (!response.ok) {
             throw new Error('Network response was not ok');
           }
