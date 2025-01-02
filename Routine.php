@@ -59,18 +59,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $classSection = $entry['class_section'];
         $period = $entry['period'];
 
-        // Check if there is already a class scheduled for the same teacher, weekday, class, and period
-        $stmtCheck = $conn->prepare("SELECT * FROM class_schedule WHERE Teacher_ID = ? AND Weekday = ? AND Class = ? AND Class_Time = ?");
-        $stmtCheck->bind_param("isss", $teacherID, $weekday, $classSection, $period);
-        $stmtCheck->execute();
-        $checkResult = $stmtCheck->get_result();
-
-        if ($checkResult->num_rows > 0) {
-            // If a schedule exists, delete it before inserting the new one
-            $stmtDelete = $conn->prepare("DELETE FROM class_schedule WHERE Teacher_ID = ? AND Weekday = ? AND Class = ? AND Class_Time = ?");
-            $stmtDelete->bind_param("isss", $teacherID, $weekday, $classSection, $period);
-            $stmtDelete->execute();
-        }
+        // Delete any existing duplicate schedule for the same teacher, weekday, class, and period
+        $stmtDelete = $conn->prepare("DELETE FROM class_schedule WHERE Teacher_ID = ? AND Weekday = ? AND Class = ? AND Class_Time = ?");
+        $stmtDelete->bind_param("isss", $teacherID, $weekday, $classSection, $period);
+        $stmtDelete->execute();
 
         // Insert the new schedule entry
         $stmtInsert = $conn->prepare("INSERT INTO class_schedule (Weekday, Class, Teacher_ID, Class_Time) VALUES (?, ?, ?, ?)");
@@ -82,7 +74,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     exit;
 }
 ?>
-
 
 
 <!DOCTYPE html>
