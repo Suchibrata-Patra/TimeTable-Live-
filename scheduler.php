@@ -66,10 +66,10 @@
 </head>
 
 <body>
-  <?php require('header.php') ?>
 
   <!-- Navbar -->
-  
+  <?php include('header.php') ?>
+
   <!-- Main Content -->
   <div
     style="display: flex; align-items: center; justify-content: flex-start; width: 100vw; height: 20%; margin: 0; box-sizing: border-box; padding: 20px;">
@@ -110,7 +110,7 @@
   <div id="teacherSelectionSection" style="display: none; padding:2%;">
     <div style="display: flex; align-items: center;">
       <h3
-        style="font-weight: 400; font-size: 19px; display: inline-flex; align-items: center; margin: 0; margin-right: 0px;">
+        style="font-weight: 400; font-size: 19px; display: inline-flex; align-items: center; margin: 0; margin-right: 20px;">
         <span class="material-symbols-outlined" style="margin-right: 8px;">
           select_check_box
         </span>

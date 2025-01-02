@@ -8,11 +8,6 @@
     rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <style>
-    /* * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        } */
     body {
         font-family: 'Poppins';
         /* background-color: #f4f7fc; */
@@ -22,7 +17,7 @@
     /* Navbar styles */
     .navbar {
         background-color: #ffffff;
-        padding: 8px 32px;
+        padding: 8px 2px;
         display: flex;
         justify-content: space-between;
         align-items: center;
