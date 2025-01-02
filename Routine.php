@@ -250,7 +250,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     ?>
 </select>
-<script
+
 
     
     <!-- Dropdown for Subject -->
@@ -379,7 +379,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 });
 
 
-    </script>
+    </scrip>
 </body>
 
 </html>
