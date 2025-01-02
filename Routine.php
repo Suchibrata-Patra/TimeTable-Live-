@@ -242,7 +242,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             "Class 8" => ['8A','8B','8C'],
             "Class 9" => ['9A','9B'],
             "Class 10" => ['10A','10B'],
-            "Specialized Classes" => ['Combined 11', '11 ARTS', '11 SCIENCE', 'Combined 12', '12 ARTS', '12 SCIENCE']
+            "Higher Secondary" => ['Combined 11', '11 ARTS', '11 SCIENCE', 'Combined 12', '12 ARTS', '12 SCIENCE']
         ];
 
         foreach ($classes as $group => $groupClasses) {
