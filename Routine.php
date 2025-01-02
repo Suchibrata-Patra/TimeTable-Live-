@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         #weekday {
             padding: 15px;
             border: 2px solid black;
-            font-weight: 200;
+            font-weight: 300;
             font-size: 15px;
             background-color: #fafafc;
         }
@@ -217,7 +217,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             // Periods for columns
                             $periods = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th'];
                             foreach ($periods as $period) {
-                                echo "<th>$period</th>";
+                                echo "<th style='font-weight:400 !important;'>$period</th>";
                             }
                             ?>
                         </tr>
