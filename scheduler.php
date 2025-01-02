@@ -34,6 +34,9 @@
     body{
       margin:0px !important;
     }
+    #form-input{
+            display:none !important;
+        }
     @keyframes rotate {
       from {
         transform: rotate(360deg);
