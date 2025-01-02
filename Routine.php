@@ -1,39 +1,47 @@
 <?php
-$host = "localhost";
-$dbname = "u955994755_timetable";
-$username = "u955994755_timetable_2003";
-$password = "SuchibrataPatra2003";
+require ('database.php');
 
-try {
-    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-    die();
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
 // Fetch all teachers
-$teachersQuery = $conn->query("SELECT Teacher_ID, Teacher_Name FROM teacher_profile");
-$teachers = $teachersQuery->fetchAll(PDO::FETCH_ASSOC);
+$teachersQuery = "SELECT Teacher_ID, Teacher_Name FROM teacher_profile";
+$teachersResult = $conn->query($teachersQuery);
+$teachers = [];
+while ($row = $teachersResult->fetch_assoc()) {
+    $teachers[] = $row;
+}
 
-$scheduleQuery = $conn->prepare("SELECT * FROM class_schedule WHERE Weekday = :weekday");
-$scheduleQuery->execute([':weekday' => $weekday]);
-$schedules = $scheduleQuery->fetchAll(PDO::FETCH_ASSOC);
+// Define a default value for $weekday
+$weekday = isset($_GET['weekday']) ? $_GET['weekday'] : 'Monday';
+
+// Prepare schedule query
+$schedulesQuery = $conn->prepare("SELECT * FROM class_schedule WHERE Weekday = ?");
+$schedulesQuery->bind_param("s", $weekday);
+$schedulesQuery->execute();
+$schedulesResult = $schedulesQuery->get_result();
+$schedules = [];
+while ($row = $schedulesResult->fetch_assoc()) {
+    $schedules[] = $row;
+}
 
 // Handle GET request for fetching schedules by weekday
 if (isset($_GET['weekday'])) {
     $weekday = $_GET['weekday'];
 
-    // Fetch schedules for the selected weekday
-    $stmt = $conn->prepare("SELECT * FROM class_schedule WHERE Weekday = :weekday");
-    $stmt->execute([':weekday' => $weekday]);
-    $schedulesForWeekday = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt = $conn->prepare("SELECT * FROM class_schedule WHERE Weekday = ?");
+    $stmt->bind_param("s", $weekday);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $schedulesForWeekday = [];
+    while ($row = $result->fetch_assoc()) {
+        $schedulesForWeekday[] = $row;
+    }
 
-    // Prepare response as a JSON array
     echo json_encode($schedulesForWeekday);
     exit;
 }
-
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $weekday = $_POST['weekday'];
@@ -45,29 +53,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $period = $entry['period'];
 
         // Delete any existing duplicate schedule for the same teacher, weekday, class, and period
-        $stmtDelete = $conn->prepare("DELETE FROM class_schedule WHERE Teacher_ID = :teacherID AND Weekday = :weekday AND Class = :classSection AND Class_Time = :period");
-        $stmtDelete->execute([
-            ':teacherID' => $teacherID,
-            ':weekday' => $weekday,
-            ':classSection' => $classSection,
-            ':period' => $period
-        ]);
-        
+        $stmtDelete = $conn->prepare("DELETE FROM class_schedule WHERE Teacher_ID = ? AND Weekday = ? AND Class = ? AND Class_Time = ?");
+        $stmtDelete->bind_param("isss", $teacherID, $weekday, $classSection, $period);
+        $stmtDelete->execute();
+
         // Insert the new schedule entry
-        $stmtInsert = $conn->prepare("INSERT INTO class_schedule (Weekday, Class, Teacher_ID, Class_Time) VALUES (:weekday, :classSection, :teacherID, :period)");
-        $stmtInsert->execute([
-            ':weekday' => $weekday,
-            ':classSection' => $classSection,
-            ':teacherID' => $teacherID,
-            ':period' => $period
-        ]);
+        $stmtInsert = $conn->prepare("INSERT INTO class_schedule (Weekday, Class, Teacher_ID, Class_Time) VALUES (?, ?, ?, ?)");
+        $stmtInsert->bind_param("ssis", $weekday, $classSection, $teacherID, $period);
+        $stmtInsert->execute();
     }
 
     echo "Schedule Saved successfully!";
     exit;
 }
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
