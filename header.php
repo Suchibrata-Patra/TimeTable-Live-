@@ -72,7 +72,6 @@
     .new-menu a {
         text-decoration: none;
         color: #000000;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         font-weight: 400;
         font-size: 1.2rem;;
         padding:10px 20px;
@@ -383,10 +382,6 @@
         box-sizing: border-box;
     }
 
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-    }
-
     a {
         text-decoration: none;
     }
@@ -447,7 +442,6 @@
     #searchInput::placeholder {
         color: #656565;
         /* Change this to your desired color */
-        font-family: Roboto;
         font-weight: 400;
         font-size: 0.7 rem;
         opacity: 0.7;
