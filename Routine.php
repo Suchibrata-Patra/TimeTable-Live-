@@ -257,25 +257,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <script>
         $(document).ready(function () {
-            function updateTable(weekday) {
-    // Clear the current table data
-    $('.class-section-dropdown').val('');
+    function updateTable(weekday) {
+        // Clear the current table data
+        $('.class-section-dropdown').val('');
 
-    // Update the table header with the selected weekday
-    $('#tableHeader tr').find('th').first().text('Teacher - ' + weekday);
+        // Update the table header with the selected weekday
+        $('#tableHeader tr').find('th').first().text('Teacher - ' + weekday);
 
-    // Fetch schedule data for the selected weekday
-    $.ajax({
-        type: 'GET',
-        url: '', // Use the same PHP file
-        data: { weekday: weekday },
-        success: function (response) {
-            const schedules = JSON.parse(response);
+        // Fetch schedule data for the selected weekday
+        $.ajax({
+            type: 'GET',
+            url: '', // Use the same PHP file
+            data: { weekday: weekday },
+            success: function (response) {
+                const schedules = JSON.parse(response);
 
-            if (schedules.length === 0) {
-                // Show a message if no schedules are found
-                $('#scheduleTable').html('<p>No records found for ' + weekday + '.</p>');
-            } else {
                 // Populate the table with the fetched data
                 schedules.forEach(schedule => {
                     const teacherId = schedule.Teacher_ID;
@@ -286,10 +282,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $(`.class-section-dropdown[data-teacher-id="${teacherId}"][data-period="${period}"]`).val(classSection);
                 });
             }
-        }
-    });
-}
-
+        });
+    }
 
     // Set default weekday to Monday on page load
     const defaultWeekday = 'Monday';
