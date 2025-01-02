@@ -75,7 +75,7 @@
       <!-- Icon Text -->
       <!-- Logo Text -->
       <div class="logo">
-        <img src="timora.png" alt="Timora logo" class="logo-img">
+        <img src="/Assets/images/timora.png" alt="Timora logo" class="logo-img">
         <span class="logo-text">Timora.</span>
       </div>
       <!-- Help Button -->
