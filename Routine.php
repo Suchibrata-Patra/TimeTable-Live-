@@ -1,5 +1,12 @@
 <?php
-require database.php;
+// Database connection setup
+$host = "localhost";
+$dbname = "Timora";
+$username = "root";
+$password = "root";
+
+// $conn = new mysqli($host, $username, $password, $dbname);
+require ('database.php');
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
