@@ -313,10 +313,10 @@
         <!-- Navigation Menu -->
         <nav class="new-menu">
             <ul>
-                <li><a href="https://www.gangasagar-tourism.com/">Home</a></li>
-                <li><a href="https://www.gangasagar-tourism.com/about/">About</a></li>
-                <li><a href="https://www.gangasagar-tourism.com/about/">Pricing</a></li>
-                <li><a href="https://www.gangasagar-tourism.com/contact/">Contact</a></li>
+                <li><a href="timetable.theapplication.in">Home</a></li>
+                <li><a href="timetable.theapplication.in/Routine.php">Routine</a></li>
+                <li><a href="timetable.theapplication.in/scheduler.php">Generate</a></li>
+                <li><a href="timetable.theapplication.in/scheduler.php">Contact</a></li>
             </ul>
         </nav>
   
@@ -343,9 +343,10 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/The_application.in_navbara_icon.png" alt="Logo" loading="lazy">
         </div>
         <li><a href="https://www.gangasagar-tourism.com/">Home</a></li>
-        <li><a href="https://www.gangasagar-tourism.com/about/">About</a></li>
-        <li><a href="https://www.gangasagar-tourism.com/contact/">Pricing</a></li>
-        <li><a href="https://www.gangasagar-tourism.com/contact/">Contact</a></li>
+        <li><a href="timetable.theapplication.in">Home</a></li>
+                <li><a href="timetable.theapplication.in/Routine.php">Routine</a></li>
+                <li><a href="timetable.theapplication.in/scheduler.php">Generate</a></li>
+                <li><a href="timetable.theapplication.in/scheduler.php">Contact</a></li>
         <li><a href="#">₹ INR</a></li>
         <li><a href="#">Sign in</a></li>
     </ul>
