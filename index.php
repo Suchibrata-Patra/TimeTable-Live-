@@ -81,7 +81,7 @@
             <p class="lead mb-4">
                 Automate your school's timetable generation and dynamic teacher allocation. Save time, reduce errors, and ensure balance.
             </p>
-            <a href="https://timetable.theapplication.in/pricing" class="btn btn-light btn-lg shadow-sm fw-semibold">
+            <a href="https://timetable.theapplication.in" class="btn btn-light btn-lg shadow-sm fw-semibold">
                 Get Started Today
             </a>
         </div>
@@ -149,7 +149,7 @@
     <div class="container my-5 text-center">
         <h3 class="fw-bold mb-3">Contact Us</h3>
         <p class="mb-2">📧 <strong>Email:</strong> <a href="mailto:support@theapplication.in" class="text-decoration-none">support@theapplication.in</a></p>
-        <p>🌐 <strong>Website:</strong> <a href="https://timetable.theapplication.in" class="text-decoration-none" target="_blank">timetable.theapplication.in</a></p>
+        <p>🌐 <strong>Website:</strong> <a href="https://timetable.theapplication.in" class="text-decoration-none" target="_blank">theapplication.in</a></p>
     </div>
     <!-- CTA Section
     <div class="container-fluid py-5 bg-primary text-white">
