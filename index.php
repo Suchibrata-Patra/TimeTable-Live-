@@ -70,7 +70,7 @@
 
     <!-- Hero Section -->
     <section class="hero-section d-flex align-items-center justify-content-center text-center text-white" style="
-        background: linear-gradient(to right, rgba(0, 85, 231, 0.99)('https://timetable.theapplication.in/screenshot.png');
+        background: linear-gradient(to right, rgba(0, 85, 231, 0.99), rgba(0, 85, 231, 0.99)), url('https://timetable.theapplication.in/screenshot.png');
         background-size: cover;
         background-position: center;
         height: 80vh;
