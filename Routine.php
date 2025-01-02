@@ -8,7 +8,7 @@ if ($conn->connect_error) {
 }
 
 // Fetch all teachers
-$teachersQuery = "SELECT Teacher_ID, Teacher_Name FROM teacher_profile ORDER BY Teacher_Name DESC";
+$teachersQuery = "SELECT Teacher_ID, Teacher_Name FROM teacher_profile";
 $teachersResult = $conn->query($teachersQuery);
 $teachers = [];
 if ($teachersResult->num_rows > 0) {
