@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             /* background-color: #f0f0f2; */
         }
         #form-input{
-            display:none;
+            display:none !important;
         }
 
 
