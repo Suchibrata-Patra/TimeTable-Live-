@@ -623,26 +623,11 @@
 </center>
 <script>
     const placeholders = [
-        "'Gangasagar'",
-        "'Mayapur'",
-        "'Iskon'",
-        "'Puri'",
-        "'Kolkata'",
-        "'Vrindavan'",
-        "'Haridwar'",
-        "'Rishikesh'",
-        "'Ayodhya'",
-        "'Mathura'",
-        "'Dwaraka'",
-        "'Tirupati'",
-        "'Badrinath'",
-        "'Kedarnath'",
-        "'Varanasi'",
-        "'Ramnagar'",
-        "'Shimla'",
-        "'Nainital'",
-        "'Ujjain'",
-        "'Jammu'"
+        "'Routine'",
+        "'DHBSSPV'",
+        "'Rmakrishna Mission'",
+        "'J Vidyapith'",
+        "'RKM'"
     ];
 
 
