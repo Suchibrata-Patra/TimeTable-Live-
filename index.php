@@ -63,7 +63,7 @@
       </div>
     </section> -->
     <!-- Testimonials -->
-    <section class="testimonials bg-dark">
+    <!-- <section class="testimonials bg-dark">
       <div class="container">
         <h3 class="testimonials-heading text-xl">
           Don't just take our word for it, see the success stories from
@@ -104,7 +104,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Pricing -->
     <section class="pricing">
@@ -120,8 +120,7 @@
             <div class="pricing-card-header">
               <h4 class="pricing-heading text-xl">Basic</h4>
               <p class="pricing-card-subheading">
-                Keep track of your contacts, gain valuable insights, analyse
-                live data and performance metrics.
+                All kinds of basic features are included in this.
               </p>
               <p class="pricing-card-price">
                 <span class="text-xl">Free</span>
@@ -130,14 +129,13 @@
             </div>
             <div class="pricing-card-body">
               <ul>
-                <li><i class="fas fa-check"></i> Real-Time Monitoring</li>
+                <li><i class="fas fa-check"></i>2 Provisional Routine Generation / Day</li>
                 <li>
-                  <i class="fas fa-check"></i>Track key performance indicators
+                  <i class="fas fa-check"></i>To be used between 10:00 - 10:30 a.m
                 </li>
-                <li><i class="fas fa-check"></i>Schedule appointments</li>
+                <li><i class="fas fa-check"></i>No Teacher update @ academic Year.</li>
                 <li>
-                  <i class="fas fa-check"></i>Organize, delegate and keep track
-                  of tasks
+                  <i class="fas fa-check"></i>Routine modification (Unlimited).
                 </li>
               </ul>
               <a href="#" class="btn btn-primary btn-block">Get Started</a>
@@ -147,21 +145,20 @@
           <!-- Pricing Card 2 -->
           <div class="card bg-black">
             <div class="pricing-card-header">
-              <h4 class="pricing-card-heading text-xl">Plus + </h4>
+              <h4 class="pricing-card-heading text-xl">Plus+</h4>
               <p class="pricing-card-subheading">
-                Keep track of your contacts, gain valuable insights, analyze
-                live data and performance metrics.
+                More Advanced Features.
               </p>
               <p class="pricing-card-price">
                 <span class="text-xl">₹ 1</span> / Routine Genereated
               </p>
             </div>
             <div class="pricing-card-body">
-              <p>Everything from the free plan minus:</p>
+              <p>Everything from the free plan Plus + :</p>
               <ul>
-                <li><i class="fas fa-check"></i>Data-driven decisions</li>
-                <li><i class="fas fa-check"></i>Data visualization</li>
-                <li><i class="fas fa-check"></i>Schedule appointments</li>
+                <li><i class="fas fa-check"></i>Provisional Routine History.</li>
+                <li><i class="fas fa-check"></i>Capable of scheduling routines with precise period-level accuracy.</li>
+                <li><i class="fas fa-check"></i>Teacher Details Update (Unlimited).</li>
               </ul>
               <a href="#" class="btn btn-primary btn-block">Get Started</a>
             </div>
@@ -283,9 +280,9 @@
       <div class="container">
         <div class="footer-grid">
           <div>
-            <a href="#">
-              <img src="images/logo-white.png" alt="logo" />
-            </a>
+            <!-- <a href="#">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/The_application.in_navbara_icon.png" style="background-color:white;" alt="logo" />
+            </a> -->
             <div class="card">
               <h4>Subscribe to Newsletter</h4>
               <p class="text-sm">
