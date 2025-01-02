@@ -247,7 +247,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         data-teacher-id="<?= $teacher['Teacher_ID'] ?>" data-period="<?= $period ?>" data-type="subject">
         <option value="" disabled selected>.</option>
         <?php 
-            $subjects = ['Bengali', 'English', 'Math', 'Science', 'History', 'Geography', 'Physics', 'Chemistry', 'Biology'];
+            $subjects = ['Bengali', 'English', 'Math', 'Science', 'History', 'Geography', 'Physics', 'Chemistry', 'Biology','Poribesh','Sanskrit','Computer','Life Science','Computer Application','Computer Science','Physical Education','Work Education','Physical Science'];
             foreach ($subjects as $subject) {
                 echo "<option value=\"$subject\">$subject</option>";
             }
