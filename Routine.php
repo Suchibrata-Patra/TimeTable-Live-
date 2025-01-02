@@ -85,11 +85,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <style>
-        body{
-            background-color:rgb(245, 245, 245);
-            font-weight:400 !important;
+        body {
+            background-color: rgb(245, 245, 245);
+            font-weight: 400 !important;
             /* background-color: #f0f0f2; */
         }
+
         /* Remove the default dropdown arrow */
         .class-section-dropdown {
             appearance: none;
@@ -229,12 +230,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <?= htmlspecialchars($teacher['Teacher_Name']) ?>
                             </td>
                             <?php foreach ($periods as $period): ?>
-                                <td>
-    <!-- Dropdown for Class -->
-    <select class="form-select class-section-dropdown"
-        data-teacher-id="<?= $teacher['Teacher_ID'] ?>" data-period="<?= $period ?>" data-type="class">
-    <option value="" disabled selected>.</option>
-    <?php 
+                            <td>
+                                <!-- Dropdown for Class -->
+                                <select class="form-select class-section-dropdown"
+                                    data-teacher-id="<?= $teacher['Teacher_ID'] ?>" data-period="<?= $period ?>"
+                                    data-type="class">
+                                    <option value="" disabled selected>.</option>
+                                    <?php 
         $classes = [
             "Class 5" => ['5A','5B','5C'],
             "Class 6" => ['6A','6B','6C'],
@@ -253,21 +255,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "</optgroup>";
         }
     ?>
-</select>
+                                </select>
 
-    
-    <!-- Dropdown for Subject -->
-    <select class="form-select class-section-dropdown" style="border-top:0.5px solid rgb(226, 226, 226)"
-        data-teacher-id="<?= $teacher['Teacher_ID'] ?>" data-period="<?= $period ?>" data-type="subject">
-        <option value="" disabled selected>.</option>
-        <?php 
+
+                                <!-- Dropdown for Subject -->
+                                <select class="form-select class-section-dropdown"
+                                    style="border-top:0.5px solid rgb(226, 226, 226)"
+                                    data-teacher-id="<?= $teacher['Teacher_ID'] ?>" data-period="<?= $period ?>"
+                                    data-type="subject">
+                                    <option value="" disabled selected>.</option>
+                                    <?php 
             $subjects = ['Bengali', 'English', 'Math', 'Science','Education','History', 'Geography', 'Physics', 'Chemistry', 'Biology','Poribesh','Sanskrit','Computer','Life Science','Computer Application','Computer Science','Physical Education','Work Education','Physical Science'];
             foreach ($subjects as $subject) {
                 echo "<option value=\"$subject\">$subject</option>";
             }
         ?>
-    </select>
-</td>
+                                </select>
+                            </td>
 
                             <?php endforeach; ?>
                         </tr>
@@ -280,107 +284,119 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
     <script>
-       $(document).ready(function () {
-    function updateTable(weekday) {
-        // Clear the current table data
-        $('.class-section-dropdown').val('');
+        $(document).ready(function () {
+            function updateTable(weekday) {
+                // Clear the current table data
+                $('.class-section-dropdown').val('');
 
-        // Update the table header with the selected weekday
-        // $('#tableHeader tr').find('th').first().text('Teacher - ' + weekday);
-        $('#tableHeader tr').find('th').first().text('' + weekday);
+                // Update the table header with the selected weekday
+                // $('#tableHeader tr').find('th').first().text('Teacher - ' + weekday);
+                $('#tableHeader tr').find('th').first().text('' + weekday);
 
-        // Fetch schedule data for the selected weekday
-        $.ajax({
-            type: 'GET',
-            url: '', // Use the same PHP file
-            data: { weekday: weekday },
-            success: function (response) {
-                const schedules = JSON.parse(response);
+                // Fetch schedule data for the selected weekday
+                $.ajax({
+                    type: 'GET',
+                    url: '', // Use the same PHP file
+                    data: { weekday: weekday },
+                    success: function (response) {
+                        const schedules = JSON.parse(response);
 
-                // Populate the table with the fetched data
-                schedules.forEach(schedule => {
-                    const teacherId = schedule.Teacher_ID;
-                    const period = schedule.Class_Time;
-                    const classSection = schedule.Class;
-                    const subject = schedule.Subject;
+                        // Populate the table with the fetched data
+                        schedules.forEach(schedule => {
+                            const teacherId = schedule.Teacher_ID;
+                            const period = schedule.Class_Time;
+                            const classSection = schedule.Class;
+                            const subject = schedule.Subject;
 
-                    // Find the corresponding dropdown and update its value
-                    $(`.class-section-dropdown[data-teacher-id="${teacherId}"][data-period="${period}"][data-type="class"]`).val(classSection);
-                    $(`.class-section-dropdown[data-teacher-id="${teacherId}"][data-period="${period}"][data-type="subject"]`).val(subject);
-                });
-            }
-        });
-    }
-
-    // Set default weekday to Monday on page load
-    const defaultWeekday = 'Monday';
-    $('#weekday').val(defaultWeekday);
-
-    // Trigger the updateTable function for Monday on page load
-    updateTable(defaultWeekday);
-
-    // Listen for changes in the weekday dropdown
-    $('#weekday').on('change', function () {
-        const selectedWeekday = $(this).val();
-        if (selectedWeekday) {
-            updateTable(selectedWeekday);
-        }
-    });
-
-    // Handle form submission
-    $('#scheduleForm').on('submit', function (e) {
-        e.preventDefault();
-
-        const weekday = $('#weekday').val();
-        if (!weekday) {
-            alert('Please select a weekday.');
-            return;
-        }
-
-        const entries = [];
-        $('.class-section-dropdown').each(function () {
-            const teacherId = $(this).data('teacher-id');
-            const period = $(this).data('period');
-            const type = $(this).data('type');
-            const value = $(this).val();
-
-            // Ensure both class and subject are selected
-            if (value) {
-                // Only push data when both Class and Subject are selected for each period
-                if (type === 'class') {
-                    const subjectDropdown = $(`.class-section-dropdown[data-teacher-id="${teacherId}"][data-period="${period}"][data-type="subject"]`);
-                    const subject = subjectDropdown.val();
-                    
-                    if (subject) {
-                        entries.push({
-                            teacher_id: teacherId,
-                            class_section: value,  // Class section
-                            subject: subject,      // Subject
-                            weekday: weekday,
-                            period: period
+                            // Find the corresponding dropdown and update its value
+                            $(`.class-section-dropdown[data-teacher-id="${teacherId}"][data-period="${period}"][data-type="class"]`).val(classSection);
+                            $(`.class-section-dropdown[data-teacher-id="${teacherId}"][data-period="${period}"][data-type="subject"]`).val(subject);
                         });
                     }
-                }
+                });
             }
-        });
 
-        // If there are valid entries, send them via AJAX
-        if (entries.length > 0) {
-            $.ajax({
-                type: 'POST',
-                url: '',
-                data: {
-                    weekday: weekday,
-                    entries: JSON.stringify(entries)
-                },
-                success: function (response) {
-                    alert(response);
-                    location.reload();
+            // Set default weekday to Monday on page load
+            const defaultWeekday = 'Monday';
+            $('#weekday').val(defaultWeekday);
+
+            // Trigger the updateTable function for Monday on page load
+            updateTable(defaultWeekday);
+
+            // Listen for changes in the weekday dropdown
+            $('#weekday').on('change', function () {
+                const selectedWeekday = $(this).val();
+                if (selectedWeekday) {
+                    updateTable(selectedWeekday);
                 }
             });
-        }
-    });
+
+            // Handle form submission
+            $('#scheduleForm').on('submit', function (e) {
+                e.preventDefault();
+
+                const weekday = $('#weekday').val();
+                if (!weekday) {
+                    alert('Please select a weekday.');
+                    return;
+                }
+
+                const entries = [];
+                $('.class-section-dropdown').each(function () {
+                    const teacherId = $(this).data('teacher-id');
+                    const period = $(this).data('period');
+                    const type = $(this).data('type');
+                    const value = $(this).val();
+
+                    // Ensure both class and subject are selected
+                    if (value) {
+                        // Only push data when both Class and Subject are selected for each period
+                        if (type === 'class') {
+                            const subjectDropdown = $(`.class-section-dropdown[data-teacher-id="${teacherId}"][data-period="${period}"][data-type="subject"]`);
+                            const subject = subjectDropdown.val();
+
+                            if (subject) {
+                                entries.push({
+                                    teacher_id: teacherId,
+                                    class_section: value,  // Class section
+                                    subject: subject,      // Subject
+                                    weekday: weekday,
+                                    period: period
+                                });
+                            }
+                        }
+                    }
+                });
+
+                // If there are valid entries, send them via AJAX
+                if (entries.length > 0) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '',
+                        data: {
+                            weekday: weekday,
+                            entries: JSON.stringify(entries)
+                        },
+                        success: function (response) {
+                            alert(response);
+                            $.ajax({
+    type: 'GET',
+    url: 'json.php', // URL of json.php script
+    success: function () {
+        console.log('json.php script executed successfully');
+    },
+    error: function () {
+        console.error('Error executing json.php script');
+    }
 });
+
+                            location.reload();
+                        }
+                    });
+                }
+            });
+        });
     </script>
 </body>
+
 </html>
