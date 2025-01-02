@@ -217,7 +217,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             // Periods for columns
                             $periods = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th'];
                             foreach ($periods as $period) {
-                                echo "<th style='font-weight:400 !important;'>$period</th>";
+                                echo "<th style='font-weight:400 !important;'>$period - Period</th>";
                             }
                             ?>
                         </tr>
