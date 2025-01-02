@@ -1,7 +1,7 @@
 <?php
 require 'database.php';
 
-// Step 1: SQL Query to join class_schedule with teacher_profile and fetch Teacher_Name
+// Step 1: SQL Query to fetch data from class_schedule and teacher_profile
 $sql = "SELECT cs.*, tp.teacher_Name as teacher
     FROM class_schedule cs
     JOIN teacher_profile tp 
@@ -60,7 +60,6 @@ if ($result->num_rows > 0) {
                     $row['timeSlot'] = $row['Class_Time'];  // Rename Class_Time to timeSlot
                     unset($row['Class_Time']);  // Remove the original Class_Time field
 
-
                     $row['section'] = $row['Section'];  // Rename Class_Time to timeSlot
                     unset($row['Section']);  // Remove the original Class_Time field
                     unset($row['Weekday']);  // Remove the original Class_Time field
@@ -88,7 +87,7 @@ if ($result->num_rows > 0) {
     file_put_contents($tempFileName, $jsonData);
 
     // Step 9: Provide a link or path for further usage
-    echo "Saved Sucesfully";
+    echo "Saved Successfully";
 
 } else {
     echo "No records found";

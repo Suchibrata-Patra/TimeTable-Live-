@@ -1,0 +1,28 @@
+{
+    "schedule": {
+        "Monday": [
+            {
+                "UDISE_ID": null,
+                "teacher": "S.M",
+                "class": "Class 5",
+                "section": "A",
+                "subject": "Science",
+                "timeSlot": "1st"
+            },
+            {
+                "UDISE_ID": null,
+                "teacher": "S.M",
+                "class": "Class 6",
+                "section": "A",
+                "subject": "Math",
+                "timeSlot": "2nd"
+            }
+        ],
+        "Tuesday": [],
+        "Wednesday": [],
+        "Thursday": [],
+        "Friday": [],
+        "Saturday": [],
+        "Sunday": []
+    }
+}
