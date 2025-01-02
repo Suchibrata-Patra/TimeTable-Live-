@@ -277,7 +277,7 @@
         <!-- Logo and Social Icons for Mobile -->
         <div class="new-logo-container">
             <div class="new-logo" style="text-decoration: none;">
-                <a href="/"><img src="https://upload.wikimedia.org/wikipedia/commons/6/63/The_application.in_navbara_icon.png" alt="Logo" loading="lazy"></a>
+                <a href="/"><img src="https://upload.wikimedia.org/wikipedia/commons/6/63/The_application.in_navbara_icon.png" alt="Logo" loading="lazy" style="margin-top:5px;"></a>
                 
             </div>
             
