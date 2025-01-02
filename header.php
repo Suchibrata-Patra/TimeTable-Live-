@@ -346,6 +346,7 @@
                 <li><a href="timetable.theapplication.in/Routine.php">Routine</a></li>
                 <li><a href="timetable.theapplication.in/scheduler.php">Generate</a></li>
                 <li><a href="timetable.theapplication.in/scheduler.php">Contact</a></li>
+                <li><a href="#">Sign in</a></li>
     </ul>
   </aside>
   
