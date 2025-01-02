@@ -251,7 +251,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ?>
 </select>
 
-
     
     <!-- Dropdown for Subject -->
     <select class="form-select class-section-dropdown" style="border-top:0.5px solid rgb(226, 226, 226)"
@@ -379,7 +378,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 });
 
 
-    </scrip>
+    </script>
 </body>
 
 </html>
