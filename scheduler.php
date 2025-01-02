@@ -66,45 +66,10 @@
 </head>
 
 <body>
+  <?php require('header.php') ?>
 
   <!-- Navbar -->
-  <div
-    style="display: flex; align-items: center; justify-content: space-between; width: 100vw; height: 60px;color: #000000; padding: 0 30px; box-sizing: border-box;">
-    <!-- Container for Haggle and Help Button -->
-    <div style="display: flex; align-items: center; gap: 10px;">
-      <!-- Icon Text -->
-      <!-- Logo Text -->
-      <div class="logo">
-        <img src="timora.png" alt="Timora logo" class="logo-img">
-        <span class="logo-text">Timora.</span>
-      </div>
-      <!-- Help Button -->
-      <button style=" background-color: transparent; border: none; color: #000000; font-size: 14px; cursor: pointer;
-        display: inline-flex; align-items: center; padding: 4px 8px;" id="navoptions"
-        onclick="window.location.href='Help.html';">
-        Help
-      </button>
-
-
-      <!-- Edit Schedule -->
-      <button
-        style="background-color: transparent; border: none; color: #000000; font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; padding: 4px;"
-        id="navoptions" onclick="window.location.href='edit.html';">
-        Edit Schedule
-      </button>
-    </div>
-
-    <!-- Report Error Button -->
-    <button
-      style="background-color: #000000; color: #ffffff; border: none; border-radius: 20px; padding: 10px 15px; font-size: 12px; cursor: pointer; font-weight: 500; margin-right: 10%; display: flex; align-items: center;"
-      onclick="window.location.href='error_report.html';">
-      Report Error
-      <span class="material-symbols-outlined" style="font-size: 16px; margin-left: 8px; font-weight: 600;">
-        error
-      </span>
-    </button>
-  </div>
-
+  
   <!-- Main Content -->
   <div
     style="display: flex; align-items: center; justify-content: flex-start; width: 100vw; height: 20%; margin: 0; box-sizing: border-box; padding: 20px;">
@@ -145,7 +110,7 @@
   <div id="teacherSelectionSection" style="display: none; padding:2%;">
     <div style="display: flex; align-items: center;">
       <h3
-        style="font-weight: 400; font-size: 19px; display: inline-flex; align-items: center; margin: 0; margin-right: 20px;">
+        style="font-weight: 400; font-size: 19px; display: inline-flex; align-items: center; margin: 0; margin-right: 0px;">
         <span class="material-symbols-outlined" style="margin-right: 8px;">
           select_check_box
         </span>

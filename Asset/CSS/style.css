@@ -1,15 +1,3 @@
-body {
-    font-family: "Roboto", sans-serif;
-    margin: 20px;
-    /* background-image: url('https://www.ibm.com/content/dam/connectedassets-adobe-cms/worldwide-content/creative-assets/s-migr/ul/g/56/71/watsonx-timeline-build.gif'); */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: #eeeeef;
-    color: #333;
-    line-height: 1.6;
-  
-  }
-
   select,
   input,
   button {
