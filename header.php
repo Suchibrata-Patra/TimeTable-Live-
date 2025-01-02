@@ -277,15 +277,15 @@
         <!-- Logo and Social Icons for Mobile -->
         <div class="new-logo-container">
             <div class="new-logo" style="text-decoration: none;">
-                <a href="/"><img src="https://www.gangasagar-tourism.com/wp-content/uploads/2024/12/logo.png" alt="Logo" loading="lazy"></a>
+                <a href="/"><img src="https://upload.wikimedia.org/wikipedia/commons/6/63/The_application.in_navbara_icon.png" alt="Logo" loading="lazy"></a>
                 
             </div>
             
             <!-- Social Icons for Mobile -->
             <div class="new-social-icons" style="margin-right: 15px;">
                 <!-- <a href="tel:+918145302135"><img src="https://www.gangasagar-tourism.com/wp-content/uploads/2024/12/Call_icon.png" alt="Call"></a> -->
-                <a href="#" id="whatsapp-link"><img src="https://www.gangasagar-tourism.com/wp-content/uploads/2024/12/Whatsapp.png" alt="Whatsapp"></a>
-                <a href="tel:+918145302135"><img src="https://www.gangasagar-tourism.com/wp-content/uploads/2024/12/phone-call.png" alt="Call" style="border-radius: 50px;"></a>
+                <!-- <a href="#" id="whatsapp-link"><img src="https://www.gangasagar-tourism.com/wp-content/uploads/2024/12/Whatsapp.png" alt="Whatsapp"></a> -->
+                <!-- <a href="tel:+918145302135"><img src="https://www.gangasagar-tourism.com/wp-content/uploads/2024/12/phone-call.png" alt="Call" style="border-radius: 50px;"></a> -->
                 <!-- <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Instagram_logo_2022.svg" alt="Instagram"></a> -->
             </div>
             <script>
@@ -339,7 +339,7 @@
     <div class="new-close-btn">&times;</div>
     <ul>
         <div class="new-logo" style="margin-left:15% !important;">
-            <img src="https://www.gangasagar-tourism.com/wp-content/uploads/2024/12/logo.png" alt="Logo" loading="lazy">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/The_application.in_navbara_icon.png" alt="Logo" loading="lazy">
         </div>
         <li><a href="https://www.gangasagar-tourism.com/">Home</a></li>
         <li><a href="https://www.gangasagar-tourism.com/about/">About</a></li>
