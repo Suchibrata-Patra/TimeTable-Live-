@@ -234,14 +234,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <!-- Dropdown for Class -->
     <select class="form-select class-section-dropdown"
         data-teacher-id="<?= $teacher['Teacher_ID'] ?>" data-period="<?= $period ?>" data-type="class">
-        <option value="" disabled selected>.</option>
-        <?php 
-            $classes = ['DELETE', '5A', '5B', '6A', '6B', '7A', '7B', '8A', '8B', '9A', '9C', '10A', '10B','11 Combined','11 ARTS', '11 SCIENCE', '12 Combined','12 ARTS', '12 SCIENCE'];
-            foreach ($classes as $class) {
+    <option value="" disabled selected>.</option>
+    <?php 
+        $classes = [
+            "Junior Classes" => ['5A', '5B', '6A', '6B', '7A', '7B', '8A', '8B'],
+            "Senior Classes" => ['9A', '9C', '10A', '10B'],
+            "Specialized Classes" => ['11 Combined', '11 ARTS', '11 SCIENCE', '12 Combined', '12 ARTS', '12 SCIENCE']
+        ];
+
+        foreach ($classes as $group => $groupClasses) {
+            echo "<optgroup label=\"$group\">";
+            foreach ($groupClasses as $class) {
                 echo "<option value=\"$class\">$class</option>";
             }
-        ?>
-    </select>
+            echo "</optgroup>";
+        }
+    ?>
+</select>
+
     
     <!-- Dropdown for Subject -->
     <select class="form-select class-section-dropdown" style="border-top:0.5px solid rgb(226, 226, 226)"
