@@ -7,7 +7,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$refresh_query = "DELETE FROM class_schedule WHERE CLASS = 'Delete' OR Subject = 'Delete'";
+$refresh_query = "DELETE FROM class_schedule WHERE CLASS = 'Delete' OR Subject in 'Delete'";
 $conn->query($refresh_query);
 
 
