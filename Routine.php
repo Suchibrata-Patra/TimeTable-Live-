@@ -7,8 +7,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// $refresh_query = "DELETE FROM class_schedule WHERE CLASS = 'Delete' OR Class_Time = 'Delete'";
-// $conn->query($refresh_query);
+$refresh_query = "DELETE FROM class_schedule WHERE CLASS = 'Delete' OR Class_Time = 'Delete'";
+$conn->query($refresh_query);
 
 
 // Fetch all teachers
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $deleteQuery = "DELETE FROM class_schedule 
                         WHERE Teacher_ID = '$teacherID' 
                         AND Weekday = '$weekday' 
-                        AND Class = '$classSection' 
+                        -- AND Class = '$classSection' 
                         AND Class_Time = '$period'";
         $conn->query($deleteQuery);
 
