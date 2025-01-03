@@ -7,7 +7,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$refresh_query = "DELETE FROM class_schedule WHERE CLASS = 'DELETE' OR Class_Time = 'DELETE'";
+$refresh_query = "DELETE FROM class_schedule WHERE CLASS = 'Delete' OR Class_Time = 'Delete'";
 $conn->query($refresh_query);
 
 
@@ -51,12 +51,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $period = $conn->real_escape_string($entry['period']);
 
         // Delete any existing duplicate schedule for the same teacher, weekday, class, and period
-        $deleteQuery = "DELETE FROM class_schedule 
-                        WHERE Teacher_ID = '$teacherID' 
-                        AND Weekday = '$weekday' 
-                        AND Class = '$classSection' 
-                        AND Class_Time = '$period'";
-        $conn->query($deleteQuery);
+        if ($classSection !== 'Delete' && $period !== 'Delete') {
+            $deleteQuery = "DELETE FROM class_schedule 
+                            WHERE Teacher_ID = '$teacherID' 
+                            AND Weekday = '$weekday' 
+                            AND Class = '$classSection' 
+                            AND Class_Time = '$period'";
+            $conn->query($deleteQuery);
+        }
 
         // Insert the new schedule entry with both Class and Subject
         $insertQuery = "INSERT INTO class_schedule (Weekday, Class, Teacher_ID, Class_Time, Subject) 
