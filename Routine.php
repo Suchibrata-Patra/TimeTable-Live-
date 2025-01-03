@@ -7,6 +7,10 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+$refresh_query = "DELETE FROM class_schedule WHERE CLASS = 'DELETE' OR Class_Time = 'DELETE'";
+$conn->query($refresh_query);
+
+
 // Fetch all teachers
 $teachersQuery = "SELECT Teacher_ID, Teacher_Name FROM teacher_profile ORDER BY Teacher_Name";
 $teachersResult = $conn->query($teachersQuery);
@@ -242,13 +246,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <option value="" disabled selected>.</option>
                                     <?php 
         $classes = [
+
             "Class 5" => ['5A','5B','5C'],
             "Class 6" => ['6A','6B','6C'],
             "Class 7" => ['7A','7B','7C'],
             "Class 8" => ['8A','8B','8C'],
             "Class 9" => ['9A','9B'],
             "Class 10" => ['10A','10B'],
-            "Higher Secondary" => ['Combined 11', '11 ARTS', '11 SCIENCE', 'Combined 12', '12 ARTS', '12 SCIENCE']
+            "Higher Secondary" => ['Combined 11', '11 ARTS', '11 SCIENCE', 'Combined 12', '12 ARTS', '12 SCIENCE'],
+            "Delete" => ['Delete']
         ];
 
         foreach ($classes as $group => $groupClasses) {
@@ -269,7 +275,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     data-type="subject">
                                     <option value="" disabled selected>.</option>
                                     <?php 
-            $subjects = ['Bengali', 'English', 'Math', 'Science','Education','History', 'Geography', 'Physics', 'Chemistry', 'Biology','Poribesh','Sanskrit','Computer','Life Science','Computer Application','Computer Science','Physical Education','Work Education','Physical Science'];
+            $subjects = ['Bengali', 'English', 'Math', 'Science','Education','History', 'Geography', 'Physics', 'Chemistry', 'Biology','Poribesh','Sanskrit','Computer','Life Science','Computer Application','Computer Science','Physical Education','Work Education','Physical Science','Delete'];
             foreach ($subjects as $subject) {
                 echo "<option value=\"$subject\">$subject</option>";
             }
